@@ -1,0 +1,14 @@
+{
+	"compilerOptions": {
+		"target": "ESNext", // Establece la versión de JavaScript de salida
+		"module": "ES2022", // Usa CommonJS para que sea compatible con Node.js y Electron
+		"moduleResolution": "node", // Resolución de módulos para Node.js
+		"outDir": "./dist", // Directorio de salida de los archivos compilados
+		"esModuleInterop": true, // Habilita la interoperabilidad de módulos ES
+		"skipLibCheck": true, // Omite la comprobación de bibliotecas para mejorar la velocidad de compilación
+		"forceConsistentCasingInFileNames": true,
+		"strict": true // Habilita la verificación estricta de tipos
+	},
+	"include": ["src/**/*.ts"],
+	"exclude": ["node_modules"]
+}
