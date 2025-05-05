@@ -1,7 +1,6 @@
 // AppPaths.ts - Gestión de rutas de la aplicación
 import appDataPath from 'appdata-path';
 import path from 'node:path';
-import fs from 'node:fs/promises';
 
 /**
  * Interface para las rutas de la aplicación
@@ -26,11 +25,6 @@ export interface IAppPaths {
 	getLocalesDir(): string;
 	getAssetsDir(): string;
 	getTempDir(): string;
-
-	// Métodos para operaciones con rutas
-	ensureDirectoriesExist(): Promise<void>;
-	resolvePath(...segments: string[]): string;
-	isPathWithinAppDirectory(checkPath: string): boolean;
 }
 
 /**
@@ -66,15 +60,6 @@ export class AppPaths implements IAppPaths {
 		this.localesDir = path.join(this.AppDir, 'locales');
 		this.assetsDir = path.join(this.AppDir, 'assets');
 		this.tempDir = path.join(this.AppDir, 'temp');
-	}
-	ensureDirectoriesExist(): Promise<void> {
-		throw new Error('Method not implemented.');
-	}
-	resolvePath(...segments: string[]): string {
-		throw new Error('Method not implemented.');
-	}
-	isPathWithinAppDirectory(checkPath: string): boolean {
-		throw new Error('Method not implemented.');
 	}
 	/**
 	 * Obtiene el directorio de configuración

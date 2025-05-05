@@ -2,11 +2,12 @@
   "lockfileVersion": 1,
   "workspaces": {
     "": {
+      "name": "santiagolxx",
       "dependencies": {
         "@types/electron": "^1.6.12",
         "appdata-path": "^1.0.0",
         "axios": "^1.9.0",
-        "cubic-neutron": "^0.0.7",
+        "cubic-neutron": "^0.0.8",
         "log4js": "^6.9.1",
         "protobufjs": "^7.5.0",
       },
@@ -241,7 +242,7 @@
 
     "cross-spawn": ["cross-spawn@7.0.6", "", { "dependencies": { "path-key": "^3.1.0", "shebang-command": "^2.0.0", "which": "^2.0.1" } }, "sha512-uV2QOWP2nWzsy2aMp8aRibhi9dlzF5Hgh5SHaB9OiTGEyDTiJJyx0uy51QXdyWbtAHNua4XJzUKca3OzKUd3vA=="],
 
-    "cubic-neutron": ["cubic-neutron@0.0.7", "", { "dependencies": { "adm-zip": "^0.5.16", "uuid": "^11.1.0" } }, "sha512-mXFNuUCSLOTeth3D1vq1tvB1t8SgMrw2tlMVnom0WFKzGnCnpoZ4HBccEMkYCEwLK+RAoogm1k0G44hSDUh7Fg=="],
+    "cubic-neutron": ["cubic-neutron@0.0.8", "", { "dependencies": { "adm-zip": "^0.5.16", "uuid": "^11.1.0" } }, "sha512-uYM2C6kjPuDvq648kApDoFyjPfotZ5aWC3smsgU5FbgKFQ8X8elI8ICCPPP2pLbi9frHlIAn2qCEUmVYfHCLBg=="],
 
     "date-format": ["date-format@4.0.14", "", {}, "sha512-39BOQLs9ZjKh0/patS9nrT8wc3ioX3/eA/zgbKNopnF2wCqJEoxywwwElATYvRsXdnOxA/OQeQoFZ3rFjVajhg=="],
 

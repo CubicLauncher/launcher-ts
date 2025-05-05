@@ -1,13 +1,14 @@
 import { mainLogger } from './Logger.js';
+import type {
+	CodeDefinition,
+	CodeType,
+	APIResponse,
+} from '../types/ApiTypes.js';
 
-// Tipos de códigos
-type CodeType = 'ERR' | 'OK' | 'INF';
-
-// Estructura de un código
-interface CodeDefinition {
-	type: CodeType;
-	template: string; // Usa {field} como marcador de inserción
-}
+const defaultDefinition: CodeDefinition = {
+	type: 'ERR',
+	template: 'Unknow error',
+};
 
 // Diccionario de códigos de estado
 const CODE_MAP: Record<string, CodeDefinition> = {
@@ -28,39 +29,61 @@ const CODE_MAP: Record<string, CodeDefinition> = {
 		type: 'ERR',
 		template: 'Error de validacion de archivo de configuracion.',
 	},
+	ERR09: { type: 'ERR', template: 'Error al descargar la version {field}' },
+	ERR10: { type: 'ERR', template: 'Las notificaciones no estan habilitadas.' },
+	ERR11: { type: 'ERR', template: 'Error al mostrar notificacion: {field}.' },
 	ERR99: { type: 'ERR', template: 'Error desconocido: {field}' },
 
 	OK01: { type: 'OK', template: 'Versión {field} descargada correctamente' },
 	OK02: { type: 'OK', template: 'Instancia {field} creada exitosamente' },
+	OK03: { type: 'OK', template: 'Task {field} succeded' },
+	OK04: { type: 'OK', template: 'Archivo de configuracion pasado correctamente' },
 
 	INF01: { type: 'INF', template: 'Iniciando descarga de {field}...' },
-	INF02: { type: 'INF', template: 'Verificando integridad de {field}' },
 };
 
+// Tipo para los códigos válidos
+type ValidCode = keyof typeof CODE_MAP;
+
+// Verifica si un código existe en el mapa
+function isValidCode(code: string): code is ValidCode {
+	return code in CODE_MAP;
+}
+
 // Genera mensaje formateado
-function formatMessage(code: string, field: string = '') {
-	const def = CODE_MAP[code] || CODE_MAP['ERR99'];
-	const message = def.template.replace('{field}', field || '');
-	return { code, type: def.type, message };
+function formatMessage(code: string, field: string) {
+	// Verifica si el código existe o usa el código de error por defecto
+	const safeCode = isValidCode(code) ? code : 'ERR99';
+	const def = CODE_MAP[safeCode] || defaultDefinition;
+
+	// Reemplaza el marcador de posición con el campo proporcionado
+	const message = def.template.replace('{field}', field);
+
+	return { code: safeCode, type: def.type, message };
 }
 
 // Función principal de manejo
-export default function handleCode(code: string, field: string = '') {
-	const { type, message } = formatMessage(code, field);
+export default function handleCode(code: string, field: string) {
+	const { type, message, code: safeCode } = formatMessage(code, field);
 
 	switch (type) {
 		case 'ERR':
-			console.error(`[${code}] ${message}`);
+			console.error(`[${safeCode}] ${message}`);
 			break;
 		case 'OK':
-			console.log(`[${code}] ${message}`);
+			console.log(`[${safeCode}] ${message}`);
 			break;
 		case 'INF':
-			console.info(`[${code}] ${message}`);
+			console.info(`[${safeCode}] ${message}`);
 			break;
 	}
 
-	logCode(code, message, type);
+	logCode(safeCode, message, type);
+	return {
+		type: type,
+		safeCode: safeCode,
+		message: message,
+	} as APIResponse;
 }
 
 // Registro de eventos según el tipo

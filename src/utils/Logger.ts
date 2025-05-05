@@ -3,7 +3,7 @@ import { AppPaths } from './AppPaths.js';
 import fs from 'node:fs';
 import path from 'node:path';
 import handleCode from './Api.js';
-let paths = new AppPaths();
+const paths = new AppPaths();
 
 // Asegurar que existe el directorio de logs
 const logDir = paths.getLogDir();
@@ -44,17 +44,17 @@ log4js.configure({
 		versionManagerFilter: {
 			type: 'logLevelFilter',
 			appender: 'versionManagerFile',
-			level: process.env.NODE_ENV === 'development' ? 'debug' : 'info',
+			level: process.env['NODE_ENV'] === 'development' ? 'debug' : 'info',
 		},
 		mainThreadFilter: {
 			type: 'logLevelFilter',
 			appender: 'mainThreadFile',
-			level: process.env.NODE_ENV === 'development' ? 'debug' : 'info',
+			level: process.env['NODE_ENV'] === 'development' ? 'debug' : 'info',
 		},
 		renderThreadFilter: {
 			type: 'logLevelFilter',
 			appender: 'renderThreadFile',
-			level: process.env.NODE_ENV === 'development' ? 'debug' : 'info',
+			level: process.env['NODE_ENV'] === 'development' ? 'debug' : 'info',
 		},
 		defaultFilter: {
 			type: 'logLevelFilter',
@@ -67,7 +67,7 @@ log4js.configure({
 		default: {
 			// Siempre debe tener al menos un appender
 			appenders:
-				process.env.NODE_ENV === 'development'
+				process.env['NODE_ENV'] === 'development'
 					? ['out', 'defaultFilter']
 					: ['defaultFilter'],
 			level: 'info',
@@ -75,7 +75,7 @@ log4js.configure({
 
 		versionManager: {
 			appenders:
-				process.env.NODE_ENV === 'development'
+				process.env['NODE_ENV'] === 'development'
 					? ['versionManagerFilter', 'out']
 					: ['versionManagerFilter'],
 			level: 'debug',
@@ -83,7 +83,7 @@ log4js.configure({
 
 		mainThread: {
 			appenders:
-				process.env.NODE_ENV === 'development'
+				process.env['NODE_ENV'] === 'development'
 					? ['mainThreadFilter', 'out']
 					: ['mainThreadFilter'],
 			level: 'debug',
@@ -91,7 +91,7 @@ log4js.configure({
 
 		renderThread: {
 			appenders:
-				process.env.NODE_ENV === 'development'
+				process.env['NODE_ENV'] === 'development'
 					? ['renderThreadFilter', 'out']
 					: ['renderThreadFilter'],
 			level: 'debug',

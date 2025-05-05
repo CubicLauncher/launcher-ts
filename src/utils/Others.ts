@@ -1,10 +1,9 @@
-import { promises as fs } from 'fs';
-import appPaths from './AppPaths';
-import handleCode from './Api';
+import { promises as fs } from 'node:fs';
+import appPaths from './AppPaths.js';
+import handleCode from './Api.js';
 
 export async function generateDirs() {
-	let baseDir = appPaths.getAppDir();
-	let dirs: [string] = [''];
+	const dirs: [string] = [''];
 	dirs.pop();
 	dirs.push(appPaths.getAppDir());
 	dirs.push(appPaths.getAssetsDir());
@@ -15,7 +14,7 @@ export async function generateDirs() {
 	dirs.push(appPaths.getTempDir());
 	dirs.push(appPaths.getThemesDir());
 
-	dirs.forEach((dir) => {
+	for (const dir of dirs) {
 		try {
 			fs.mkdir(dir);
 		} catch (error: unknown) {
@@ -26,5 +25,5 @@ export async function generateDirs() {
 				handleCode('ERR99', 'Unknown error occurred');
 			}
 		}
-	});
+	}
 }

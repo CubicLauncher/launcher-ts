@@ -1,14 +1,47 @@
 {
 	"compilerOptions": {
-		"target": "ESNext", // Establece la versión de JavaScript de salida
-		"module": "ES2022", // Usa CommonJS para que sea compatible con Node.js y Electron
-		"moduleResolution": "node", // Resolución de módulos para Node.js
-		"outDir": "./dist", // Directorio de salida de los archivos compilados
-		"esModuleInterop": true, // Habilita la interoperabilidad de módulos ES
-		"skipLibCheck": true, // Omite la comprobación de bibliotecas para mejorar la velocidad de compilación
+		"target": "ESNext",
+		"module": "ESNext",
+		"moduleResolution": "bundler",
+		"esModuleInterop": true,
+		"allowSyntheticDefaultImports": true,
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"outDir": "./dist",
+		"sourceMap": true,
+		"declaration": true,
+		"declarationMap": true,
+		"strict": true,
+		"alwaysStrict": true,
+		"noImplicitAny": true,
+		"strictNullChecks": true,
+		"strictFunctionTypes": true,
+		"strictBindCallApply": true,
+		"strictPropertyInitialization": true,
+		"noImplicitThis": true,
+		"useUnknownInCatchVariables": true,
+		"noUncheckedIndexedAccess": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"exactOptionalPropertyTypes": true,
+		"noImplicitReturns": true,
+		"noFallthroughCasesInSwitch": true,
+		"noImplicitOverride": true,
+		"allowUnreachableCode": false,
+		"allowUnusedLabels": false,
+		"noPropertyAccessFromIndexSignature": true,
 		"forceConsistentCasingInFileNames": true,
-		"strict": true // Habilita la verificación estricta de tipos
+		"skipLibCheck": false
 	},
-	"include": ["src/**/*.ts"],
-	"exclude": ["node_modules"]
+	"include": ["src/**/*.ts", "src/**/*.tsx", "src/main/preload.ts"],
+	"exclude": ["node_modules", "dist"],
+	"overrides": [
+		{
+			"files": ["src/main/preload.ts"],
+			"compilerOptions": {
+				"module": "CommonJS",
+				"outDir": "./dist/preload"
+			}
+		}
+	]
 }

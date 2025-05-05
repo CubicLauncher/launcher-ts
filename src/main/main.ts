@@ -1,16 +1,16 @@
 import { app, BrowserWindow } from 'electron';
-import path from 'path';
+import path from 'node:path';
 import { cleanOldLogs, mainLogger } from '../utils/Logger.js';
-import os from 'os';
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
+import os from 'node:os';
+import { fileURLToPath } from 'node:url';
+import { dirname } from 'node:path';
+import { InitializeHandlers } from './ipcHandlers.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-
 let mainWin: BrowserWindow | null = null;
 
-function createMainWindow() {
+function createMainWindow(): BrowserWindow {
 	// Limpiar la referencia anterior si existe
 	if (mainWin !== null && !mainWin.isDestroyed()) {
 		mainWin.close();
@@ -24,9 +24,11 @@ function createMainWindow() {
 			nodeIntegration: false,
 			contextIsolation: true,
 			sandbox: true,
-			devTools: process.env.NODE_ENV === 'development',
+			webSecurity: true,
+			additionalArguments: [
+				'--enable-features=ElectronSerialChooser,SharedArrayBuffer',
+			],
 		},
-		show: false, // No mostrar hasta que esté listo
 		backgroundColor: '#2e2c29',
 	});
 
@@ -35,13 +37,12 @@ function createMainWindow() {
 		mainWin?.show();
 	});
 
-	if (process.env.NODE_ENV === 'development') {
+	if (process.env['NODE_ENV'] === 'development') {
 		// Durante el desarrollo, carga el archivo servido por Vite
-		mainWin.loadURL('http://localhost:5173');
-		mainWin.webContents.openDevTools();
+		mainWin.loadURL('https://google.com');
 	} else {
 		// Durante el build, carga el archivo generado
-		mainWin.loadFile(path.join(__dirname, '../ui-dist/index.html'));
+		mainWin.loadFile(path.join(__dirname, '../xd.html'));
 	}
 
 	// Cerrar la aplicación completamente cuando se cierra la ventana principal
@@ -56,11 +57,11 @@ function createMainWindow() {
 // Limpiar logs antiguos al inicio
 app.whenReady().then(async () => {
 	try {
+		await InitializeHandlers();
 		mainLogger.info(
 			`Starting CubicMC at ${os.platform()} version ${os.release()} || Build number 032K`,
 		);
-		let mainWin = createMainWindow();
-
+		const mainWin = createMainWindow();
 		// Limpiar logs antiguos en segundo plano
 		cleanOldLogs().catch((err) =>
 			mainLogger.error(`Error cleaning logs: ${err.message}`),

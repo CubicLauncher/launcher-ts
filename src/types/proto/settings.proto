@@ -4,12 +4,12 @@ package cubicmc;
 
 message Settings {
     string username = 1;
-    string gamedir = 2;
-    string theme = 3;
-    string java8 = 4;
-    string java17 = 5;
-    string java21 = 6;
-    bool autoupdate = 7;
+    string theme = 2;
+    string java8 = 3;
+    string java17 = 4;
+    string java21 = 5;
+    bool autoupdate = 6;
+    bool notifications = 7;
     int32 minMem = 8;
     int32 maxMem = 9;
 }

@@ -1,24 +1,13 @@
-import appPaths from './AppPaths';
+import appPaths from './AppPaths.js';
 import proto from 'protobufjs';
-import { promises as fs } from 'fs';
-import path from 'path';
+import { promises as fs } from 'node:fs';
+import path from 'node:path';
 import handleCode from './Api.js';
+import type { Settings } from '../types/ApiTypes.js';
 
 const settingsScheme = await proto.load('./src/types/proto/settings.proto');
 const SettingsMessage = settingsScheme.lookupType('cubicmc.Settings');
 const filePath = path.resolve(appPaths.getConfigDir(), 'settings.bin');
-
-interface Settings {
-	username: string;
-	gamedir: string;
-	theme: string;
-	java8: string;
-	java17: string;
-	java21: string;
-	autoupdate: boolean;
-	minMem: number;
-	maxMem: number;
-}
 
 interface Response {
 	success: boolean;
@@ -52,22 +41,21 @@ export async function getSettings(): Promise<Response> {
 	try {
 		// Leer el archivo binario de los settings
 		const settingsBin = await fs.readFile(filePath);
-		let settings = SettingsMessage.decode(settingsBin);
+		const settings = SettingsMessage.decode(settingsBin);
 
 		// Verificar la validez de los datos
-		let verifyError = SettingsMessage.verify(settings);
+		const verifyError = SettingsMessage.verify(settings);
 		if (verifyError) {
 			handleCode('ERR06', verifyError);
 			return {
 				success: false,
 				data: verifyError,
 			};
-		} else {
-			return {
-				success: true,
-				data: settings.toJSON() as Settings, // Convertirlo a JSON para devolverlo en la estructura correcta
-			};
 		}
+		return {
+			success: true,
+			data: settings.toJSON() as Settings, // Convertirlo a JSON para devolverlo en la estructura correcta
+		};
 	} catch (error) {
 		// Asegurarse de que error sea un Error tipo
 		if (error instanceof Error) {
