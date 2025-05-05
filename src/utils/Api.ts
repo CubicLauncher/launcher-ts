@@ -40,6 +40,7 @@ const CODE_MAP: Record<string, CodeDefinition> = {
 	OK04: { type: 'OK', template: 'Archivo de configuracion pasado correctamente' },
 
 	INF01: { type: 'INF', template: 'Iniciando descarga de {field}...' },
+	INF02: { type: 'INF', template: 'Iniciando version {field}...' },
 };
 
 // Tipo para los códigos válidos

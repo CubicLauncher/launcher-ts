@@ -6,12 +6,14 @@ const { contextBridge, ipcRenderer } = require('electron');
 contextBridge.exposeInMainWorld('cubic', {
   settings: {
     getSettings: (): Promise<string> =>
-      ipcRenderer.invoke('version-launch'),
+      ipcRenderer.invoke('get-settings'),
   },
 
   launcher: {
     downloadVersion: (version: string): Promise<void> =>
       ipcRenderer.invoke('download-version', version),
+	launchVersion: (version: string): Promise<void> =>
+		ipcRenderer.invoke('launch-version', version),
   },
   events: {
 	onDownloadProgress: (callback: (progress: number) => void): void => {
@@ -19,6 +21,14 @@ contextBridge.exposeInMainWorld('cubic', {
 		  'download-progress',
 		  (_event: Electron.IpcRendererEvent, progress: number) => {
 			callback(progress);
+		  }
+		);
+	  },
+	  onLauncherProgress: (callback: (status: string) => void): void => {
+		ipcRenderer.on(
+		  'download-progress',
+		  (_event: Electron.IpcRendererEvent, status: string) => {
+			callback(status);
 		  }
 		);
 	  },
