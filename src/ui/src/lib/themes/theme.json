@@ -1,0 +1,102 @@
+{
+  "light": {
+    "background": "bg-white",
+    "text": "text-gray-900",
+    "hover": "hover:bg-[#FAFAFA]",
+    "border": "border-gray-200",
+    "separator": "bg-gray-100",
+    "input": {
+      "background": "bg-white",
+      "text": "text-gray-900",
+      "border": "border-gray-200",
+      "focus": "focus:ring-2 focus:ring-black/5"
+    },
+    "button": {
+      "primary": {
+        "background": "bg-white",
+        "text": "text-gray-900",
+        "hover": "hover:bg-[#FAFAFA]",
+        "border": "border-gray-200"
+      }
+    },
+    "drawer": {
+      "background": "bg-white",
+      "text": "text-gray-900",
+      "border": "border-gray-200"
+    },
+    "sidebar": {
+      "background": "bg-white",
+      "text": "text-gray-900",
+      "border": "border-gray-200",
+      "hover": "hover:bg-[#FAFAFA]",
+      "navItem": {
+        "active": {
+          "background": "bg-[#d0d0d0]",
+          "text": "text-white",
+          "border": "border border-gray-500",
+          "shadow": "0 1px 2px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.15)",
+          "hoverText": "text-[#5e606b]",
+          "labelText": "text-gray-400"
+        },
+        "inactive": {
+          "background": "bg-white",
+          "text": "text-[#5e606b]",
+          "border": "border border-gray-200",
+          "hover": "hover:bg-gray-50",
+          "hoverText": "text-[#5e606b]",
+          "labelText": "text-gray-700"
+        }
+      }
+    }
+  },
+  "dark": {
+    "background": "bg-stone-900",
+    "text": "text-gray-100",
+    "hover": "hover:bg-stone-800",
+    "border": "border-stone-700",
+    "separator": "bg-stone-800",
+    "input": {
+      "background": "bg-stone-900",
+      "text": "text-gray-100",
+      "border": "border-stone-700",
+      "focus": "focus:ring-2 focus:ring-white/5"
+    },
+    "button": {
+      "primary": {
+        "background": "bg-stone-900",
+        "text": "text-gray-100",
+        "hover": "hover:bg-stone-800",
+        "border": "border-stone-700"
+      }
+    },
+    "drawer": {
+      "background": "bg-stone-900",
+      "text": "text-gray-100",
+      "border": "border-stone-700"
+    },
+    "sidebar": {
+      "background": "bg-stone-900",
+      "text": "text-gray-100",
+      "border": "border-stone-700",
+      "hover": "hover:bg-stone-800",
+      "navItem": {
+        "active": {
+          "background": "bg-stone-800",
+          "text": "text-white",
+          "border": "border border-stone-500",
+          "shadow": "0 1px 2px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.15)",
+          "hoverText": "text-stone-400",
+          "labelText": "text-stone-400"
+        },
+        "inactive": {
+          "background": "bg-stone-900",
+          "text": "text-stone-500",
+          "border": "border border-stone-700",
+          "hover": "hover:bg-stone-800",
+          "hoverText": "text-stone-400",
+          "labelText": "text-stone-300"
+        }
+      }
+    }
+  }
+} 
