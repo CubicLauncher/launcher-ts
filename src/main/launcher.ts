@@ -7,7 +7,7 @@ const downloader = new Downloader();
 const launcher = new Launcher();
 const gamedir = appPaths.getGameDir();
 const settingsRes = await getSettings();
-const settings = settingsRes.data as Settings
+const settings = settingsRes.data as Settings;
 
 export async function downloadVersion(
 	version: string,
@@ -21,6 +21,7 @@ export async function downloadVersion(
 	});
 
 	try {
+		console.log(gamedir);
 		await downloader.download(version, gamedir);
 		event.sender.send('download-complete');
 		return handleCode('OK01', version);

@@ -1,5 +1,5 @@
 // AppPaths.ts - Gestión de rutas de la aplicación
-import appDataPath from 'appdata-path';
+import envPaths from 'env-paths';
 import path from 'node:path';
 
 /**
@@ -16,7 +16,6 @@ export interface IAppPaths {
 	assetsDir: string;
 	tempDir: string;
 
-	// Métodos para obtener las rutas
 	getConfigDir(): string;
 	getThemesDir(): string;
 	getGameDir(): string;
@@ -40,19 +39,16 @@ export class AppPaths implements IAppPaths {
 	public readonly localesDir: string;
 	public readonly assetsDir: string;
 	public readonly tempDir: string;
+	constructor() {
+		this.appName = 'cubic';
 
-	/**
-	 * Inicializa las rutas de la aplicación
-	 * @param {string} customAppName - Nombre personalizado de la aplicación (opcional)
-	 */
-	constructor(customAppName?: string) {
-		this.appName = customAppName || 'cubic';
+		const paths = envPaths(this.appName, {
+			suffix: '',
+		});
 
-		// Inicializar rutas base
-		const appdata = appDataPath();
-		this.AppDir = path.join(appdata, this.appName);
+		this.AppDir = paths.data; // Directorio principal de datos persistentes
 
-		// Inicializar subdirectorios
+		// Subdirectorios dentro del AppDir
 		this.configDir = path.join(this.AppDir, 'config');
 		this.themesDir = path.join(this.AppDir, 'themes');
 		this.gameDir = path.join(this.AppDir, '.minecraft');
@@ -61,66 +57,35 @@ export class AppPaths implements IAppPaths {
 		this.assetsDir = path.join(this.AppDir, 'assets');
 		this.tempDir = path.join(this.AppDir, 'temp');
 	}
-	/**
-	 * Obtiene el directorio de configuración
-	 * @returns {string} Ruta del directorio de configuración
-	 */
+
 	public getConfigDir(): string {
 		return this.configDir;
 	}
 
-	/**
-	 * Obtiene el directorio de temas
-	 * @returns {string} Ruta del directorio de temas
-	 */
 	public getThemesDir(): string {
 		return this.themesDir;
 	}
 
-	/**
-	 * Obtiene el directorio del juego
-	 * @returns {string} Ruta del directorio del juego
-	 */
 	public getGameDir(): string {
 		return this.gameDir;
 	}
 
-	/**
-	 * Obtiene el directorio principal de la aplicación
-	 * @returns {string} Ruta del directorio principal
-	 */
 	public getAppDir(): string {
 		return this.AppDir;
 	}
 
-	/**
-	 * Obtiene el directorio de logs
-	 * @returns {string} Ruta del directorio de logs
-	 */
 	public getLogDir(): string {
 		return this.logDir;
 	}
 
-	/**
-	 * Obtiene el directorio de archivos de idioma
-	 * @returns {string} Ruta del directorio de archivos de idioma
-	 */
 	public getLocalesDir(): string {
 		return this.localesDir;
 	}
 
-	/**
-	 * Obtiene el directorio de assets
-	 * @returns {string} Ruta del directorio de assets
-	 */
 	public getAssetsDir(): string {
 		return this.assetsDir;
 	}
 
-	/**
-	 * Obtiene el directorio temporal
-	 * @returns {string} Ruta del directorio temporal
-	 */
 	public getTempDir(): string {
 		return this.tempDir;
 	}
