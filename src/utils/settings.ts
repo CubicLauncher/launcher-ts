@@ -4,8 +4,19 @@ import { promises as fs } from "node:fs";
 import path from "node:path";
 import handleCode from "./Api.js";
 import type { APIResponse, Settings } from "../types/ApiTypes.js";
+import { mainLogger } from "./Logger.js";
+import { fileURLToPath } from "url";
 
-const settingsScheme = await proto.load("./src/types/proto/settings.proto");
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const settingsSchemeFile = path.join(
+  __dirname,
+  "../../src/types/proto/settings.proto",
+);
+mainLogger.log("Searching protocol buffer file for settings.");
+mainLogger.log(settingsSchemeFile);
+const settingsScheme = await proto.load(settingsSchemeFile);
 const SettingsMessage = settingsScheme.lookupType("cubicmc.Settings");
 const filePath = path.resolve(appPaths.getConfigDir(), "settings.bin");
 
