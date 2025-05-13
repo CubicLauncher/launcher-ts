@@ -64,7 +64,7 @@ app.whenReady().then(async () => {
     mainLogger.info(
       `Starting CubicMC at ${os.platform()} version ${os.release()} || Build number 032K`,
     );
-    const mainWin = createMainWindow();
+    createMainWindow();
     // Limpiar logs antiguos en segundo plano
     cleanOldLogs().catch((err) =>
       mainLogger.error(`Error cleaning logs: ${err.message}`),
