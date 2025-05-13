@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development electron ./dist/main/main.js",
     "build:ts": "tsc",
+    "build:app": "electron-builder",
     "format": "bunx biome format --write"
   },
   "dependencies": {
