@@ -6,6 +6,7 @@ import { fileURLToPath } from "node:url";
 import { dirname } from "node:path";
 import { InitializeHandlers } from "./ipcHandlers.js";
 import { generateDirs } from "../utils/Others.js";
+import { setupAutoUpdater } from "../utils/AutoUpdater.js";
 
 generateDirs();
 
@@ -45,7 +46,7 @@ function createMainWindow(): BrowserWindow {
     mainWin.loadURL("http://localhost:5173");
   } else {
     // Durante el build, carga el archivo generado
-    mainWin.loadFile(path.join(__dirname, "../xd.html"));
+    mainWin.loadFile(path.join(__dirname, "../ui/index.html"));
   }
 
   // Cerrar la aplicación completamente cuando se cierra la ventana principal
@@ -59,6 +60,11 @@ function createMainWindow(): BrowserWindow {
 
 // Limpiar logs antiguos al inicio
 app.whenReady().then(async () => {
+  setupAutoUpdater({
+    owner: "CubicLauncher",
+    repo: "CubicLauncher",
+    notifyOnUpdates: true,
+  });
   try {
     await InitializeHandlers();
     mainLogger.info(
