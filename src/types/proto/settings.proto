@@ -12,4 +12,5 @@ message Settings {
     bool notifications = 7;
     int32 minMem = 8;
     int32 maxMem = 9;
+    string gamedir= 10;
 }

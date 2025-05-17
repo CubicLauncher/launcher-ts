@@ -17,6 +17,7 @@ export interface Settings {
 	notifications: boolean;
 	minMem: number;
 	maxMem: number;
+	gamedir: string;
 }
 
 // Api

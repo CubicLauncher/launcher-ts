@@ -1,13 +1,17 @@
-import { Downloader, Launcher } from 'cubic-neutron';
+//Imports
+import { Downloader, NeutronLauncher } from 'cubic-neutron';
 import appPaths from '../utils/AppPaths.js';
 import handleCode from '../utils/Api.js';
 import { getSettings } from '../utils/settings.js';
-import { Settings } from '../types/ApiTypes.js';
-const downloader = new Downloader();
-const launcher = new Launcher();
+import type { Settings } from '../types/ApiTypes.js';
+import { v4 } from 'uuid';
+
+// Declarations
+const launcher = new NeutronLauncher();
 const gamedir = appPaths.getGameDir();
 const settingsRes = await getSettings();
 const settings = settingsRes.data as Settings;
+const downloader = new Downloader(settings.gamedir);
 
 export async function downloadVersion(
 	version: string,
@@ -16,13 +20,13 @@ export async function downloadVersion(
 	handleCode('INF01', version);
 
 	// Escuchamos el progreso de la descarga
-	downloader.on('percentDownloaded', (percent: number) => {
+	downloader.on('percentDownloaded', (percent) => {
 		event.sender.send('download-progress', percent);
 	});
 
 	try {
 		console.log(gamedir);
-		await downloader.download(version, gamedir);
+		await downloader.download(version);
 		event.sender.send('download-complete');
 		return handleCode('OK01', version);
 	} catch (error) {
@@ -41,22 +45,15 @@ export async function launchVersion(
 	event: Electron.IpcMainInvokeEvent,
 ) {
 	handleCode('INF02', version);
-
-	launcher.on('debug', (status: string) => {
-		event.sender.send('download-progress', status);
-	});
-
+	let token = v4();
 	try {
-		await launcher.launch({
-			username: settings.username, // NOMBRE  USUARIO,
-			version: version, // VERSION DE JUEGO - Varía dependiendo de la instalación.
-			type: 'vanilla', // neoforge - optifine - fabric
-			gameDirectory: gamedir, // RUTA DE JUEGO
-			memory: {
-				min: `${settings.minMem}M`, // MINIMO DE MEMORIA PARA USAR
-				max: `${settings.maxMem}M`, // MAXIMO DE MEMORIA PARA USAR
-			},
-			java: settings.java21,
+		await launcher.launchVersion({
+			username: settings.username,
+			uuid: token,
+			accessToken: token,
+			minecraftDir: settings.gamedir,
+			version: version,
+			isCracked: true,
 		});
 		event.sender.send('download-complete');
 		return handleCode('OK01', version);
