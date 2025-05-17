@@ -1,6 +1,6 @@
 // AppPaths.ts - Gestión de rutas de la aplicación
-import envPaths from 'env-paths';
-import path from 'node:path';
+import envPaths from "env-paths";
+import path from "node:path";
 
 /**
  * Interface para las rutas de la aplicación
@@ -40,22 +40,22 @@ export class AppPaths implements IAppPaths {
 	public readonly assetsDir: string;
 	public readonly tempDir: string;
 	constructor() {
-		this.appName = 'cubic';
+		this.appName = "cubic";
 
 		const paths = envPaths(this.appName, {
-			suffix: '',
+			suffix: "",
 		});
 
 		this.AppDir = paths.data; // Directorio principal de datos persistentes
 
 		// Subdirectorios dentro del AppDir
-		this.configDir = path.join(this.AppDir, 'config');
-		this.themesDir = path.join(this.AppDir, 'themes');
-		this.gameDir = path.join(this.AppDir, '.minecraft');
-		this.logDir = path.join(this.AppDir, 'logs');
-		this.localesDir = path.join(this.AppDir, 'locales');
-		this.assetsDir = path.join(this.AppDir, 'assets');
-		this.tempDir = path.join(this.AppDir, 'temp');
+		this.configDir = path.join(this.AppDir, "config");
+		this.themesDir = path.join(this.AppDir, "themes");
+		this.gameDir = path.join(this.AppDir, ".minecraft");
+		this.logDir = path.join(this.AppDir, "logs");
+		this.localesDir = path.join(this.AppDir, "locales");
+		this.assetsDir = path.join(this.AppDir, "assets");
+		this.tempDir = path.join(this.AppDir, "temp");
 	}
 
 	public getConfigDir(): string {

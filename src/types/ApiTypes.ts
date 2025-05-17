@@ -1,4 +1,4 @@
-import { NotificationAction } from 'electron';
+import { NotificationAction } from "electron";
 
 //launcher
 export interface InstanceLaunch {
@@ -21,7 +21,7 @@ export interface Settings {
 }
 
 // Api
-export type CodeType = 'ERR' | 'OK' | 'INF';
+export type CodeType = "ERR" | "OK" | "INF";
 
 export interface CodeDefinition {
 	type: CodeType;
@@ -40,5 +40,5 @@ export interface NotificationRequest {
 	body: string;
 	actions?: NotificationAction[];
 	silent?: boolean;
-	urgency?: 'normal' | 'critical' | 'low';
+	urgency?: "normal" | "critical" | "low";
 }

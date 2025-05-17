@@ -1,9 +1,9 @@
-import { promises as fs } from 'node:fs';
-import appPaths from './AppPaths.js';
-import handleCode from './Api.js';
+import { promises as fs } from "node:fs";
+import appPaths from "./AppPaths.js";
+import handleCode from "./Api.js";
 
 export async function generateDirs() {
-	const dirs: [string] = [''];
+	const dirs: [string] = [""];
 	dirs.pop();
 	dirs.push(appPaths.getAppDir());
 	dirs.push(appPaths.getAssetsDir());
@@ -19,10 +19,10 @@ export async function generateDirs() {
 			fs.mkdir(dir, { recursive: true });
 		} catch (error: unknown) {
 			if (error instanceof Error) {
-				handleCode('ERR07', error.message);
+				handleCode("ERR07", error.message);
 			} else {
 				// En caso de que no sea un Error, manejamos el error genérico
-				handleCode('ERR99', 'Unknown error occurred');
+				handleCode("ERR99", "Unknown error occurred");
 			}
 		}
 	}

@@ -1,6 +1,6 @@
-import { app, dialog } from 'electron';
-import electronUpdater from 'electron-updater';
-import { mainLogger } from './Logger.js';
+import { app, dialog } from "electron";
+import electronUpdater from "electron-updater";
+import { mainLogger } from "./Logger.js";
 
 /**
  * Configura el electron-updater para actualizar la aplicación desde un repositorio público de GitHub
@@ -20,7 +20,7 @@ export function setupAutoUpdater(options: {
 
 	// Configurar opciones para GitHub
 	autoUpdater.setFeedURL({
-		provider: 'github',
+		provider: "github",
 		owner: options.owner,
 		repo: options.repo,
 		// Si es un repositorio privado, necesitarías un token
@@ -30,48 +30,52 @@ export function setupAutoUpdater(options: {
 
 	// Configurar opciones de comportamiento
 	autoUpdater.autoDownload = options.autoDownload !== false;
-	autoUpdater.autoInstallOnAppQuit = options.autoInstallOnAppQuit !== false;
+	autoUpdater.autoInstallOnAppQuit =
+		options.autoInstallOnAppQuit !== false;
 
 	// Manejo de eventos
-	autoUpdater.on('checking-for-update', () => {
-		mainLogger.info('Buscando actualizaciones...');
+	autoUpdater.on("checking-for-update", () => {
+		mainLogger.info("Buscando actualizaciones...");
 	});
 
-	autoUpdater.on('update-available', (info) => {
-		mainLogger.info('Actualización disponible:', info);
+	autoUpdater.on("update-available", (info) => {
+		mainLogger.info("Actualización disponible:", info);
 
 		if (options.notifyOnUpdates) {
 			dialog.showMessageBox({
-				type: 'info',
-				title: 'Actualización disponible',
+				type: "info",
+				title: "Actualización disponible",
 				message: `La versión ${info.version} está disponible para descargar.`,
-				buttons: ['Aceptar'],
+				buttons: ["Aceptar"],
 			});
 		}
 	});
 
-	autoUpdater.on('update-not-available', (info) => {
-		mainLogger.info('No hay actualizaciones disponibles:', info);
+	autoUpdater.on("update-not-available", (info) => {
+		mainLogger.info(
+			"No hay actualizaciones disponibles:",
+			info,
+		);
 	});
 
-	autoUpdater.on('error', (err) => {
-		mainLogger.error('Error al actualizar:', err);
+	autoUpdater.on("error", (err) => {
+		mainLogger.error("Error al actualizar:", err);
 	});
 
-	autoUpdater.on('download-progress', (progressObj) => {
+	autoUpdater.on("download-progress", (progressObj) => {
 		let logMessage = `Velocidad: ${progressObj.bytesPerSecond} - Descargado ${progressObj.percent}% (${progressObj.transferred}/${progressObj.total})`;
 		mainLogger.info(logMessage);
 	});
 
-	autoUpdater.on('update-downloaded', (info) => {
-		mainLogger.info('Actualización descargada:', info);
+	autoUpdater.on("update-downloaded", (info) => {
+		mainLogger.info("Actualización descargada:", info);
 
 		dialog
 			.showMessageBox({
-				type: 'info',
-				title: 'Actualización lista',
+				type: "info",
+				title: "Actualización lista",
 				message: `La versión ${info.version} ha sido descargada y se instalará al reiniciar la aplicación.`,
-				buttons: ['Reiniciar ahora', 'Más tarde'],
+				buttons: ["Reiniciar ahora", "Más tarde"],
 			})
 			.then((returnValue) => {
 				if (returnValue.response === 0) {

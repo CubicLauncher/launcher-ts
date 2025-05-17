@@ -34,7 +34,11 @@
 			"output": "release",
 			"buildResources": "build"
 		},
-		"files": ["dist/", "package.json", "src/types/proto/settings.proto"],
+		"files": [
+			"dist/",
+			"package.json",
+			"src/types/proto/settings.proto"
+		],
 		"extraMetadata": {
 			"main": "dist/main/main.js"
 		},

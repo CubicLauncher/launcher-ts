@@ -1,12 +1,15 @@
-import { app, BrowserWindow } from 'electron';
-import path from 'node:path';
-import { cleanOldLogs, mainLogger } from '../utils/Logger.js';
-import os from 'node:os';
-import { fileURLToPath } from 'node:url';
-import { dirname } from 'node:path';
-import { InitializeHandlers } from './ipcHandlers.js';
-import { generateDirs } from '../utils/Others.js';
-import { setupAutoUpdater } from '../utils/AutoUpdater.js';
+import { app, BrowserWindow } from "electron";
+import path from "node:path";
+import {
+	cleanOldLogs,
+	mainLogger,
+} from "../utils/Logger.js";
+import os from "node:os";
+import { fileURLToPath } from "node:url";
+import { dirname } from "node:path";
+import { InitializeHandlers } from "./ipcHandlers.js";
+import { generateDirs } from "../utils/Others.js";
+import { setupAutoUpdater } from "../utils/AutoUpdater.js";
 
 generateDirs();
 const __filename = fileURLToPath(import.meta.url);
@@ -23,33 +26,35 @@ function createMainWindow(): BrowserWindow {
 		width: 1024,
 		height: 768,
 		webPreferences: {
-			preload: path.join(__dirname, 'preload.js'),
+			preload: path.join(__dirname, "preload.js"),
 			nodeIntegration: false,
 			contextIsolation: true,
 			sandbox: true,
 			webSecurity: true,
 			additionalArguments: [
-				'--enable-features=ElectronSerialChooser,SharedArrayBuffer',
+				"--enable-features=ElectronSerialChooser,SharedArrayBuffer",
 			],
 		},
-		backgroundColor: '#2e2c29',
+		backgroundColor: "#2e2c29",
 	});
 
 	// Optimización para renderizado
-	mainWin.on('ready-to-show', () => {
+	mainWin.on("ready-to-show", () => {
 		mainWin?.show();
 	});
 
-	if (process.env['NODE_ENV'] === 'development') {
+	if (process.env["NODE_ENV"] === "development") {
 		// Durante el desarrollo, carga el archivo servido por Vite
-		mainWin.loadURL('http://localhost:5173');
+		mainWin.loadURL("http://localhost:5173");
 	} else {
 		// Durante el build, carga el archivo generado
-		mainWin.loadFile(path.join(__dirname, '../ui/index.html'));
+		mainWin.loadFile(
+			path.join(__dirname, "../ui/index.html"),
+		);
 	}
 
 	// Cerrar la aplicación completamente cuando se cierra la ventana principal
-	mainWin.on('closed', () => {
+	mainWin.on("closed", () => {
 		mainWin = null;
 		app.quit();
 	});
@@ -60,8 +65,8 @@ function createMainWindow(): BrowserWindow {
 // Limpiar logs antiguos al inicio
 app.whenReady().then(async () => {
 	setupAutoUpdater({
-		owner: 'CubicLauncher',
-		repo: 'CubicLauncher',
+		owner: "CubicLauncher",
+		repo: "CubicLauncher",
 		notifyOnUpdates: true,
 	});
 
@@ -73,7 +78,9 @@ app.whenReady().then(async () => {
 		createMainWindow();
 		// Limpiar logs antiguos en segundo plano
 		cleanOldLogs().catch((err) =>
-			mainLogger.error(`Error cleaning logs: ${err.message}`),
+			mainLogger.error(
+				`Error cleaning logs: ${err.message}`,
+			),
 		);
 	} catch (error) {
 		mainLogger.error(error);
@@ -81,13 +88,13 @@ app.whenReady().then(async () => {
 	}
 });
 
-app.on('window-all-closed', () => {
-	if (process.platform !== 'darwin') {
+app.on("window-all-closed", () => {
+	if (process.platform !== "darwin") {
 		app.quit();
 	}
 });
 
-app.on('activate', () => {
+app.on("activate", () => {
 	if (mainWin === null) {
 		createMainWindow();
 	}
