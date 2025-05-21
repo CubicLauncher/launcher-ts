@@ -1,63 +1,80 @@
 {
-	"name": "santiagolxx",
-	"version": "0.0.1",
-	"type": "module",
-	"main": "dist/main/main.js",
-	"scripts": {
-		"dev": "cross-env NODE_ENV=development electron ./dist/main/main.js",
-		"build:ts": "tsc",
-		"build:app": "electron-builder",
-		"format": "biome format --write",
-		"lint": "oxlint"
-	},
-	"dependencies": {
-		"axios": "^1.9.0",
-		"cubic-neutron": "^1.0.1",
-		"electron-updater": "^6.6.2",
-		"env-paths": "^3.0.0",
-		"log4js": "^6.9.1",
-		"protobufjs": "^7.5.1"
-	},
-	"devDependencies": {
-		"@biomejs/biome": "1.9.4",
-		"@types/node": "^22.15.17",
-		"cross-env": "^7.0.3",
-		"electron": "^36.2.1",
-		"electron-builder": "^26.0.12",
-		"oxlint": "^0.16.11",
-		"typescript": "^5.8.3"
-	},
-	"build": {
-		"appId": "me.cubicmc.launcher",
-		"productName": "CubicLauncher",
-		"directories": {
-			"output": "release",
-			"buildResources": "build"
-		},
-		"files": [
-			"dist/",
-			"package.json",
-			"src/types/proto/settings.proto"
-		],
-		"extraMetadata": {
-			"main": "dist/main/main.js"
-		},
-		"win": {
-			"target": "nsis"
-		},
-		"nsis": {
-			"oneClick": false,
-			"perMachine": false,
-			"allowToChangeInstallationDirectory": true
-		},
-		"mac": {
-			"target": "dmg"
-		},
-		"linux": {
-			"target": ["AppImage", "deb"],
-			"maintainer": "CubicLauncher team",
-			"category": "Utility"
-		}
-	},
-	"trustedDependencies": ["@biomejs/biome", "protobufjs"]
+  "name": "santiagolxx",
+  "version": "0.0.1+aab2b244",
+  "type": "module",
+  "main": "dist/src/main/main.js",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development electron .",
+    "build:ts": "swc src -d dist --ignore 'src/ui/**','src/main/preload.ts' && swc src/main/preload.ts -d dist --ignore 'src/ui/**','src/main/**' --config-file ./preload.swcrc",
+    "build:app": "electron-builder",
+    "format": "biome format --write",
+    "lint": "oxlint"
+  },
+  "dependencies": {
+    "@msgpack/msgpack": "^3.1.1",
+    "axios": "^1.9.0",
+    "cubic-neutron": "^1.0.2",
+    "electron-updater": "^6.6.2",
+    "env-paths": "^3.0.0",
+    "log4js": "^6.9.1",
+    "uuid": "^11.1.0",
+    "zod": "^3.25.12"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.9.4",
+    "@types/node": "^22.15.21",
+    "@types/semver": "^7.7.0",
+    "@swc/cli": "^0.7.7",
+    "@swc/core": "^1.11.24",
+    "cross-env": "^7.0.3",
+    "electron": "^36.2.1",
+    "electron-builder": "^26.0.12",
+    "oxlint": "^0.16.11",
+    "typescript": "^5.8.3"
+  },
+  "build": {
+    "appId": "me.cubicmc.launcher",
+    "productName": "CubicLauncher",
+    "directories": {
+      "output": "release",
+      "buildResources": "build"
+    },
+    "files": [
+      "dist/src/",
+      "package.json"
+    ],
+    "extraMetadata": {
+      "main": "dist/src/main/main.js"
+    },
+    "win": {
+      "target": [
+        "nsis",
+        "msi"
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "mac": {
+      "target": "dmg"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ],
+      "maintainer": "CubicLauncher team",
+      "category": "Utility"
+    }
+  },
+  "trustedDependencies": [
+    "@biomejs/biome",
+    "@swc/core",
+    "electron",
+    "electron-winstaller",
+    "protobufjs"
+  ],
+  "buildHash": "aab2b244"
 }

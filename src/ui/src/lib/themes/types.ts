@@ -1,4 +1,4 @@
-export type Theme = 'light' | 'dark';
+export type Theme = "light" | "dark";
 
 export interface ThemeColors {
   background: string;
@@ -48,6 +48,20 @@ export interface ThemeComponent {
   hover?: string;
 }
 
+export interface StatusComponent {
+  bar: string;
+  warning: string;
+  loading: string;
+  button: string;
+  text: string;
+}
+
+export interface ThemeStatus {
+  success: StatusComponent;
+  warning: StatusComponent;
+  loading: StatusComponent;
+}
+
 export interface ThemeConfig {
   background: string;
   text: string;
@@ -55,6 +69,7 @@ export interface ThemeConfig {
   border: string;
   separator: string;
   input: ThemeInput;
+  status: ThemeStatus;
   button: {
     primary: ThemeButton;
   };
@@ -62,9 +77,10 @@ export interface ThemeConfig {
   sidebar: ThemeComponent & {
     navItem: ThemeNavItem;
   };
+  instanceCard: ThemeComponent;
 }
 
 export interface ThemeStyles {
   light: ThemeConfig;
   dark: ThemeConfig;
-} 
+}

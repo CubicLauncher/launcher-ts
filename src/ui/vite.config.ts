@@ -8,7 +8,7 @@ export default defineConfig({
   plugins: [react(), tailwindcss()],
   base: "./",
   build: {
-    outDir: "../../dist/ui",
+    outDir: "../../dist/src/ui",
   },
   resolve: {
     alias: {
