@@ -14,7 +14,12 @@ import {
   Gamepad2,
   Home,
   Package,
-  LogOut
+  LogOut,
+  MessageSquare,
+  Star,
+  Users,
+  Globe,
+  Palette
 } from 'lucide-react';
 
 export {
@@ -33,5 +38,10 @@ export {
   Gamepad2,
   Home,
   Package,
-  LogOut
+  LogOut,
+  MessageSquare,
+  Star,
+  Users,
+  Globe,
+  Palette
 }; 
