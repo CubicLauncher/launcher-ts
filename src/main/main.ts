@@ -55,7 +55,6 @@ function createMainWindow(): BrowserWindow {
   return mainWin;
 }
 
-// Limpiar logs antiguos al inicio
 app.whenReady().then(async () => {
   setupAutoUpdater({
     owner: "CubicLauncher",
