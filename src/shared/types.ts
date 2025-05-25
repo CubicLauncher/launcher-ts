@@ -26,5 +26,28 @@ export interface BackendRes {
   error?: any;
 }
 
+export interface MinecraftVersion {
+  id: string;
+  type: "release" | "snapshot";
+  url: string;
+  time: string;
+  releaseTime: string;
+  sha1: string;
+  complianceLevel: number;
+}
+
+export interface VersionManifest {
+  latest: {
+    release: string;
+    snapshot: string;
+  };
+  versions: MinecraftVersion[];
+}
+
+export interface DownloadEvent {
+  version: string,
+  percent: number
+}
+
 // 2. Exporta el tipo inferido
 export type Settings = z.infer<typeof settingsSchema>;

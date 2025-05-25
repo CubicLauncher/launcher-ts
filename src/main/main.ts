@@ -65,7 +65,7 @@ app.whenReady().then(async () => {
 
   try {
     mainLogger.info(
-      `Starting CubicMC at ${os.platform()} version ${os.release()} || Build number ${app.getVersion()}`,
+      `Starting CubicMC at ${os.platform()} version ${os.release()} || Release ${app.getVersion()}`,
     );
     registerHandlers();
     createMainWindow();

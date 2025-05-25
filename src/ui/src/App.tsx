@@ -1,28 +1,46 @@
-import { Sidebar } from "./components/cubic/general/Sidebar";
-import ThemeProvider from "./lib/providers/ThemeProvider";
+// Imports
+import { Sidebar } from "./components/cubic/navigation/sidebar";
 import { Toaster } from "sonner";
-import useThemeStore from "./lib/stores/ThemeStore";
-import Home from "./pages/home";
-import { usePageStore } from "./lib/stores/PageStore";
+import useThemeStore from "./lib/themes/themeStore";
+import { usePageStore } from "./lib/pages/pageStore";
+import Home from "./components/cubic/pages/Home";
+import { useThemeStyles } from "./lib/themes/useThemeStyles";
 
+// Component
 const App = () => {
+  // Hooks
+  const styles = useThemeStyles();
   const theme = useThemeStore((state) => state.theme);
   const page = usePageStore((state) => state.page);
 
+  // Render
   return (
-    <ThemeProvider>
-      <div className="flex flex-col h-screen dark:bg-[#0b0b07] dark:text-white text-[#090807] bg-[#f9f8f6] font-sans">
+    <div>
+      <div className="flex flex-col h-screen font-sans">
+
+        {/* Main layout */}
         <div className="flex flex-col md:flex-row flex-1 overflow-hidden">
-          <Sidebar />
-          <div className="p-2">{page === "Home" && <Home />}</div>
+          <Sidebar /> 
+          <main className={`flex-1 overflow-y-auto ${styles.background}`}>
+            {page === "Home" && <Home />}
+          </main>
         </div>
-        <footer className="p-3 dark:bg-stone-900 dark:text-stone-400 bg-[#fffbf0] text-xs flex justify-between items-center">
-          <div>CubicMC 0.1</div>
-          <div>© 2025 Santiagolxx & NotStaff</div>
+
+        {/* Footer */}
+        <footer className="p-3 text-xs flex justify-between items-center">
+          <span>CubicMC 0.1</span>
+          <span>© 2025 Santiagolxx & NotStaff</span>
         </footer>
       </div>
-      <Toaster theme={theme} offset={60} style={{ right: "20px" }} richColors />
-    </ThemeProvider>
+
+      {/* Notifications */}
+      <Toaster
+        theme={theme}
+        offset={60}
+        style={{ right: "20px" }}
+        richColors
+      />
+    </div>
   );
 };
 

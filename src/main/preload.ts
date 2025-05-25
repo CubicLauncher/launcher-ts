@@ -1,4 +1,4 @@
-import { Settings } from "../shared/types";
+import { Settings, DownloadEvent } from "../shared/types";
 import { contextBridge, ipcRenderer } from "electron";
 
 const cubic = {
@@ -24,11 +24,11 @@ const cubic = {
 
   events: {
     // Escuchar progreso de descarga
-    onDownloadProgress: (callback: (progress: number) => void): void => {
+    onDownloadProgress: (callback: (progress: DownloadEvent) => void): void => {
       ipcRenderer.on(
         "download-progress",
-        (_event: Electron.IpcRendererEvent, progress: number) => {
-          callback(progress);
+        (_event: Electron.IpcRendererEvent, percent: DownloadEvent) => {
+          callback(percent);
         },
       );
     },
@@ -52,6 +52,24 @@ const cubic = {
           callback();
         },
       );
+    },
+  },
+  launcher: {
+    getVersions: async (): Promise<object> => {
+      try {
+        return await ipcRenderer.invoke("get-versions");
+      } catch (error) {
+        console.error("Error al obtener las versiones:", error);
+        throw error;
+      }
+    },
+    downloadVersion: async (version: string): Promise<object> => {
+      try {
+        return await ipcRenderer.invoke("download-version", version);
+      } catch (error) {
+        console.error("Error al descargar la version:", error);
+        throw error;
+      }
     },
   },
 };
