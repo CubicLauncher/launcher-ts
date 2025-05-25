@@ -3,7 +3,6 @@ import { contextBridge, ipcRenderer } from "electron";
 
 const cubic = {
   settings: {
-    // Obtener la configuración desde el proceso principal
     getSettings: async (): Promise<object> => {
       try {
         return await ipcRenderer.invoke("get-settings");
