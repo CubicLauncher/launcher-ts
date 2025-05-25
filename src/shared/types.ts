@@ -10,6 +10,8 @@ export enum CubicError {
   GenericFilesystem = "GENERIC_FILESYSTEM_ERROR",
 }
 
+enum versionType = "forge" | "vanilla" | "snapshot" | "neoforge" | "fabric" | "custom"
+
 export const settingsSchema = z.object({
   username: z
     .string()
@@ -47,6 +49,14 @@ export interface VersionManifest {
 export interface DownloadEvent {
   version: string,
   percent: number
+}
+
+export interface Instance {
+  name: string,
+  version: string,
+  type: versionType,
+  base64_image: string,
+  
 }
 
 // 2. Exporta el tipo inferido
