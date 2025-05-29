@@ -1,0 +1,6 @@
+@import "tailwindcss";
+
+body {
+    @apply bg-stone-900;
+    color: white;
+}

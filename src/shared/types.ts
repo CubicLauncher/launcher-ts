@@ -6,11 +6,23 @@ export enum CubicError {
   UsernameLimitExceeded = "USERNAME_LIMIT_EXCEEDED",
   InvalidSettings = "INVALID_SETTINGS",
 
+  // Errores de Instancias
+  InstanceFileENOENT = "INSTANCE_FILE_NOT_FOUND",
+  InstanceNameLimitExceeded = "INSTANCE_NAME_LIMIT_EXCEEDED",
+  InvalidInstance = "INVALID_INSTANCE",
+
   InvalidRequest = "INVALID_REQUEST",
   GenericFilesystem = "GENERIC_FILESYSTEM_ERROR",
 }
 
-enum versionType = "forge" | "vanilla" | "snapshot" | "neoforge" | "fabric" | "custom"
+const base64ImageSchema = z.string().refine(
+  (val) =>
+    /^data:image\/(png|jpeg|jpg|webp|gif);base64,[A-Za-z0-9+/=\n\r]+$/.test(val),
+  {
+    message: "El icono debe ser una imagen en base64 válida (data URL).",
+  }
+);
+
 
 export const settingsSchema = z.object({
   username: z
@@ -51,13 +63,20 @@ export interface DownloadEvent {
   percent: number
 }
 
-export interface Instance {
-  name: string,
-  version: string,
-  type: versionType,
-  base64_image: string,
-  
-}
+export const InstanceSchema = z.object({
+  name: z
+    .string()
+    .max(16, CubicError.InstanceFileENOENT),
+  loader: z.string(),
+  modded: z.boolean(),
+  icon: base64ImageSchema,
+  version: z.string(),
+  java: z.object({
+    java8: z.string(),
+    java17: z.string(),
+    java21: z.string(),
+  })
+});
 
-// 2. Exporta el tipo inferido
 export type Settings = z.infer<typeof settingsSchema>;
+export type Instance = z.infer<typeof InstanceSchema>;

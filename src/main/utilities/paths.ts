@@ -15,6 +15,7 @@ export interface IAppPaths {
   localesDir: string;
   assetsDir: string;
   tempDir: string;
+  InstanceDir: string
 }
 
 /**
@@ -31,6 +32,7 @@ export class AppPaths implements IAppPaths {
   public readonly localesDir: string;
   public readonly assetsDir: string;
   public readonly tempDir: string;
+  public readonly InstanceDir: string
 
   constructor() {
     const paths = envPaths(this.appName, { suffix: "" });
@@ -43,6 +45,7 @@ export class AppPaths implements IAppPaths {
     this.localesDir = path.join(this.AppDir, "locales");
     this.assetsDir = path.join(this.AppDir, "assets");
     this.tempDir = path.join(this.AppDir, "temp");
+    this.InstanceDir = path.join(this.AppDir, 'instances');
   }
 }
 

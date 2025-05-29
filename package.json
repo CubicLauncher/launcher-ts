@@ -1,6 +1,6 @@
 {
   "name": "santiagolxx",
-  "version": "0.0.1+aab2b244",
+  "version": "0.0.1+5ca78320",
   "type": "module",
   "main": "dist/src/main/main.js",
   "scripts": {
@@ -76,5 +76,5 @@
     "electron-winstaller",
     "protobufjs"
   ],
-  "buildHash": "aab2b244"
+  "buildHash": "5ca78320"
 }

@@ -70,6 +70,15 @@ const cubic = {
         throw error;
       }
     },
+
+    launchVersion: async (version: string): Promise<object> => {
+      try {
+        return await ipcRenderer.invoke("launch-version", version);
+      } catch (error) {
+        console.error("Error al descargar la version:", error);
+        throw error;
+      }
+    },
   },
 };
 

@@ -38,6 +38,21 @@ export async function registerHandlers() {
     }
   });
   
+  // Download handlers
+  ipcMain.handle("launch-version", async (_, version: string) => {
+    try {
+      // Using the public method from Launcher class
+      await Launcher.launchVersion(version);
+      return { success: true };
+    } catch (error: unknown) {
+      console.error("Error downloading version:", error);
+      return { 
+        success: false, 
+        error: error instanceof Error ? error.message : String(error) 
+      };
+    }
+  });
+
   // Register download progress event
   Launcher.onDownloadProgress((progress: DownloadEvent) => {
     // Send progress to all renderer processes
