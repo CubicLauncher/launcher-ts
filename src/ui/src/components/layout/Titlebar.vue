@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { useLauncherStore } from '../../stores/LauncherStore';
-const store = useLauncherStore()
-import logo from '../../assets/logo.svg'
+import { useLauncherStore } from "../../stores/LauncherStore";
+const store = useLauncherStore();
+import logo from "../../assets/logo.svg";
+import { closeLauncher, hideLauncher, maximizeLauncher } from "../../api";
 </script>
 
 <template>
@@ -22,7 +23,7 @@ import logo from '../../assets/logo.svg'
     
     <!-- Window controls -->
     <div class="flex items-center gap-0.5 titlebar-buttons">
-      <button 
+      <button @click="hideLauncher()"
         class="w-7 h-7 flex items-center justify-center text-stone-400 hover:text-stone-200 hover:bg-stone-700 rounded-sm transition-all duration-75 no-drag"
         aria-label="Minimize"
       >
@@ -31,7 +32,7 @@ import logo from '../../assets/logo.svg'
         </svg>
       </button>
       
-      <button 
+      <button @click="maximizeLauncher()"
         class="w-7 h-7 flex items-center justify-center text-stone-400 hover:text-stone-200 hover:bg-stone-700 rounded-sm transition-all duration-75 no-drag"
         aria-label="Maximize"
       >
@@ -40,7 +41,7 @@ import logo from '../../assets/logo.svg'
         </svg>
       </button>
       
-      <button 
+      <button @click="closeLauncher()"
         class="w-7 h-7 flex items-center justify-center text-stone-400 hover:text-stone-200 hover:bg-stone-600 rounded-sm transition-all duration-75 no-drag"
         aria-label="Close"
       >
