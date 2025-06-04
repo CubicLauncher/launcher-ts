@@ -15,15 +15,6 @@ export enum CubicError {
   GenericFilesystem = "GENERIC_FILESYSTEM_ERROR",
 }
 
-const base64ImageSchema = z.string().refine(
-  (val) =>
-    /^data:image\/(png|jpeg|jpg|webp|gif);base64,[A-Za-z0-9+/=\n\r]+$/.test(val),
-  {
-    message: "El icono debe ser una imagen en base64 válida (data URL).",
-  }
-);
-
-
 export const settingsSchema = z.object({
   username: z
     .string()
@@ -69,7 +60,7 @@ export const InstanceSchema = z.object({
     .max(16, CubicError.InstanceFileENOENT),
   loader: z.string(),
   modded: z.boolean(),
-  icon: base64ImageSchema,
+  icon: z.string(),
   version: z.string(),
   java: z.object({
     java8: z.string(),
