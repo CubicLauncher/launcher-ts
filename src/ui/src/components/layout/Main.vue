@@ -10,7 +10,7 @@
         <!-- Main Content -->
         <div class="flex-1 overflow-y-auto bg-stone-950">
           <InstanceView v-if="store.CurrentInstance" :instance="store.CurrentInstance" />
-          <HomeView v-else />
+          <NoInstanceView v-else />
         </div>  
       </div>
     </div>
@@ -21,6 +21,6 @@
   import Titlebar from './Titlebar.vue'
   import { useLauncherStore } from '../../stores/LauncherStore';
   import InstanceView from '../views/InstanceView.vue'
-  import HomeView from '../views/HomeView.vue'
+  import NoInstanceView from '../views/NoInstanceView.vue'
   const store = useLauncherStore()
   </script>
