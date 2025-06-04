@@ -1,31 +1,24 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import { noInstanceMessages } from '../../lib/data/noinstance';
+import type { INoInstance } from '../../lib/data/noinstance';
 
-// 1. Define una interfaz para los valores del saludo
-interface ISaludo {
-    message: string;
-    description: string
-}
+const valores = Object.values(noInstanceMessages).map(s => s);
 
-const saludos: Record<number, ISaludo> = {
-    1: { message: "Parece que no tienes instancias descargadas.", description: "Descarga una aquí!" },
-    2: { message: "Ejemplo 2", description: "Ejemplo 2" },
-    3: { message: "Ejemplo 3", description: "Ejemplo 3" },
-};
-
-const valores = Object.values(saludos).map(s => s);
-
-const Saludo = ref(valores[Math.floor(Math.random() * valores.length)]);
+const Mensaje = ref<INoInstance>(valores[Math.floor(Math.random() * valores.length)]);
 </script>
 
 <template>
   <div class="flex items-center justify-center min-h-screen">
     <div class="text-center">
+      <div class="w-24 h-24 mx-auto mb-4 text-stone-400">
+        <component :is="Mensaje.icon" />
+      </div>
       <h1 class="text-2xl text-stone-400 font-semibold">
-        {{ Saludo.message }}
+        {{ Mensaje.message }}
       </h1>
       <p class="text-base text-stone-400">
-        {{ Saludo.description }}
+        {{ Mensaje.description }}
       </p>
     </div>
   </div>
