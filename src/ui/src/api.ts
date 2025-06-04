@@ -1,6 +1,20 @@
+import { type BackendRes } from "../../shared/types";
+
+interface IAPI {
+  launcher: {
+    downloadVersion(version: string): BackendRes;
+	launchVersion(version: string): BackendRes;
+	getVersions(version: string): BackendRes;
+  };
+  window: {
+	closeLauncher(): BackendRes;
+	hideLauncher(): BackendRes;
+	maximizeLauncher(): BackendRes
+  }
+}
 declare global {
 	interface Window {
-		cubic: any;
+		cubic: IAPI;
 	}
 }
 
