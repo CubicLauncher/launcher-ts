@@ -1,0 +1,22 @@
+{
+    "Launcher": {
+        "noInstance": {
+            "1": {
+                "message": "It seems you don't have any instances downloaded.",
+                "description": "Download one here!"
+            },
+            "2": {
+                "message": "Ready to start?",
+                "description": "Create your first Minecraft instance"
+            },
+            "3": {
+                "message": "Welcome to Cubic!",
+                "description": "Start by downloading your first instance"
+            },
+            "4": {
+                "message": "No instances available",
+                "description": "Click to download a new one"
+            }
+        }
+    }
+} 

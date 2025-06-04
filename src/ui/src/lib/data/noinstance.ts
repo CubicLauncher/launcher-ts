@@ -1,6 +1,7 @@
 import type { Component } from 'vue';
 import FabricIcon from '../../assets/icons/fabric.vue';
 import Quilt from '../../assets/icons/Quilt.vue';
+import { useLanguageStore } from '../../stores/LanguageStore';
 
 export interface INoInstance {
     message: string;
@@ -8,25 +9,30 @@ export interface INoInstance {
     icon: Component;
 }
 
-export const noInstanceMessages: Record<number, INoInstance> = {
-    1: { 
-        message: "Parece que no tienes instancias descargadas.", 
-        description: "Descarga una aquí!",
-        icon: FabricIcon
-    },
-    2: { 
-        message: "¿Listo para empezar?", 
-        description: "Crea tu primera instancia de Minecraft",
-        icon: Quilt
-    },
-    3: { 
-        message: "¡Bienvenido a Cubic!", 
-        description: "Comienza descargando tu primera instancia",
-        icon: FabricIcon
-    },
-    4: { 
-        message: "No hay instancias disponibles", 
-        description: "Haz clic para descargar una nueva",
-        icon: Quilt
-    },
+export const getNoInstanceMessages = (): Record<number, INoInstance> => {
+    const languageStore = useLanguageStore();
+    const t = languageStore.getTranslation;
+
+    return {
+        1: { 
+            message: t('Launcher.noInstance.1.message'),
+            description: t('Launcher.noInstance.1.description'),
+            icon: FabricIcon
+        },
+        2: { 
+            message: t('Launcher.noInstance.2.message'),
+            description: t('Launcher.noInstance.2.description'),
+            icon: Quilt
+        },
+        3: { 
+            message: t('Launcher.noInstance.3.message'),
+            description: t('Launcher.noInstance.3.description'),
+            icon: FabricIcon
+        },
+        4: { 
+            message: t('Launcher.noInstance.4.message'),
+            description: t('Launcher.noInstance.4.description'),
+            icon: Quilt
+        },
+    };
 }; 
