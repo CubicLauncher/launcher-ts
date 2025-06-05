@@ -16,7 +16,8 @@
             "4": {
                 "message": "No instances available",
                 "description": "Click to download a new one"
-            }
+            },
+            "createButton": "Create Minecraft version"
         },
         "settings": {
             "title": "Settings",

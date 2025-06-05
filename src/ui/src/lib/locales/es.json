@@ -16,7 +16,8 @@
             "4": {
                 "message": "No hay instancias disponibles",
                 "description": "Haz clic para descargar una nueva"
-            }
+            },
+            "createButton": "Crear versión de Minecraft"
         },
         "settings": {
             "title": "Configuración",
