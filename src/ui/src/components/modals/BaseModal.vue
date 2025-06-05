@@ -4,8 +4,9 @@
       <div v-show="modelValue" class="modal bg-stone-800 border border-stone-600">
         <header class="modal-header">
           <h2 class="modal-title">{{ title }}</h2>
-          <button class="close-btn" @click="$emit('update:modelValue', false)"
-            aria-label="Cerrar modal">&times;</button>
+            <div class="cursor-pointer" @click="$emit('update:modelValue', false)">
+              <close class="w-8 h-8"/>
+            </div>
         </header>
         <hr />
         <div>
@@ -17,6 +18,7 @@
 </template>
 
 <script setup lang="ts">
+import close from '../../assets/icons/close.vue';
 defineProps<{ modelValue: boolean, title: string }>()
 defineEmits(['update:modelValue'])
 </script>
