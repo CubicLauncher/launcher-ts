@@ -8,7 +8,7 @@
             aria-label="Cerrar modal">&times;</button>
         </header>
         <hr />
-        <div class="modal-content">
+        <div>
           <slot />
         </div>
       </div>
@@ -57,14 +57,13 @@ defineEmits(['update:modelValue'])
   transform: translateY(-300px);
 }
 
-/* Modal */
 .modal {
   position: absolute;
   top: 35px;
   padding: 1rem 2rem 2rem 2rem;
   border-radius: 0 0 10px 10px;
-  width: 90%;
-  max-width: 400px;
+  max-width: 960px;
+  width: 100%;
   color: white;
   box-shadow:
     0 2px 4px rgba(0, 0, 0, 0.1),
@@ -75,6 +74,7 @@ defineEmits(['update:modelValue'])
   flex-direction: column;
   text-align: center;
 }
+
 
 /* Header */
 .modal-header {
@@ -109,15 +109,6 @@ hr {
   border: none;
   border-top: 1px solid #555;
   margin: 0.5rem 0 1rem;
-}
-
-/* Contenido (slot) */
-.modal-content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 1rem;
 }
 
 /* Botón Cerrar (ya no necesario abajo, pero lo dejo por si quieres usarlo) */
