@@ -4,7 +4,8 @@ import {type Instance} from '../../../shared/types'
 export const useLauncherStore = defineStore('launcher', {
     state: () => ({
       CurrentInstance: null as Instance | null,
-      Instances: [] as Instance[]  
+      Instances: [] as Instance[],
+      isSettingsModalOpen: false  
     }),
     actions: {
       addInstance(instance: Instance) {
@@ -12,6 +13,9 @@ export const useLauncherStore = defineStore('launcher', {
       },
       setCurrentInstance(instance: Instance) {
         this.CurrentInstance = instance
+      },
+      toggleSettingsModel() {
+        this.isSettingsModalOpen = !this.isSettingsModalOpen
       }
     }
 })

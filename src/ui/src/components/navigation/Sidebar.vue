@@ -16,7 +16,7 @@ const items = store.Instances.map((instance) => {
 </script>
 
 <template>
-    <div class="flex flex-col items-center h-full p-2 border-r border-stone-700 h-10">
+    <div class="flex flex-col items-center h-full p-2 border-r border-stone-700">
         <div class="flex-shrink-0 flex items-center gap-2 bg-stone-800 rounded-xl p-2 border border-stone-700 mb-4 cursor-pointer"
             @click="store.CurrentInstance = null">
             <img :src="logo" alt="Logo" class="w-8 h-8">
@@ -33,7 +33,7 @@ const items = store.Instances.map((instance) => {
             <div class="mx-4 my-2 w-full">
                 <div class="h-px bg-stone-700"></div>
             </div>
-            <div class="bg-stone-800 p-1 rounded-xl border border-stone-700">
+            <div class="bg-stone-800 p-1 rounded-xl border border-stone-700" @click="store.toggleSettingsModel">
                 <SidebarItem name="Settings" :icon="settings" />
             </div>
         </div>
