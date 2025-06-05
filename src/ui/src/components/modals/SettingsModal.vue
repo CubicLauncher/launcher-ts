@@ -43,6 +43,25 @@
                   </div>
                 </div>
               </div>
+
+              <!-- Launcher Information -->
+              <div class="pt-4 border-t border-stone-700">
+                <h3 class="text-lg font-medium text-stone-200 mb-4">{{ languageStore.getTranslation('Launcher.settings.general.about') }}</h3>
+                <div class="space-y-2">
+                  <div class="flex justify-between">
+                    <span class="text-stone-400">{{ languageStore.getTranslation('Launcher.settings.general.version') }}</span>
+                    <span class="text-stone-200">1.0.0</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-stone-400">{{ languageStore.getTranslation('Launcher.settings.general.build') }}</span>
+                    <span class="text-stone-200">#42</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-stone-400">{{ languageStore.getTranslation('Launcher.settings.general.platform') }}</span>
+                    <span class="text-stone-200">Windows x64</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 

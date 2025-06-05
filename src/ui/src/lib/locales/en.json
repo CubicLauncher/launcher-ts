@@ -27,7 +27,11 @@
                 "launcher": "Launcher"
             },
             "general": {
-                "language": "Language"
+                "language": "Language",
+                "about": "About",
+                "version": "Version",
+                "build": "Build",
+                "platform": "Platform"
             },
             "game": {
                 "minRam": "Minimum RAM",
