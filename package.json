@@ -22,14 +22,15 @@
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
-    "@types/node": "^22.15.21",
-    "@types/semver": "^7.7.0",
     "@swc/cli": "^0.7.7",
     "@swc/core": "^1.11.24",
+    "@types/node": "^22.15.21",
+    "@types/semver": "^7.7.0",
     "cross-env": "^7.0.3",
     "electron": "^36.2.1",
     "electron-builder": "^26.0.12",
     "oxlint": "^0.16.11",
+    "sass-embedded": "^1.89.1",
     "typescript": "^5.8.3"
   },
   "build": {
