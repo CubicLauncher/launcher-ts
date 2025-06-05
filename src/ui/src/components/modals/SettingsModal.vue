@@ -2,26 +2,27 @@
     <BaseModal v-model="rosquilla.isSettingsModalOpen" :title="languageStore.getTranslation('Launcher.settings.title')">
       <div class="mt-6 flex">
         <!-- Vertical Tabs -->
-        <div class="w-48 border-r border-stone-700">
-          <nav class="flex flex-col space-y-1" aria-label="Tabs">
+        <div class="w-56 border-r border-[#272727ff]">
+          <nav class="flex flex-col space-y-0.5" aria-label="Tabs">
             <button
               v-for="tab in tabs"
               :key="tab.id"
               @click="activeTab = tab.id"
               :class="[
                 activeTab === tab.id
-                  ? 'bg-stone-700 text-stone-200'
-                  : 'text-stone-400 hover:text-stone-300 hover:bg-stone-800',
-                'w-full text-left px-4 py-2 text-sm font-medium rounded-md transition-colors'
+                  ? 'bg-[#272727ff] text-[#d6d2d2ff] border-l-2 border-[#4a7b9dff]'
+                  : 'text-[#d6d2d2ff]/60 hover:text-[#d6d2d2ff] hover:bg-[#272727ff]',
+                'w-full text-left px-4 py-2.5 text-sm font-medium transition-colors flex items-center gap-2'
               ]"
             >
+              <i :class="tab.icon" class="w-5 h-5"></i>
               {{ languageStore.getTranslation(`Launcher.settings.tabs.${tab.id}`) }}
             </button>
           </nav>
         </div>
 
         <!-- Tab Content -->
-        <div class="flex-1 pl-6">
+        <div class="flex-1 pl-8 pr-6">
           <!-- General Settings Tab -->
           <div v-if="activeTab === 'general'" class="space-y-6">
             <div class="space-y-2">
@@ -160,9 +161,9 @@ const languageStore = useLanguageStore();
 const activeTab = ref('general');
 
 const tabs = [
-  { id: 'general', name: 'General' },
-  { id: 'game', name: 'Game' },
-  { id: 'launcher', name: 'Launcher' }
+  { id: 'general', name: 'General', icon: 'i-heroicons-cog-6-tooth' },
+  { id: 'game', name: 'Game', icon: 'i-heroicons-gamepad' },
+  { id: 'launcher', name: 'Launcher', icon: 'i-heroicons-window' }
 ];
 
 const languages = [
