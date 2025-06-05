@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { computed } from 'vue';
 import { getNoInstanceMessages } from '../../lib/data/noinstance';
-import type { INoInstance } from '../../lib/data/noinstance';
 import { useLanguageStore } from '../../stores/LanguageStore';
 
 const languageStore = useLanguageStore();
@@ -16,9 +15,9 @@ const languages = [
 </script>
 
 <template>
-  <div class="flex items-center justify-center min-h-screen">
+  <div class="flex items-center justify-center h-full">
     <div class="text-center">
-      <div class="w-24 h-24 mx-auto mb-4 text-stone-400">
+      <div class="w-20 h-20 mx-auto mb-4 text-stone-400">
         <component :is="Mensaje.icon" />
       </div>
       <h1 class="text-2xl text-stone-400 font-semibold">

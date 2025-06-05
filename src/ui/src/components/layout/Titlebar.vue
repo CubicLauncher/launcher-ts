@@ -6,7 +6,7 @@ import { closeLauncher, hideLauncher, maximizeLauncher } from "../../api";
 </script>
 
 <template>
-  <div class="flex items-center justify-between h-9 bg-stone-800 border-b border-stone-600 px-4 titlebar">
+  <div class="flex items-center justify-between h-9 bg-stone-800 border-b border-stone-600 px-4 titlebar z-50">
     <!-- Left spacer for balance -->
     <div class="w-24"></div>
     
