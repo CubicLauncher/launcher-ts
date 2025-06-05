@@ -17,6 +17,28 @@
                 "message": "No instances available",
                 "description": "Click to download a new one"
             }
+        },
+        "settings": {
+            "title": "Settings",
+            "tabs": {
+                "general": "General",
+                "game": "Game",
+                "launcher": "Launcher"
+            },
+            "general": {
+                "language": "Language"
+            },
+            "game": {
+                "minRam": "Minimum RAM",
+                "maxRam": "Maximum RAM",
+                "gameDirectory": "Game Directory",
+                "javaPath": "Java Path",
+                "browse": "Browse"
+            },
+            "launcher": {
+                "keepOpen": "Keep launcher open while playing",
+                "autoUpdate": "Check for updates automatically"
+            }
         }
     }
 } 
