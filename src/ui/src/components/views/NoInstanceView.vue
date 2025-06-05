@@ -7,7 +7,7 @@ import { useLanguageStore } from '../../stores/LanguageStore';
 const languageStore = useLanguageStore();
 const noInstanceMessages = computed(() => getNoInstanceMessages());
 const valores = computed(() => Object.values(noInstanceMessages.value));
-const Mensaje = ref<INoInstance>(valores.value[Math.floor(Math.random() * valores.value.length)]);
+const Mensaje = computed(() => valores.value[Math.floor(Math.random() * valores.value.length)]);
 
 const languages = [
   { code: 'en', name: 'English' },

@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import { computed } from 'vue'
 import enTranslations from '../lib/locales/en.json'
 import esTranslations from '../lib/locales/es.json'
 
@@ -23,20 +24,22 @@ export const useLanguageStore = defineStore('language', {
     }),
     getters: {
         getTranslation: (state) => {
-            return (key: string) => {
-                const keys = key.split('.')
-                let translation: any = translations[state.CurrentLanguage]
-                
-                for (const k of keys) {
-                    if (translation && translation[k]) {
-                        translation = translation[k]
-                    } else {
-                        return key
+            return computed(() => {
+                return (key: string) => {
+                    const keys = key.split('.')
+                    let translation: any = translations[state.CurrentLanguage]
+                    
+                    for (const k of keys) {
+                        if (translation && translation[k]) {
+                            translation = translation[k]
+                        } else {
+                            return key
+                        }
                     }
+                    
+                    return translation
                 }
-                
-                return translation
-            }
+            }).value
         }
     },
     actions: {
