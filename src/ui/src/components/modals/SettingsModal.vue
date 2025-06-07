@@ -180,7 +180,7 @@ import { useLanguageStore } from '../../stores/LanguageStore';
 import { useLauncherStore } from '../../stores/LauncherStore';
 import BaseModal from '../modals/BaseModal.vue';
 import { ref } from 'vue';
-import { getSystemDetails } from '../../lib/data/device';
+import { getSystemDetails } from '../../lib/data/os';
 
 const rosquilla = useLauncherStore()
 const languageStore = useLanguageStore();
