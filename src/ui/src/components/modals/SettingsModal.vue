@@ -58,7 +58,7 @@
                   </div>
                   <div class="flex justify-between">
                     <span class="text-stone-400">{{ languageStore.getTranslation('Launcher.settings.general.platform') }}</span>
-                    <span class="text-stone-200">Windows x64</span>
+                    <span class="text-stone-200">{{ getSystemDetails().os }} {{ getSystemDetails().processor.architecture }}</span>
                   </div>
                 </div>
               </div>
@@ -180,6 +180,7 @@ import { useLanguageStore } from '../../stores/LanguageStore';
 import { useLauncherStore } from '../../stores/LauncherStore';
 import BaseModal from '../modals/BaseModal.vue';
 import { ref } from 'vue';
+import { getSystemDetails } from '../../lib/data/device';
 
 const rosquilla = useLauncherStore()
 const languageStore = useLanguageStore();
