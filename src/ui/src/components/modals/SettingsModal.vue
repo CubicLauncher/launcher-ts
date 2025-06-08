@@ -124,6 +124,7 @@
                     v-model="gameSettings.gameDirectory"
                     class="px-4 py-2 bg-stone-800 text-stone-400 rounded-lg border border-stone-600 focus:outline-none focus:border-stone-400 w-64"
                     placeholder="C:\Users\...\AppData\Roaming\.minecraft"
+                    readonly
                   />
                   <button class="px-3 py-2 bg-stone-700 text-stone-300 rounded-lg hover:bg-stone-600">
                     {{ languageStore.getTranslation('Launcher.settings.game.browse') }}
@@ -179,7 +180,7 @@
 import { useLanguageStore } from '../../stores/LanguageStore';
 import { useLauncherStore } from '../../stores/LauncherStore';
 import BaseModal from '../modals/BaseModal.vue';
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { getSystemDetails } from '../../lib/data/os';
 
 const rosquilla = useLauncherStore()
@@ -193,10 +194,33 @@ const tabs = [
   { id: 'launcher', name: 'Launcher', icon: 'i-heroicons-window' }
 ];
 
-const languages = [
-  { code: 'en' as const, name: 'English' },
-  { code: 'es' as const, name: 'Español' }
-];
+const languages = ref<Array<{ code: string; name: string }>>([]);
+
+// Load available languages from locales directory
+const loadLanguages = async () => {
+  try {
+    const localeFiles = import.meta.glob('../../lib/locales/*.json', { eager: true });
+    
+    for (const path in localeFiles) {
+      const code = path.split('/').pop()?.replace('.json', '') || '';
+      if (code) {
+        const localeData = localeFiles[path] as any;
+        const languageName = localeData.language?.name || code;
+        languages.value.push({
+          code,
+          name: languageName
+        });
+      }
+    }
+  } catch (error) {
+    console.error('Error loading languages:', error);
+  }
+};
+
+// Call loadLanguages when component is mounted
+onMounted(() => {
+  loadLanguages();
+});
 
 const gameSettings = ref({
   minRam: 2,
