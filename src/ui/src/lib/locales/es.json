@@ -3,6 +3,14 @@
         "name": "Español"
     },
     "Launcher": {
+        "sidebar": {
+            "library": "Biblioteca",
+            "allInstances": "Todas las Instancias",
+            "recent": "Recientes",
+            "instances": "Instancias",
+            "addInstance": "Agregar Instancia",
+            "settings": "Configuración"
+        },
         "noInstance": {
             "1": {
                 "message": "Parece que no tienes instancias descargadas.",
@@ -21,6 +29,25 @@
                 "description": "Haz clic para descargar una nueva"
             },
             "createButton": "Crear versión de Minecraft"
+        },
+        "welcome": {
+            "title": "Bienvenido de nuevo",
+            "description": "Selecciona una instancia del menú lateral o crea una nueva para comenzar",
+            "createNew": "Crear Nueva Instancia",
+            "playRecent": "Jugar Reciente"
+        },
+        "addInstance": {
+            "title": "Crear Nueva Instancia",
+            "name": "Nombre de la Instancia",
+            "namePlaceholder": "Mi Instancia",
+            "version": "Versión de Minecraft",
+            "selectVersion": "Selecciona una versión",
+            "loader": "Cargador de Mods",
+            "memory": "Memoria",
+            "minMemory": "RAM Mínima (MB)",
+            "maxMemory": "RAM Máxima (MB)",
+            "cancel": "Cancelar",
+            "create": "Crear Instancia"
         },
         "settings": {
             "title": "Configuración",

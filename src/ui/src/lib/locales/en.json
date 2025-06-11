@@ -3,6 +3,14 @@
         "name": "English"
     },
     "Launcher": {
+        "sidebar": {
+            "library": "Library",
+            "allInstances": "All Instances",
+            "recent": "Recent",
+            "instances": "Instances",
+            "addInstance": "Add Instance",
+            "settings": "Settings"
+        },
         "noInstance": {
             "1": {
                 "message": "It seems you don't have any instances downloaded.",
@@ -21,6 +29,25 @@
                 "description": "Click to download a new one"
             },
             "createButton": "Create Minecraft version"
+        },
+        "welcome": {
+            "title": "Welcome Back",
+            "description": "Select an instance from the sidebar or create a new one to get started",
+            "createNew": "Create New Instance",
+            "playRecent": "Play Recent"
+        },
+        "addInstance": {
+            "title": "Create New Instance",
+            "name": "Instance Name",
+            "namePlaceholder": "My Instance",
+            "version": "Minecraft Version",
+            "selectVersion": "Select a version",
+            "loader": "Mod Loader",
+            "memory": "Memory",
+            "minMemory": "Minimum RAM (MB)",
+            "maxMemory": "Maximum RAM (MB)",
+            "cancel": "Cancel",
+            "create": "Create Instance"
         },
         "settings": {
             "title": "Settings",

@@ -66,7 +66,11 @@ export const InstanceSchema = z.object({
     java8: z.string(),
     java17: z.string(),
     java21: z.string(),
-  })
+  }),
+  lastPlayed: z.string().optional(),
+  memory: z.string().optional(),
+  javaVersion: z.string().optional(),
+  resolution: z.string().optional()
 });
 
 export type Settings = z.infer<typeof settingsSchema>;

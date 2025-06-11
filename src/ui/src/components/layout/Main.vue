@@ -10,8 +10,14 @@
         <!-- Main Content -->
         <div class="flex-1 overflow-y-auto bg-stone-950">
           <SettingsModal />
-          <InstanceView v-if="store.CurrentInstance" :instance="store.CurrentInstance" />
-          <NoInstanceView v-else />
+          <AddInstanceModal />
+          <template v-if="store.Instances.length === 0">
+            <NoInstanceView />
+          </template>
+          <template v-else>
+            <InstanceView v-if="store.CurrentInstance" :instance="store.CurrentInstance" />
+            <WelcomeView v-else />
+          </template>
         </div>  
       </div>
     </div>
@@ -22,7 +28,9 @@
   import Titlebar from './Titlebar.vue'
   import { useLauncherStore } from '../../stores/LauncherStore';
   import SettingsModal from '../modals/SettingsModal.vue';
+  import AddInstanceModal from '../modals/AddInstanceModal.vue';
   import InstanceView from '../views/InstanceView.vue'
   import NoInstanceView from '../views/NoInstanceView.vue'
+  import WelcomeView from '../views/WelcomeView.vue'
   const store = useLauncherStore()
   </script>

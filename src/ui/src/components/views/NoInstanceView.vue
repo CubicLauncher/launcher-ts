@@ -2,17 +2,18 @@
 import { computed } from 'vue';
 import { getNoInstanceMessages } from '../../lib/data/noinstance';
 import { useLanguageStore } from '../../stores/LanguageStore';
+import { useLauncherStore } from '../../stores/LauncherStore';
 import { colors } from '../../lib/themes/colors';
 
 const languageStore = useLanguageStore();
+const store = useLauncherStore();
 const buttonText = computed(() => languageStore.getTranslation('Launcher.noInstance.createButton'));
 const noInstanceMessages = computed(() => getNoInstanceMessages());
 const valores = computed(() => Object.values(noInstanceMessages.value));
 const Mensaje = computed(() => valores.value[Math.floor(Math.random() * valores.value.length)]);
 
 const handleClick = () => {
-  // Here you can add the logic to create a new version of Minecraft
-  console.log('HandleClick: Yes');
+  store.toggleAddInstanceModal();
 };
 
 </script>

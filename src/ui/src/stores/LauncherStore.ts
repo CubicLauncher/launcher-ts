@@ -5,7 +5,8 @@ export const useLauncherStore = defineStore('launcher', {
     state: () => ({
       CurrentInstance: null as Instance | null,
       Instances: [] as Instance[],
-      isSettingsModalOpen: false  
+      isSettingsModalOpen: false,
+      isAddInstanceModalOpen: false
     }),
     actions: {
       addInstance(instance: Instance) {
@@ -16,6 +17,9 @@ export const useLauncherStore = defineStore('launcher', {
       },
       toggleSettingsModel() {
         this.isSettingsModalOpen = !this.isSettingsModalOpen
+      },
+      toggleAddInstanceModal() {
+        this.isAddInstanceModalOpen = !this.isAddInstanceModalOpen
       }
     }
 })
