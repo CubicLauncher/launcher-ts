@@ -6,7 +6,6 @@
         "sidebar": {
             "library": "Biblioteca",
             "allInstances": "Todas las Instancias",
-            "recent": "Recientes",
             "instances": "Instancias",
             "addInstance": "Agregar Instancia",
             "settings": "Configuración"
