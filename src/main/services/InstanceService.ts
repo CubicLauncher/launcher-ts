@@ -1,10 +1,10 @@
-import { Instance, BackendRes, InstanceSchema, CubicError } from "../../shared/types";
+import { Instance, BackendRes, InstanceSchema, CubicError } from "../../shared/types.js";
 import { encode } from "@msgpack/msgpack";
-import { mainLogger } from "./logger";
+import { mainLogger } from "./logger.js";
 import z from "zod/v4";
 import { writeFile, mkdir } from "fs/promises";
 import path from "path";
-import appPaths from "../utilities/paths";
+import appPaths from "../utilities/paths.js";
 
 
 /**
