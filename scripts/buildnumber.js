@@ -55,7 +55,7 @@ function generateBuildHash(directory) {
 }
 
 // Ruta al directorio src/main (ajusta según tu estructura de proyecto)
-const mainDirectory = path.join(__dirname, "src", "main");
+const mainDirectory = path.join(__dirname, '../',"src", "main");
 
 // Generar el hash
 const buildHash = generateBuildHash(mainDirectory);
@@ -63,7 +63,7 @@ const buildHash = generateBuildHash(mainDirectory);
 console.log(`Build hash: ${buildHash}`);
 
 // Opcional: Actualizar el package.json con el nuevo hash
-const packageJsonPath = path.join(__dirname, "package.json");
+const packageJsonPath = path.join(__dirname, '../', "package.json");
 const packageJson = require(packageJsonPath);
 
 // Podrías agregarlo como una propiedad separada o incorporarlo a la versión

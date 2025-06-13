@@ -1,8 +1,8 @@
 {
   "name": "cubiclauncher",
-  "version": "0.0.1+e2031ce6",
+  "version": "0.0.1+2992c5a5",
   "type": "module",
-  "main": "dist/src/main/main.js",
+  "main": "dist/main/main.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=development electron .",
     "build:ts": "swc src -d dist --ignore 'src/ui/**','src/main/preload.ts' && swc src/main/preload.ts -d dist --ignore 'src/ui/**','src/main/**' --config-file ./preload.swcrc",
@@ -17,20 +17,20 @@
     "electron-updater": "^6.6.2",
     "env-paths": "^3.0.0",
     "log4js": "^6.9.1",
+    "swc-plugin-add-import-extension": "^1.0.0-alpha.1",
     "uuid": "^11.1.0",
     "zod": "^3.25.12"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
-    "@swc/cli": "^0.7.7",
-    "@swc/core": "^1.11.24",
     "@types/node": "^22.15.21",
     "@types/semver": "^7.7.0",
     "cross-env": "^7.0.3",
     "electron": "^36.2.1",
+    "esbuild-plugin-file-path-extensions": "^2.1.4",
     "electron-builder": "^26.0.12",
+    "esbuild": "^0.25.5",
     "oxlint": "^0.16.11",
-    "sass-embedded": "^1.89.1",
     "typescript": "^5.8.3"
   },
   "build": {
@@ -41,11 +41,11 @@
       "buildResources": "build"
     },
     "files": [
-      "dist/src/",
+      "dist/",
       "package.json"
     ],
     "extraMetadata": {
-      "main": "dist/src/main/main.js"
+      "main": "dist/main/main.js"
     },
     "win": {
       "target": [
@@ -77,5 +77,5 @@
     "electron-winstaller",
     "protobufjs"
   ],
-  "buildHash": "e2031ce6"
+  "buildHash": "2992c5a5"
 }
