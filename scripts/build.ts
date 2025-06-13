@@ -26,7 +26,7 @@ function getAllEntries(dir: string, excludePaths: string[]): string[] {
 }
 
 async function build() {
-  const srcDir = path.resolve(__dirname, 'src');
+  const srcDir = path.resolve(__dirname, '../', 'src');
   const preloadPath = path.resolve(srcDir, 'main/preload.ts');
 
   // Excluir preload y todo dentro de ui
