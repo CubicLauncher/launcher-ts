@@ -1,6 +1,6 @@
 {
-  "name": "santiagolxx",
-  "version": "0.0.1+5ca78320",
+  "name": "cubiclauncher",
+  "version": "0.0.1+e2031ce6",
   "type": "module",
   "main": "dist/src/main/main.js",
   "scripts": {
@@ -77,5 +77,5 @@
     "electron-winstaller",
     "protobufjs"
   ],
-  "buildHash": "5ca78320"
+  "buildHash": "e2031ce6"
 }

@@ -3,6 +3,8 @@ import { ref } from 'vue'
 import logo from '../../assets/logo.svg'
 import { useLauncherStore } from '../../stores/LauncherStore'
 import { useLanguageStore } from '../../stores/LanguageStore'
+import Settings from '../../assets/icons/settings.vue'
+import PlusSquare from '../../assets/icons/plus-square.vue'
 
 const store = useLauncherStore()
 const languageStore = useLanguageStore()
@@ -94,7 +96,7 @@ const hideTooltip = () => {
         @mouseenter="showTooltip($event, 'Launcher.sidebar.addInstance')"
         @mouseleave="hideTooltip"
       >
-        <i class="i-heroicons-plus-circle w-6 h-6 text-stone-400"></i>
+        <PlusSquare/>
       </div>
 
       <!-- Settings Button -->
@@ -104,7 +106,7 @@ const hideTooltip = () => {
         @mouseenter="showTooltip($event, 'Launcher.sidebar.settings')"
         @mouseleave="hideTooltip"
       >
-        <i class="i-heroicons-cog-6-tooth w-6 h-6 text-stone-400"></i>
+        <Settings />
       </div>
     </div>
 
