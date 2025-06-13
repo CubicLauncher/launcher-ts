@@ -1,10 +1,12 @@
-import { type BackendRes } from "../../shared/types";
+import { type BackendRes, type Instance } from "../../shared/types";
 
 interface IAPI {
   launcher: {
     downloadVersion(version: string): BackendRes;
 	launchVersion(version: string): BackendRes;
 	getVersions(version: string): BackendRes;
+    getInstances(): Promise<BackendRes>;
+    saveInstances(instances: Instance[]): Promise<BackendRes>;
   };
   window: {
 	closeLauncher(): BackendRes;

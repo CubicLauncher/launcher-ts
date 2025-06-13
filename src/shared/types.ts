@@ -11,6 +11,11 @@ export enum CubicError {
   InstanceNameLimitExceeded = "INSTANCE_NAME_LIMIT_EXCEEDED",
   InvalidInstance = "INVALID_INSTANCE",
 
+  // Errores de Ventana
+  CloseWinError = "WINDOW_CLOSE_ERROR",
+  HideWinError = "WINDOW_HIDE_ERROR",
+  MaximizeWinError = "WINDOW_MAXIMIZE_ERROR",
+
   InvalidRequest = "INVALID_REQUEST",
   GenericFilesystem = "GENERIC_FILESYSTEM_ERROR",
 }

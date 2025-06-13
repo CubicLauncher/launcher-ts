@@ -63,6 +63,16 @@
           </div>
         </div>
       </div>
+
+      <!-- Delete button -->
+      <div class="mt-6">
+        <button 
+          @click="handleDelete"
+          class="w-full py-3 px-6 text-red-400 font-medium rounded-lg border border-red-400 hover:bg-red-400/10 transition-colors"
+        >
+          Delete Instance
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -70,7 +80,9 @@
 <script setup lang="ts">
 import { colors } from '../../lib/themes/colors';
 import type { Instance } from '../../../../shared/types';
+import { useLauncherStore } from '../../stores/LauncherStore';
 
+const store = useLauncherStore();
 const props = defineProps<{
   instance: Instance
 }>();
@@ -78,5 +90,11 @@ const props = defineProps<{
 const handlePlay = () => {
   console.log('Starting instance:', props.instance.name);
   // Add logic to launch the instance
+};
+
+const handleDelete = async () => {
+  if (confirm(`Are you sure you want to delete ${props.instance.name}?`)) {
+    await store.deleteInstance(props.instance.name);
+  }
 };
 </script>

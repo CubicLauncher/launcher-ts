@@ -51,14 +51,6 @@ const hideTooltip = () => {
           <i class="i-heroicons-squares-2x2 w-6 h-6 text-stone-400"></i>
         </div>
 
-        <div 
-          class="w-10 h-10 flex items-center justify-center bg-stone-800 rounded-xl border border-stone-700 cursor-pointer hover:bg-stone-700 transition-colors group relative"
-          @mouseenter="showTooltip($event, 'Launcher.sidebar.recent')"
-          @mouseleave="hideTooltip"
-        >
-          <i class="i-heroicons-clock w-6 h-6 text-stone-400"></i>
-        </div>
-
         <!-- Separator -->
         <div class="w-8 h-px bg-stone-700 my-1"></div>
 
