@@ -79,6 +79,22 @@ const cubic = {
 				throw error;
 			}
 		},
+		getInstances: async (): Promise<object> => {
+			try {
+				return await ipcRenderer.invoke("get-instances");
+			} catch (error) {
+				console.error("Error al obtener las instancias:", error);
+				throw error;
+			}
+		},
+		saveInstances: async (instances: object[]): Promise<object> => {
+			try {
+				return await ipcRenderer.invoke("save-instances", instances);
+			} catch (error) {
+				console.error("Error al guardar las instancias:", error);
+				throw error;
+			}
+		}
 	},
 	window: {
 		closeLauncher: () => {
