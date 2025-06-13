@@ -1,9 +1,9 @@
 import axios from "axios";
-import { VersionManifest, MinecraftVersion } from "../../shared/types";
+import { VersionManifest, MinecraftVersion, BackendRes } from "../../shared/types";
 
 const VERSION_MANIFEST_URL = "https://piston-meta.mojang.com/mc/game/version_manifest_v2.json";
 
-export async function getVersions(): Promise<VersionManifest> {
+export async function getVersions(): Promise<BackendRes> {
     const response = await axios.get(VERSION_MANIFEST_URL);
     const versions = response.data.versions as MinecraftVersion[];
 
@@ -12,7 +12,10 @@ export async function getVersions(): Promise<VersionManifest> {
     );
 
     return {
-        latest: response.data.latest,
-        versions: filteredVersions,
-    };
+        success: true,
+        data: {
+            latest: response.data.latest,
+            versions: filteredVersions,
+        }
+    } as BackendRes;
 }

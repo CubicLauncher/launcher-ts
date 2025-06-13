@@ -25,7 +25,7 @@
             },
             "4": {
                 "message": "No hay instancias disponibles",
-                "description": "Haz clic para descargar una nueva"
+                "description": "Haz clic para descargar una nueva instancia"
             },
             "createButton": "Crear versión de Minecraft"
         },
@@ -33,7 +33,7 @@
             "title": "Bienvenido de nuevo",
             "description": "Selecciona una instancia del menú lateral o crea una nueva para comenzar",
             "createNew": "Crear Nueva Instancia",
-            "playRecent": "Jugar Reciente"
+            "playRecent": "Jugar instancia mas reciente"
         },
         "addInstance": {
             "title": "Crear Nueva Instancia",
@@ -70,7 +70,7 @@
                 "browse": "Explorar"
             },
             "launcher": {
-                "keepOpen": "Mantener el lanzador abierto mientras se juega",
+                "keepOpen": "Mantener el launcher abierto mientras se juega",
                 "autoUpdate": "Buscar actualizaciones automáticamente"
             }
         }

@@ -1,4 +1,4 @@
-import { z } from "zod/v4";
+import { boolean, z } from "zod/v4";
 
 export enum CubicError {
   // Errores de configuracion
@@ -62,20 +62,32 @@ export interface DownloadEvent {
 export const InstanceSchema = z.object({
   name: z
     .string()
-    .max(16, CubicError.InstanceFileENOENT),
-  loader: z.string(),
-  modded: z.boolean(),
-  icon: z.string(),
-  version: z.string(),
-  java: z.object({
-    java8: z.string(),
-    java17: z.string(),
-    java21: z.string(),
+    .max(16, CubicError.InstanceNameLimitExceeded),
+  loader: z.object({
+    loader: z.string(),
+    modded: z.boolean(),
+  }),
+  icon: z.object({
+    icon: z.string(),
+    hasCustomIcon: z.boolean()
+  }),
+  game: z.object({
+    version: z.string(),
+    java: z.object({
+      java8: z.string(),
+      java17: z.string(),
+      java21: z.string(),
+    }),
   }),
   lastPlayed: z.string().optional(),
-  memory: z.string().optional(),
-  javaVersion: z.string().optional(),
-  resolution: z.string().optional()
+  memory: z.object({
+    min: z.number(),
+    max: z.number()
+  }),
+  resolution: z.object({
+    height: z.number(),
+    width: z.number()
+  })
 });
 
 export type Settings = z.infer<typeof settingsSchema>;

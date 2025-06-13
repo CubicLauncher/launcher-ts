@@ -13,16 +13,16 @@
       <div class="grid grid-cols-2 gap-6">
         <button 
           @click="store.toggleAddInstanceModal"
-          class="flex items-center justify-center gap-3 px-6 py-4 rounded-lg bg-stone-800 text-stone-200 hover:bg-stone-700 transition-colors"
+          class="flex items-center justify-center p-2 gap-2 bg-stone-800 rounded-xl border border-stone-600 cursor-pointer hover:bg-stone-700 transition-all"
         >
-          <i class="i-heroicons-plus-circle w-6 h-6"></i>
+          <PlusSquare />
           <span>{{ languageStore.getTranslation('Launcher.welcome.createNew') }}</span>
         </button>
         <button 
-          class="flex items-center justify-center gap-3 px-6 py-4 rounded-lg bg-stone-800 text-stone-200 hover:bg-stone-700 transition-colors"
+          class="flex items-center justify-center p-2 gap-2 bg-stone-800 rounded-xl border border-stone-600 cursor-pointer hover:bg-stone-700 transition-all"
           @click="selectFirstInstance"
         >
-          <i class="i-heroicons-play w-6 h-6"></i>
+          <controller />
           <span>{{ languageStore.getTranslation('Launcher.welcome.playRecent') }}</span>
         </button>
       </div>
@@ -33,7 +33,10 @@
 <script setup lang="ts">
 import { useLauncherStore } from '../../stores/LauncherStore';
 import { useLanguageStore } from '../../stores/LanguageStore';
+import plusSquare from '../../assets/icons/UI/plus-square.vue';
+import controller from "../../assets/icons/UI/controller.vue";
 import logo from '../../assets/logo.svg';
+import PlusSquare from '../../assets/icons/UI/plus-square.vue';
 
 const store = useLauncherStore();
 const languageStore = useLanguageStore();

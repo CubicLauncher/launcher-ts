@@ -4,7 +4,7 @@ interface IAPI {
   launcher: {
     downloadVersion(version: string): BackendRes;
 	launchVersion(version: string): BackendRes;
-	getVersions(version: string): BackendRes;
+	getVersions(): BackendRes;
     getInstances(): Promise<BackendRes>;
     saveInstances(instances: Instance[]): Promise<BackendRes>;
   };
@@ -29,4 +29,13 @@ export function hideLauncher() {
 }
 export function maximizeLauncher() {
 	window.cubic.window.maximizeLauncher();
+}
+
+export async function GetVersions() {
+	let versions = window.cubic.launcher.getVersions();
+	if (!versions.success) {
+		return []
+	} else {
+		return versions.data
+	}
 }

@@ -18,7 +18,7 @@
 </template>
 
 <script setup lang="ts">
-import close from '../../assets/icons/close.vue';
+import close from '../../assets/icons/UI/close.vue';
 defineProps<{ modelValue: boolean, title: string }>()
 defineEmits(['update:modelValue'])
 </script>
@@ -75,6 +75,7 @@ defineEmits(['update:modelValue'])
   display: flex;
   flex-direction: column;
   text-align: center;
+  z-index: 100;
 }
 
 

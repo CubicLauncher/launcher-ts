@@ -6,11 +6,7 @@ import {
 import { Settings, DownloadEvent, BackendRes, CubicError, Instance } from "../../shared/types.js";
 import { getVersions } from "../utilities/versions.js";
 import { Launcher } from "../services/Launcher.js";
-import { WriteInstance } from "../services/InstanceService.js";
-import { readdir, readFile } from "fs/promises";
-import path from "path";
-import appPaths from "../utilities/paths.js";
-import { decode } from "@msgpack/msgpack";
+import { getInstances, WriteInstance } from "../services/InstanceService.js";
 
 export async function registerHandlers() {
 	// Settings handlers
@@ -60,31 +56,7 @@ export async function registerHandlers() {
 
 	// Instance handlers
 	ipcMain.handle("get-instances", async () => {
-		try {
-			const instanceDir = appPaths.InstanceDir;
-			const instanceFolders = await readdir(instanceDir, { withFileTypes: true });
-			const instances: Instance[] = [];
-
-			for (const folder of instanceFolders) {
-				if (folder.isDirectory()) {
-					const instancePath = path.join(instanceDir, folder.name, folder.name);
-					const instanceData = await readFile(instancePath);
-					const instance = decode(instanceData) as Instance;
-					instances.push(instance);
-				}
-			}
-
-			return {
-				success: true,
-				data: instances
-			};
-		} catch (error: unknown) {
-			console.error("Error getting instances:", error);
-			return {
-				success: false,
-				error: error instanceof Error ? error.message : String(error),
-			};
-		}
+		return await getInstances()
 	});
 
 	ipcMain.handle("save-instances", async (_, instances: Instance[]) => {
@@ -117,50 +89,50 @@ export async function registerHandlers() {
 export async function registerWindowControls(window: BrowserWindow) {
 	ipcMain.handle("close-launcher", () => {
 		try {
-      window.close();
-      return {
-        success: true,
-      } as BackendRes
-    } catch (error) {
-      return {
-        success: false,
-        errorType: CubicError.CloseWinError,
-        error: error
-      } as BackendRes
-    }
+			window.close();
+			return {
+				success: true,
+			} as BackendRes
+		} catch (error) {
+			return {
+				success: false,
+				errorType: CubicError.CloseWinError,
+				error: error
+			} as BackendRes
+		}
 	});
 
 	ipcMain.handle("hide-launcher", () => {
 		try {
-      window.minimize();
-      return {
-        success: true,
-      } as BackendRes
-    } catch (error) {
-      return {
-        success: false,
-        errorType: CubicError.HideWinError,
-        error: error
-      } as BackendRes
-    }
+			window.minimize();
+			return {
+				success: true,
+			} as BackendRes
+		} catch (error) {
+			return {
+				success: false,
+				errorType: CubicError.HideWinError,
+				error: error
+			} as BackendRes
+		}
 	});
 
 	ipcMain.handle("maximize-launcher", () => {
 		try {
-      if (!window.isMaximized()) {
-		window.maximize()
-	  } else {
-		window.restore();
-	  }
-      return {
-        success: true,
-      } as BackendRes
-    } catch (error) {
-      return {
-        success: false,
-        errorType: CubicError.MaximizeWinError,
-        error: error
-      } as BackendRes
-    }
+			if (!window.isMaximized()) {
+				window.maximize()
+			} else {
+				window.restore();
+			}
+			return {
+				success: true,
+			} as BackendRes
+		} catch (error) {
+			return {
+				success: false,
+				errorType: CubicError.MaximizeWinError,
+				error: error
+			} as BackendRes
+		}
 	});
 }

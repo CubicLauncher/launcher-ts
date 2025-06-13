@@ -1,6 +1,6 @@
 <template>
     <BaseModal v-model="rosquilla.isSettingsModalOpen" :title="languageStore.getTranslation('Launcher.settings.title')">
-      <div class="mt-6 flex">
+      <div class="flex">
         <!-- Vertical Tabs -->
         <div class="w-56 border-r border-[#272727ff]">
           <nav class="flex flex-col space-y-0.5" aria-label="Tabs">
@@ -10,7 +10,7 @@
               @click="activeTab = tab.id"
               :class="[
                 activeTab === tab.id
-                  ? 'bg-[#272727ff] text-[#d6d2d2ff] border-l-2 border-[#4a7b9dff]'
+                  ? 'bg-[#272727ff] text-[#d6d2d2ff] border-l-2 border-[#78716c]'
                   : 'text-[#d6d2d2ff]/60 hover:text-[#d6d2d2ff] hover:bg-[#272727ff]',
                 'w-full text-left px-4 py-2.5 text-sm font-medium transition-colors flex items-center gap-2'
               ]"

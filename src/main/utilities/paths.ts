@@ -1,7 +1,7 @@
 // AppPaths.ts - Gestión de rutas de la aplicación
 import envPaths from "env-paths";
 import path from "node:path";
-
+import { readdir } from "node:fs/promises";
 /**
  * Interface para las rutas de la aplicación
  */
@@ -47,6 +47,26 @@ export class AppPaths implements IAppPaths {
     this.tempDir = path.join(this.AppDir, "temp");
     this.InstanceDir = path.join(this.AppDir, 'instances');
   }
+}
+
+export async function getAllDirectories(dir: string): Promise<string[]> {
+  const subdirs = [];
+
+  // Leer el contenido del directorio
+  const entries = await readdir(dir, { withFileTypes: true });
+
+  for (const entry of entries) {
+    const fullPath = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      subdirs.push(fullPath); // Guardamos este directorio
+
+      // Recursivamente obtener directorios dentro
+      const nested = await getAllDirectories(fullPath);
+      subdirs.push(...nested);
+    }
+  }
+
+  return subdirs;
 }
 
 // Instancia única

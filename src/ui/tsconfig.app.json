@@ -11,5 +11,5 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"]
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "src/assets/backgrounds/triangleBackground.svg", "src/assets/backgrounds/cubicPattern.svg"]
 }

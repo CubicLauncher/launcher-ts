@@ -72,14 +72,12 @@ import { ref, computed } from 'vue';
 import BaseModal from './BaseModal.vue';
 import { useLauncherStore } from '../../stores/LauncherStore';
 import { useLanguageStore } from '../../stores/LanguageStore';
-import FabricIcon from '../../assets/icons/fabric.vue';
-import QuiltIcon from '../../assets/icons/Quilt.vue';
+import FabricIcon from '../../assets/icons/minecraft/fabric.vue';
+import QuiltIcon from '../../assets/icons/minecraft/Quilt.vue';
 
 const store = useLauncherStore();
 const languageStore = useLanguageStore();
 
-// Mock data - replace with actual data from your backend
-const versions = ['1.20.4', '1.20.2', '1.19.4', '1.19.2', '1.18.2', '1.17.1', '1.16.5'];
 const loaders = [
   { id: 'vanilla', name: 'Vanilla', icon: 'i-heroicons-cube-transparent' },
   { id: 'fabric', name: 'Fabric', icon: FabricIcon },
