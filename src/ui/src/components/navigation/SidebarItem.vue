@@ -31,7 +31,7 @@ const isImageUrl = (icon: Component | string): icon is string => {
 
 <template>
   <div
-    class="relative flex items-center justify-center w-10 h-10 cursor-pointer"
+    class="flex-shrink-0 flex items-center gap-2 bg-stone-800 rounded-xl p-1 border border-stone-700 cursor-pointer"
     @mouseenter="showTooltip"
     @mouseleave="hideTooltip"
     @click="onClick"
