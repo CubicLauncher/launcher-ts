@@ -140,30 +140,55 @@
           </div>
         </div>
 
-          <!-- Launcher Settings Tab -->
-          <div v-if="activeTab === 'launcher'" class="space-y-6">
-            <div class="space-y-4">
-              <div class="flex items-center justify-between">
-                <label class="text-stone-400">{{ languageStore.getTranslation('Launcher.settings.launcher.keepOpen') }}</label>
-                <input 
-                  type="checkbox" 
-                  v-model="launcherSettings.keepOpen"
-                  class="w-4 h-4 text-[#4a7b9dff] bg-stone-800 border-stone-600 rounded focus:ring-blue-500"
-                />
+        <!-- Launcher Settings Tab -->
+        <div v-if="activeTab === 'launcher'" class="space-y-6">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <label class="text-stone-400">{{ languageStore.getTranslation('Launcher.settings.launcher.keepOpen')
+                }}</label>
+              <input type="checkbox" v-model="launcherSettings.keepOpen"
+                class="w-4 h-4 text-[#4a7b9dff] bg-stone-800 border-stone-600 rounded focus:ring-blue-500" />
+            </div>
+            <div class="flex items-center justify-between">
+              <label class="text-stone-400">{{ languageStore.getTranslation('Launcher.settings.launcher.autoUpdate')
+                }}</label>
+              <input type="checkbox" v-model="launcherSettings.autoUpdate"
+                class="w-4 h-4 text-[#4a7b9dff] bg-stone-800 border-stone-600 rounded focus:ring-blue-500" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Accounts Tab -->
+        <div v-if="activeTab === 'accounts'" class="space-y-6">
+          <div class="bg-stone-800/30 rounded-lg p-4">
+            <div class="flex items-center space-x-4 mb-4">
+              <div class="w-16 h-16 rounded-lg bg-stone-700 flex items-center justify-center">
+                <i class="i-heroicons-user-circle w-12 h-12 text-stone-500"></i>
               </div>
-              <div class="flex items-center justify-between">
-                <label class="text-stone-400">{{ languageStore.getTranslation('Launcher.settings.launcher.autoUpdate') }}</label>
-                <input 
-                  type="checkbox" 
-                  v-model="launcherSettings.autoUpdate"
-                  class="w-4 h-4 text-[#4a7b9dff] bg-stone-800 border-stone-600 rounded focus:ring-blue-500"
-                />
+              <div class="flex-1">
+                <h3 class="text-lg font-medium text-stone-200">
+                  {{ accountSettings.username || languageStore.getTranslation('Launcher.settings.accounts.noUsername') }}
+                </h3>
+                <p class="text-stone-400">{{ languageStore.getTranslation('Launcher.settings.accounts.offlineAccount') }}</p>
               </div>
+            </div>
+
+            <div class="flex space-x-2">
+              <input v-model="accountSettings.username"
+                     type="text"
+                     class="flex-1 px-4 py-2 bg-stone-800 text-stone-200 rounded-lg border border-stone-600 focus:outline-none focus:border-[#4a7b9dff]"
+                     :placeholder="languageStore.getTranslation('Launcher.settings.accounts.usernamePlaceholder')" />
+              <button @click="accountSettings.username = ''"
+                      v-if="accountSettings.username"
+                      class="px-4 py-2 bg-red-500/20 text-red-400 rounded-lg hover:bg-red-500/30 transition-colors">
+                {{ languageStore.getTranslation('Launcher.settings.accounts.clear') }}
+              </button>
             </div>
           </div>
         </div>
       </div>
-    </BaseModal>
+    </div>
+  </BaseModal>
 </template>
 
 <script setup lang="ts">
@@ -194,20 +219,20 @@ const loadLanguages = async () => {
       eager: true,
     });
 
-		for (const path in localeFiles) {
-			const code = path.split("/").pop()?.replace(".json", "") || "";
-			if (code) {
-				const localeData = localeFiles[path] as any;
-				const languageName = localeData.language?.name || code;
-				languages.value.push({
-					code,
-					name: languageName,
-				});
-			}
-		}
-	} catch (error) {
-		console.error("Error loading languages:", error);
-	}
+    for (const path in localeFiles) {
+      const code = path.split("/").pop()?.replace(".json", "") || "";
+      if (code) {
+        const localeData = localeFiles[path] as any;
+        const languageName = localeData.language?.name || code;
+        languages.value.push({
+          code,
+          name: languageName,
+        });
+      }
+    }
+  } catch (error) {
+    console.error("Error loading languages:", error);
+  }
 };
 
 // Call loadLanguages when component is mounted
