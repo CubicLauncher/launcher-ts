@@ -96,11 +96,16 @@ const loaders = [
 	},
 ];
 
-const formData = ref({
+const formData = ref<{
+	name: string;
+	version: string;
+	loader: keyof typeof Loaders; // o directamente: loader: Loaders
+}>({
 	name: "",
 	version: "",
 	loader: Loaders.Vanilla,
 });
+
 
 const isFormValid = computed(() => {
 	return formData.value.name && formData.value.version;

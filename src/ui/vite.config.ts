@@ -7,5 +7,7 @@ import ViteDevTools from "vite-plugin-vue-devtools";
 export default defineConfig({
 	plugins: [vue(), tailwindcss(), ViteDevTools()],
 	base: "./",
-	outDir: "../dist/ui",
+	build: {
+		outDir: "../../dist/ui"
+	}
 });

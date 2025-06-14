@@ -1,13 +1,12 @@
-import { BrowserWindow, ipcMain } from "electron/main";
+import { type BrowserWindow, ipcMain } from "electron/main";
 import {
 	type BackendRes,
 	CubicError,
-	type DownloadEvent,
 	type Instance,
 	type Settings,
 } from "../../shared/types.js";
 import { WriteInstance, getInstances } from "../services/InstanceService.js";
-import { Launcher } from "../services/Launcher.js";
+// import { Launcher } from "../services/Launcher.js";
 import {
 	readSettingsFile,
 	writeSettingsFile,
@@ -32,35 +31,35 @@ export async function registerHandlers() {
 		return await getVersions();
 	});
 
-	// Download handlers
-	ipcMain.handle("download-version", async (_, version: string) => {
-		try {
-			// Using the public method from Launcher class
-			await Launcher.downloadVersion(version);
-			return { success: true };
-		} catch (error: unknown) {
-			console.error("Error downloading version:", error);
-			return {
-				success: false,
-				error: error instanceof Error ? error.message : String(error),
-			};
-		}
-	});
+	// // Download handlers
+	// ipcMain.handle("download-version", async (_, version: string) => {
+	// 	try {
+	// 		// Using the public method from Launcher class
+	// 		await Launcher.downloadVersion(version);
+	// 		return { success: true };
+	// 	} catch (error: unknown) {
+	// 		console.error("Error downloading version:", error);
+	// 		return {
+	// 			success: false,
+	// 			error: error instanceof Error ? error.message : String(error),
+	// 		};
+	// 	}
+	// });
 
-	// Launch handlers
-	ipcMain.handle("launch-version", async (_, version: string) => {
-		try {
-			// Using the public method from Launcher class
-			await Launcher.launchVersion(version);
-			return { success: true };
-		} catch (error: unknown) {
-			console.error("Error launching version:", error);
-			return {
-				success: false,
-				error: error instanceof Error ? error.message : String(error),
-			};
-		}
-	});
+	// // Launch handlers
+	// ipcMain.handle("launch-version", async (_, version: string) => {
+	// 	try {
+	// 		// Using the public method from Launcher class
+	// 		await Launcher.launchVersion(version);
+	// 		return { success: true };
+	// 	} catch (error: unknown) {
+	// 		console.error("Error launching version:", error);
+	// 		return {
+	// 			success: false,
+	// 			error: error instanceof Error ? error.message : String(error),
+	// 		};
+	// 	}
+	// });
 
 	// Instance handlers
 	ipcMain.handle("get-instances", async () => {
@@ -93,15 +92,15 @@ export async function registerHandlers() {
 	});
 
 	// Register download progress event
-	Launcher.onDownloadProgress((progress: DownloadEvent) => {
-		// Send progress to all renderer processes
-		const windows = BrowserWindow.getAllWindows();
-		windows.forEach((window: Electron.BrowserWindow) => {
-			if (!window.isDestroyed()) {
-				window.webContents.send("download-progress", progress);
-			}
-		});
-	});
+	// Launcher.onDownloadProgress((progress: DownloadEvent) => {
+	// 	// Send progress to all renderer processes
+	// 	const windows = BrowserWindow.getAllWindows();
+	// 	for (const window of windows) {
+	// 		if (!window.isDestroyed()) {
+	// 			window.webContents.send("download-progress", progress);
+	// 		}
+	// 	}
+	// });
 }
 
 export async function registerWindowControls(window: BrowserWindow) {

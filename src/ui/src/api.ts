@@ -37,12 +37,11 @@ export function maximizeLauncher() {
 
 export async function GetVersions() {
 	const versions = await window.cubic.launcher.getVersions();
-	if (!versions.success) {
+	if (!versions.success || versions.data === undefined) {
 		return [];
-	} else {
-		const instances = versions.data;
-		return instances.versions as MinecraftVersion[];
 	}
+	const instances = versions.data as { versions: MinecraftVersion[] };
+	return instances.versions;
 }
 export async function SaveInstance(instance: Instance) {
 	return await window.cubic.launcher.createInstance(instance);
