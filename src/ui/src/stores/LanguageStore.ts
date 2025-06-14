@@ -28,21 +28,28 @@ export const useLanguageStore = defineStore("language", {
 			return computed(() => {
 				return (key: string) => {
 					const keys = key.split(".");
-					let translation: any = translations[state.CurrentLanguage];
+					// Aquí indicamos que translation es un objeto con propiedades string
+					let translation: Record<string, any> | undefined =
+						translations[state.CurrentLanguage];
 
 					for (const k of keys) {
-						if (translation && translation[k]) {
+						if (
+							translation &&
+							typeof translation === "object" &&
+							k in translation
+						) {
 							translation = translation[k];
 						} else {
 							return key;
 						}
 					}
 
-					return translation;
+					return typeof translation === "string" ? translation : key;
 				};
 			}).value;
 		},
 	},
+
 	actions: {
 		setCurrentLanguage(language: Language) {
 			this.CurrentLanguage = language;

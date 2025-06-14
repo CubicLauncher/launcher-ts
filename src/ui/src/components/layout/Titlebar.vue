@@ -7,7 +7,7 @@ import { getIcon } from "../../lib/utils";
 </script>
 
 <template>
-  <div class="flex items-center justify-between h-9 bg-stone-800 border-b border-stone-600 px-4 titlebar z-50">
+  <div class="flex items-center justify-between h-9 bg-stone-800 border-b border-stone-600 px-4 titlebar z-1000">
     <!-- Left spacer for balance -->
     <div class="w-24"></div>
 

@@ -32,7 +32,6 @@
 
 <script setup lang="ts">
 import controller from "../../assets/icons/UI/controller.vue";
-import plusSquare from "../../assets/icons/UI/plus-square.vue";
 import PlusSquare from "../../assets/icons/UI/plus-square.vue";
 import logo from "../../assets/logo.svg";
 import { useLanguageStore } from "../../stores/LanguageStore";

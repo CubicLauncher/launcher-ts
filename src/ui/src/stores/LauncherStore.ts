@@ -27,7 +27,7 @@ export const useLauncherStore = defineStore("launcher", {
 			try {
 				const response = await window.cubic.launcher.getInstances();
 				if (response.success && response.data) {
-					this.Instances = response.data;
+					this.Instances = response.data as Instance[];
 				}
 			} catch (error) {
 				console.error("Error loading instances:", error);
