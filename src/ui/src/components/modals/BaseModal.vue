@@ -18,9 +18,9 @@
 </template>
 
 <script setup lang="ts">
-import close from '../../assets/icons/UI/close.vue';
-defineProps<{ modelValue: boolean, title: string }>()
-defineEmits(['update:modelValue'])
+import close from "../../assets/icons/UI/close.vue";
+defineProps<{ modelValue: boolean; title: string }>();
+defineEmits(["update:modelValue"]);
 </script>
 
 <style scoped lang="scss">

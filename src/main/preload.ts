@@ -97,39 +97,27 @@ const cubic = {
 		},
 		getLauncherData: async (): Promise<BackendRes> => {
 			try {
-				return await ipcRenderer.invoke('get-launcher-data');
-			} catch(error) {
+				return await ipcRenderer.invoke("get-launcher-data");
+			} catch (error) {
 				console.error(error);
 				return {
 					success: false,
-					error: error
-				}
+					error: error,
+				};
 			}
-		}
+		},
 	},
 	window: {
 		closeLauncher: () => {
-			try {
-				return ipcRenderer.invoke("close-launcher");
-			} catch (error) {
-				throw error;
-			}
+			return ipcRenderer.invoke("close-launcher");
 		},
 		hideLauncher: () => {
-			try {
-				return ipcRenderer.invoke("hide-launcher");
-			} catch (error) {
-				throw error;
-			}
+			return ipcRenderer.invoke("hide-launcher");
 		},
 		maximizeLauncher: () => {
-			try {
-				return ipcRenderer.invoke("maximize-launcher");
-			} catch (error) {
-				throw error;
-			}
+			return ipcRenderer.invoke("maximize-launcher");
 		},
-	}
+	},
 };
 
 contextBridge.exposeInMainWorld("cubic", cubic);

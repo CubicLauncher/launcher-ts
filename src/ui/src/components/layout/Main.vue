@@ -19,12 +19,12 @@
 </template>
 
 <script setup>
-import Sidebar from '../navigation/Sidebar.vue'
-import Titlebar from './Titlebar.vue'
-import { useLauncherStore } from '../../stores/LauncherStore';
-import SettingsModal from '../modals/SettingsModal.vue';
-import AddInstanceModal from '../modals/AddInstanceModal.vue';
-import InstanceView from '../views/InstanceView.vue'
-import NoInstanceView from '../views/NoInstanceView.vue'
-const store = useLauncherStore()
+import Sidebar from "../navigation/Sidebar.vue";
+import Titlebar from "./Titlebar.vue";
+import { useLauncherStore } from "../../stores/LauncherStore";
+import SettingsModal from "../modals/SettingsModal.vue";
+import AddInstanceModal from "../modals/AddInstanceModal.vue";
+import InstanceView from "../views/InstanceView.vue";
+import NoInstanceView from "../views/NoInstanceView.vue";
+const store = useLauncherStore();
 </script>

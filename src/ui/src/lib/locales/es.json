@@ -1,86 +1,86 @@
 {
-    "language": {
-        "name": "Español"
-    },
-    "Launcher": {
-        "sidebar": {
-            "library": "Biblioteca",
-            "allInstances": "Todas las Instancias",
-            "instances": "Instancias",
-            "addInstance": "Agregar Instancia",
-            "settings": "Configuración"
-        },
-        "noInstance": {
-            "1": {
-                "message": "Parece que no tienes instancias descargadas.",
-                "description": "Descarga una aquí!"
-            },
-            "2": {
-                "message": "¿Listo para empezar?",
-                "description": "Crea tu primera instancia de Minecraft"
-            },
-            "3": {
-                "message": "¡Bienvenido a Cubic!",
-                "description": "Comienza descargando tu primera instancia"
-            },
-            "4": {
-                "message": "No hay instancias disponibles",
-                "description": "Haz clic para descargar una nueva instancia"
-            },
-            "createButton": "Crear versión de Minecraft"
-        },
-        "welcome": {
-            "title": "Bienvenido de nuevo",
-            "description": "Selecciona una instancia del menú lateral o crea una nueva para comenzar",
-            "createNew": "Crear Nueva Instancia",
-            "playRecent": "Jugar instancia mas reciente"
-        },
-        "addInstance": {
-            "title": "Crear Nueva Instancia",
-            "name": "Nombre de la Instancia",
-            "namePlaceholder": "Mi Instancia",
-            "version": "Versión de Minecraft",
-            "selectVersion": "Selecciona una versión",
-            "loader": "Cargador de Mods",
-            "memory": "Memoria",
-            "minMemory": "RAM Mínima (MB)",
-            "maxMemory": "RAM Máxima (MB)",
-            "cancel": "Cancelar",
-            "create": "Crear Instancia"
-        },
-        "settings": {
-            "title": "Configuración",
-            "tabs": {
-                "general": "General",
-                "game": "Juego",
-                "launcher": "Lanzador"
-            },
-            "general": {
-                "language": "Idioma",
-                "about": "Acerca de",
-                "version": "Versión",
-                "build": "Compilación",
-                "platform": "Plataforma"
-            },
-            "game": {
-                "minRam": "RAM Mínima",
-                "maxRam": "RAM Máxima",
-                "gameDirectory": "Directorio del Juego",
-                "javaPath": "Ruta de Java",
-                "browse": "Explorar"
-            },
-            "launcher": {
-                "keepOpen": "Mantener el launcher abierto mientras se juega",
-                "autoUpdate": "Buscar actualizaciones automáticamente"
-            }
-        },
-        "views": {
-            "InstanceView": {
-                "versionDetail": "Detalles de version",
-                "Loader": "Cargador de mods",
-                "LastPlayed": "Ultima vez jugado",
-                "PlayBtn": "Iniciar instancia"
-            }
-        }
-    }
-} 
+	"language": {
+		"name": "Español"
+	},
+	"Launcher": {
+		"sidebar": {
+			"library": "Biblioteca",
+			"allInstances": "Todas las Instancias",
+			"instances": "Instancias",
+			"addInstance": "Agregar Instancia",
+			"settings": "Configuración"
+		},
+		"noInstance": {
+			"1": {
+				"message": "Parece que no tienes instancias descargadas.",
+				"description": "Descarga una aquí!"
+			},
+			"2": {
+				"message": "¿Listo para empezar?",
+				"description": "Crea tu primera instancia de Minecraft"
+			},
+			"3": {
+				"message": "¡Bienvenido a Cubic!",
+				"description": "Comienza descargando tu primera instancia"
+			},
+			"4": {
+				"message": "No hay instancias disponibles",
+				"description": "Haz clic para descargar una nueva instancia"
+			},
+			"createButton": "Crear versión de Minecraft"
+		},
+		"welcome": {
+			"title": "Bienvenido de nuevo",
+			"description": "Selecciona una instancia del menú lateral o crea una nueva para comenzar",
+			"createNew": "Crear Nueva Instancia",
+			"playRecent": "Jugar instancia mas reciente"
+		},
+		"addInstance": {
+			"title": "Crear Nueva Instancia",
+			"name": "Nombre de la Instancia",
+			"namePlaceholder": "Mi Instancia",
+			"version": "Versión de Minecraft",
+			"selectVersion": "Selecciona una versión",
+			"loader": "Cargador de Mods",
+			"memory": "Memoria",
+			"minMemory": "RAM Mínima (MB)",
+			"maxMemory": "RAM Máxima (MB)",
+			"cancel": "Cancelar",
+			"create": "Crear Instancia"
+		},
+		"settings": {
+			"title": "Configuración",
+			"tabs": {
+				"general": "General",
+				"game": "Juego",
+				"launcher": "Lanzador"
+			},
+			"general": {
+				"language": "Idioma",
+				"about": "Acerca de",
+				"version": "Versión",
+				"build": "Compilación",
+				"platform": "Plataforma"
+			},
+			"game": {
+				"minRam": "RAM Mínima",
+				"maxRam": "RAM Máxima",
+				"gameDirectory": "Directorio del Juego",
+				"javaPath": "Ruta de Java",
+				"browse": "Explorar"
+			},
+			"launcher": {
+				"keepOpen": "Mantener el launcher abierto mientras se juega",
+				"autoUpdate": "Buscar actualizaciones automáticamente"
+			}
+		},
+		"views": {
+			"InstanceView": {
+				"versionDetail": "Detalles de version",
+				"Loader": "Cargador de mods",
+				"LastPlayed": "Ultima vez jugado",
+				"PlayBtn": "Iniciar instancia"
+			}
+		}
+	}
+}

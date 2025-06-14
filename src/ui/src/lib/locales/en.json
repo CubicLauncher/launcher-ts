@@ -1,86 +1,86 @@
 {
-    "language": {
-        "name": "English"
-    },
-    "Launcher": {
-        "sidebar": {
-            "library": "Library",
-            "allInstances": "All Instances",
-            "instances": "Instances",
-            "addInstance": "Add Instance",
-            "settings": "Settings"
-        },
-        "noInstance": {
-            "1": {
-                "message": "It seems you don't have any instances downloaded.",
-                "description": "Download one here!"
-            },
-            "2": {
-                "message": "Ready to start?",
-                "description": "Create your first Minecraft instance"
-            },
-            "3": {
-                "message": "Welcome to Cubic!",
-                "description": "Start by downloading your first instance"
-            },
-            "4": {
-                "message": "No instances available",
-                "description": "Click to download a new one"
-            },
-            "createButton": "Create Minecraft version"
-        },
-        "welcome": {
-            "title": "Welcome Back",
-            "description": "Select an instance from the sidebar or create a new one to get started",
-            "createNew": "Create New Instance",
-            "playRecent": "Play Recent"
-        },
-        "addInstance": {
-            "title": "Create New Instance",
-            "name": "Instance Name",
-            "namePlaceholder": "My Instance",
-            "version": "Minecraft Version",
-            "selectVersion": "Select a version",
-            "loader": "Mod Loader",
-            "memory": "Memory",
-            "minMemory": "Minimum RAM (MB)",
-            "maxMemory": "Maximum RAM (MB)",
-            "cancel": "Cancel",
-            "create": "Create Instance"
-        },
-        "settings": {
-            "title": "Settings",
-            "tabs": {
-                "general": "General",
-                "game": "Game",
-                "launcher": "Launcher"
-            },
-            "general": {
-                "language": "Language",
-                "about": "About",
-                "version": "Version",
-                "build": "Build",
-                "platform": "Platform"
-            },
-            "game": {
-                "minRam": "Minimum RAM",
-                "maxRam": "Maximum RAM",
-                "gameDirectory": "Game Directory",
-                "javaPath": "Java Path",
-                "browse": "Browse"
-            },
-            "launcher": {
-                "keepOpen": "Keep launcher open while playing",
-                "autoUpdate": "Check for updates automatically"
-            }
-        },
-        "views": {
-            "InstanceView": {
-                "versionDetail": "Version details",
-                "Loader": "Loader",
-                "LastPlayed": "Last played",
-                "PlayBtn": "Start instance"
-            }
-        }
-    }
+	"language": {
+		"name": "English"
+	},
+	"Launcher": {
+		"sidebar": {
+			"library": "Library",
+			"allInstances": "All Instances",
+			"instances": "Instances",
+			"addInstance": "Add Instance",
+			"settings": "Settings"
+		},
+		"noInstance": {
+			"1": {
+				"message": "It seems you don't have any instances downloaded.",
+				"description": "Download one here!"
+			},
+			"2": {
+				"message": "Ready to start?",
+				"description": "Create your first Minecraft instance"
+			},
+			"3": {
+				"message": "Welcome to Cubic!",
+				"description": "Start by downloading your first instance"
+			},
+			"4": {
+				"message": "No instances available",
+				"description": "Click to download a new one"
+			},
+			"createButton": "Create Minecraft version"
+		},
+		"welcome": {
+			"title": "Welcome Back",
+			"description": "Select an instance from the sidebar or create a new one to get started",
+			"createNew": "Create New Instance",
+			"playRecent": "Play Recent"
+		},
+		"addInstance": {
+			"title": "Create New Instance",
+			"name": "Instance Name",
+			"namePlaceholder": "My Instance",
+			"version": "Minecraft Version",
+			"selectVersion": "Select a version",
+			"loader": "Mod Loader",
+			"memory": "Memory",
+			"minMemory": "Minimum RAM (MB)",
+			"maxMemory": "Maximum RAM (MB)",
+			"cancel": "Cancel",
+			"create": "Create Instance"
+		},
+		"settings": {
+			"title": "Settings",
+			"tabs": {
+				"general": "General",
+				"game": "Game",
+				"launcher": "Launcher"
+			},
+			"general": {
+				"language": "Language",
+				"about": "About",
+				"version": "Version",
+				"build": "Build",
+				"platform": "Platform"
+			},
+			"game": {
+				"minRam": "Minimum RAM",
+				"maxRam": "Maximum RAM",
+				"gameDirectory": "Game Directory",
+				"javaPath": "Java Path",
+				"browse": "Browse"
+			},
+			"launcher": {
+				"keepOpen": "Keep launcher open while playing",
+				"autoUpdate": "Check for updates automatically"
+			}
+		},
+		"views": {
+			"InstanceView": {
+				"versionDetail": "Version details",
+				"Loader": "Loader",
+				"LastPlayed": "Last played",
+				"PlayBtn": "Start instance"
+			}
+		}
+	}
 }

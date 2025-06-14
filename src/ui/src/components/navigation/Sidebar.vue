@@ -1,33 +1,37 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import logo from '../../assets/logo.vue'
-import { useLauncherStore } from '../../stores/LauncherStore'
-import { useLanguageStore } from '../../stores/LanguageStore'
-import Settings from '../../assets/icons/UI/settings.vue'
-import PlusSquare from '../../assets/icons/UI/plus-square.vue'
-import SidebarItem from './SidebarItem.vue'
-import { getIcon } from '../../lib/utils'
-const store = useLauncherStore()
-const languageStore = useLanguageStore()
+import { ref } from "vue";
+import logo from "../../assets/logo.vue";
+import { useLauncherStore } from "../../stores/LauncherStore";
+import { useLanguageStore } from "../../stores/LanguageStore";
+import Settings from "../../assets/icons/UI/settings.vue";
+import PlusSquare from "../../assets/icons/UI/plus-square.vue";
+import SidebarItem from "./SidebarItem.vue";
+import { getIcon } from "../../lib/utils";
+const store = useLauncherStore();
+const languageStore = useLanguageStore();
 
 // Tooltip logic
-const tooltipVisible = ref(false)
-const tooltipX = ref(0)
-const tooltipY = ref(0)
-const tooltipText = ref('')
+const tooltipVisible = ref(false);
+const tooltipX = ref(0);
+const tooltipY = ref(0);
+const tooltipText = ref("");
 
-const showTooltip = (event: MouseEvent, translationKey: string, customText?: string) => {
-  const rect = (event.currentTarget as HTMLElement).getBoundingClientRect()
-  tooltipX.value = rect.right + 8
-  tooltipY.value = rect.top + rect.height / 2
-  tooltipText.value = customText || languageStore.getTranslation(translationKey)
-  tooltipVisible.value = true
-}
+const showTooltip = (
+	event: MouseEvent,
+	translationKey: string,
+	customText?: string,
+) => {
+	const rect = (event.currentTarget as HTMLElement).getBoundingClientRect();
+	tooltipX.value = rect.right + 8;
+	tooltipY.value = rect.top + rect.height / 2;
+	tooltipText.value =
+		customText || languageStore.getTranslation(translationKey);
+	tooltipVisible.value = true;
+};
 
 const hideTooltip = () => {
-  tooltipVisible.value = false
-}
-
+	tooltipVisible.value = false;
+};
 </script>
 
 <template>

@@ -31,19 +31,19 @@
 </template>
 
 <script setup lang="ts">
-import { useLauncherStore } from '../../stores/LauncherStore';
-import { useLanguageStore } from '../../stores/LanguageStore';
-import plusSquare from '../../assets/icons/UI/plus-square.vue';
+import { useLauncherStore } from "../../stores/LauncherStore";
+import { useLanguageStore } from "../../stores/LanguageStore";
+import plusSquare from "../../assets/icons/UI/plus-square.vue";
 import controller from "../../assets/icons/UI/controller.vue";
-import logo from '../../assets/logo.svg';
-import PlusSquare from '../../assets/icons/UI/plus-square.vue';
+import logo from "../../assets/logo.svg";
+import PlusSquare from "../../assets/icons/UI/plus-square.vue";
 
 const store = useLauncherStore();
 const languageStore = useLanguageStore();
 
 const selectFirstInstance = () => {
-  if (store.Instances.length > 0) {
-    store.setCurrentInstance(store.Instances[0]);
-  }
+	if (store.Instances.length > 0) {
+		store.setCurrentInstance(store.Instances[0]);
+	}
 };
 </script> 

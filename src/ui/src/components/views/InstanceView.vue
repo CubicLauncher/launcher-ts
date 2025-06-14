@@ -84,28 +84,28 @@
 </template>
 
 <script setup lang="ts">
-import { colors } from '../../lib/themes/colors';
-import type { Instance } from '../../../../shared/types';
-import { useLanguageStore } from '../../stores/LanguageStore';
+import { colors } from "../../lib/themes/colors";
+import type { Instance } from "../../../../shared/types";
+import { useLanguageStore } from "../../stores/LanguageStore";
 const languageStore = useLanguageStore();
-import { getIcon } from '../../lib/utils';
-import { computed } from 'vue';
+import { getIcon } from "../../lib/utils";
+import { computed } from "vue";
 
 const props = defineProps<{
-  instance: Instance;
+	instance: Instance;
 }>();
 
 const iconComponent = computed(() => getIcon(props.instance.loader.loader));
 
 const handlePlay = () => {
-  console.log('Starting instance:', props.instance.name);
-  // Agrega lógica para lanzar la instancia aquí
+	console.log("Starting instance:", props.instance.name);
+	// Agrega lógica para lanzar la instancia aquí
 };
 
 const handleDelete = async () => {
-  if (confirm(`Are you sure you want to delete ${props.instance.name}?`)) {
-    // await store.deleteInstance(props.instance.name);
-  }
+	if (confirm(`Are you sure you want to delete ${props.instance.name}?`)) {
+		// await store.deleteInstance(props.instance.name);
+	}
 };
 </script>
 

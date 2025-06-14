@@ -177,62 +177,64 @@
 </template>
 
 <script setup lang="ts">
-import { useLanguageStore } from '../../stores/LanguageStore';
-import { useLauncherStore } from '../../stores/LauncherStore';
-import BaseModal from '../modals/BaseModal.vue';
-import { ref, onMounted } from 'vue';
-import { getSystemDetails } from '../../lib/data/os';
+import { useLanguageStore } from "../../stores/LanguageStore";
+import { useLauncherStore } from "../../stores/LauncherStore";
+import BaseModal from "../modals/BaseModal.vue";
+import { ref, onMounted } from "vue";
+import { getSystemDetails } from "../../lib/data/os";
 
-const rosquilla = useLauncherStore()
+const rosquilla = useLauncherStore();
 const languageStore = useLanguageStore();
 
-const activeTab = ref('general');
+const activeTab = ref("general");
 
 const tabs = [
-  { id: 'general', name: 'General', icon: 'i-heroicons-cog-6-tooth' },
-  { id: 'game', name: 'Game', icon: 'i-heroicons-gamepad' },
-  { id: 'launcher', name: 'Launcher', icon: 'i-heroicons-window' }
+	{ id: "general", name: "General", icon: "i-heroicons-cog-6-tooth" },
+	{ id: "game", name: "Game", icon: "i-heroicons-gamepad" },
+	{ id: "launcher", name: "Launcher", icon: "i-heroicons-window" },
 ];
 
 const languages = ref<Array<{ code: string; name: string }>>([]);
 
 // Load available languages from locales directory
 const loadLanguages = async () => {
-  try {
-    const localeFiles = import.meta.glob('../../lib/locales/*.json', { eager: true });
-    
-    for (const path in localeFiles) {
-      const code = path.split('/').pop()?.replace('.json', '') || '';
-      if (code) {
-        const localeData = localeFiles[path] as any;
-        const languageName = localeData.language?.name || code;
-        languages.value.push({
-          code,
-          name: languageName
-        });
-      }
-    }
-  } catch (error) {
-    console.error('Error loading languages:', error);
-  }
+	try {
+		const localeFiles = import.meta.glob("../../lib/locales/*.json", {
+			eager: true,
+		});
+
+		for (const path in localeFiles) {
+			const code = path.split("/").pop()?.replace(".json", "") || "";
+			if (code) {
+				const localeData = localeFiles[path] as any;
+				const languageName = localeData.language?.name || code;
+				languages.value.push({
+					code,
+					name: languageName,
+				});
+			}
+		}
+	} catch (error) {
+		console.error("Error loading languages:", error);
+	}
 };
 
 // Call loadLanguages when component is mounted
 onMounted(() => {
-  loadLanguages();
+	loadLanguages();
 });
 
 const gameSettings = ref({
-  minRam: 2,
-  maxRam: 4,
-  gameDirectory: '',
-  javaPath: '',
+	minRam: 2,
+	maxRam: 4,
+	gameDirectory: "",
+	javaPath: "",
 });
 
 const launcherSettings = ref({
-  keepOpen: true,
-  autoUpdate: true,
-  showNews: true,
-  showSnapshots: false
+	keepOpen: true,
+	autoUpdate: true,
+	showNews: true,
+	showSnapshots: false,
 });
 </script>

@@ -6,7 +6,7 @@ import { onMounted } from "vue";
 const store = useLauncherStore();
 
 onMounted(async () => {
-  await store.loadInstances();
+	await store.loadInstances();
 });
 </script>
 

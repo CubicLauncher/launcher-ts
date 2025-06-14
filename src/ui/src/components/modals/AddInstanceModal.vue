@@ -56,63 +56,77 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue';
-import BaseModal from './BaseModal.vue';
-import { useLauncherStore } from '../../stores/LauncherStore';
-import { useLanguageStore } from '../../stores/LanguageStore';
-import FabricIcon from '../../assets/icons/minecraft/fabric.vue';
-import QuiltIcon from '../../assets/icons/minecraft/Quilt.vue';
-import Vanilla from '../../assets/icons/minecraft/vanilla.vue';
-import { Loaders } from '../../../../shared/types';
-import { GetVersions } from '../../api';
-import {type MinecraftVersion } from "../../../../shared/types"
+import { ref, computed } from "vue";
+import BaseModal from "./BaseModal.vue";
+import { useLauncherStore } from "../../stores/LauncherStore";
+import { useLanguageStore } from "../../stores/LanguageStore";
+import FabricIcon from "../../assets/icons/minecraft/fabric.vue";
+import QuiltIcon from "../../assets/icons/minecraft/Quilt.vue";
+import Vanilla from "../../assets/icons/minecraft/vanilla.vue";
+import { Loaders } from "../../../../shared/types";
+import { GetVersions } from "../../api";
+import { type MinecraftVersion } from "../../../../shared/types";
 
 const store = useLauncherStore();
 const languageStore = useLanguageStore();
-const versions = ref<MinecraftVersion[]>([])
+const versions = ref<MinecraftVersion[]>([]);
 
 GetVersions().then((d) => {
-  versions.value = d
-})
+	versions.value = d;
+});
 
 const loaders = [
-  { id: Loaders.Vanilla, name: 'Vanilla', icon: Vanilla, EnumValue: Loaders.Vanilla },
-  { id: Loaders.Fabric, name: 'Fabric', icon: FabricIcon, EnumValue: Loaders.Fabric },
-  { id: Loaders.Quilt, name: 'Quilt', icon: QuiltIcon, EnumValue: Loaders.Quilt }
+	{
+		id: Loaders.Vanilla,
+		name: "Vanilla",
+		icon: Vanilla,
+		EnumValue: Loaders.Vanilla,
+	},
+	{
+		id: Loaders.Fabric,
+		name: "Fabric",
+		icon: FabricIcon,
+		EnumValue: Loaders.Fabric,
+	},
+	{
+		id: Loaders.Quilt,
+		name: "Quilt",
+		icon: QuiltIcon,
+		EnumValue: Loaders.Quilt,
+	},
 ];
 
 const formData = ref({
-  name: '',
-  version: '',
-  loader: Loaders.Vanilla,
+	name: "",
+	version: "",
+	loader: Loaders.Vanilla,
 });
 
 const isFormValid = computed(() => {
-  return formData.value.name &&
-    formData.value.version
+	return formData.value.name && formData.value.version;
 });
 
 const handleCreate = () => {
-  if (!isFormValid.value) return;
+	if (!isFormValid.value) return;
 
-  // Create new instance
-  store.addInstance({
-    name: formData.value.name,
-    game: {
-      version: formData.value.version,
-    },
-    loader: {
-      loader: formData.value.loader,
-      version: "12"
-    },
-    lastPlayed: '',
-  });
+	// Create new instance
+	store.addInstance({
+		name: formData.value.name,
+		game: {
+			version: formData.value.version,
+		},
+		loader: {
+			loader: formData.value.loader,
+			version: "12",
+		},
+		lastPlayed: "",
+	});
 
-  store.toggleAddInstanceModal();
-  formData.value = {
-    name: '',
-    version: '',
-    loader: Loaders.Vanilla,
-  };
+	store.toggleAddInstanceModal();
+	formData.value = {
+		name: "",
+		version: "",
+		loader: Loaders.Vanilla,
+	};
 };
 </script>

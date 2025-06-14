@@ -33,11 +33,7 @@
 		"forceConsistentCasingInFileNames": true,
 		"skipLibCheck": false
 	},
-	"include": [
-		"src/**/*.ts",
-		"src/**/*.tsx",
-		"src/main/preload.ts"
-	],
+	"include": ["src/**/*.ts", "src/**/*.tsx", "src/main/preload.ts"],
 	"exclude": ["node_modules/**", "dist", "src/ui/**"],
 	"overrides": [
 		{

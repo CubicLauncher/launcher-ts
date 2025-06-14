@@ -1,32 +1,32 @@
 <script setup lang="ts">
-import { ref, type Component } from 'vue'
-import SidebarTooltip from './SidebarTooltip.vue'
+import { ref, type Component } from "vue";
+import SidebarTooltip from "./SidebarTooltip.vue";
 
-const TooltipShow = ref(false)
-const tooltipX = ref(0)
-const tooltipY = ref(0)
+const TooltipShow = ref(false);
+const tooltipX = ref(0);
+const tooltipY = ref(0);
 
 defineProps<{
-  name?: string
-  icon: Component | string
-  onClick?: () => void
-}>()
+	name?: string;
+	icon: Component | string;
+	onClick?: () => void;
+}>();
 
 const showTooltip = (event: MouseEvent) => {
-  const rect = (event.currentTarget as HTMLElement).getBoundingClientRect()
-  tooltipX.value = rect.right + 8
-  tooltipY.value = rect.top + rect.height / 2
-  TooltipShow.value = true
-}
+	const rect = (event.currentTarget as HTMLElement).getBoundingClientRect();
+	tooltipX.value = rect.right + 8;
+	tooltipY.value = rect.top + rect.height / 2;
+	TooltipShow.value = true;
+};
 
 const hideTooltip = () => {
-  TooltipShow.value = false
-}
+	TooltipShow.value = false;
+};
 
 // Helper para verificar si es un string (URL de imagen)
 const isImageUrl = (icon: Component | string): icon is string => {
-  return typeof icon === 'string'
-}
+	return typeof icon === "string";
+};
 </script>
 
 <template>
