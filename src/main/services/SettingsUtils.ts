@@ -44,8 +44,16 @@ async function writeSettingsFile(settings: Settings): Promise<BackendRes> {
 			success: true,
 			data: settings,
 		};
-	} catch (err) {
+	} catch (err: unknown) {
 		mainLogger.error("Error saving settings:", err);
+
+		if (err instanceof Error) {
+			return {
+				success: false,
+				errorType: CubicError.GenericFilesystem,
+				error: err.message,
+			};
+		}
 
 		return {
 			success: false,
@@ -78,24 +86,24 @@ async function readSettingsFile(): Promise<BackendRes> {
 				success: true,
 				data: parseResult.data,
 			};
-		} else {
-			const treeifiedError = z.treeifyError(parseResult.error);
-			mainLogger.error(
-				`Error reading settings file: ${JSON.stringify(treeifiedError)}`,
-			);
-
-			return {
-				success: false,
-				errorType: CubicError.InvalidSettings,
-				error: treeifiedError,
-			};
 		}
-	} catch (err) {
+
+		const treeifiedError = z.treeifyError(parseResult.error);
+		mainLogger.error(
+			`Error reading settings file: ${JSON.stringify(treeifiedError)}`,
+		);
+
+		return {
+			success: false,
+			errorType: CubicError.InvalidInstance,
+			error: treeifiedError,
+		};
+	} catch (err: unknown) {
 		mainLogger.error("Error accessing settings file:", err);
 
 		return {
 			success: false,
-			errorType: CubicError.GenericFilesystem,
+			errorType: CubicError.InvalidInstance,
 			error: err,
 		};
 	}

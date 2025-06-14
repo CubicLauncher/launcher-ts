@@ -1,36 +1,36 @@
 import { z } from "zod/v4";
 
-export enum CubicError {
+export const CubicError = {
 	// Errores de configuracion
-	SettingsFileENOENT = "NOT_FOUND",
-	UsernameLimitExceeded = "USERNAME_LIMIT_EXCEEDED",
-	InvalidSettings = "INVALID_SETTINGS",
+	SettingsFileENOENT: "NOT_FOUND",
+	UsernameLimitExceeded: "USERNAME_LIMIT_EXCEEDED",
+	InvalidSettings: "INVALID_SETTINGS",
 
 	// Errores de Instancias
-	InstanceFileENOENT = "INSTANCE_FILE_NOT_FOUND",
-	InstanceNameLimitExceeded = "INSTANCE_NAME_LIMIT_EXCEEDED",
-	InvalidInstance = "INVALID_INSTANCE",
+	InstanceFileENOENT: "INSTANCE_FILE_NOT_FOUND",
+	InstanceNameLimitExceeded: "INSTANCE_NAME_LIMIT_EXCEEDED",
+	InvalidInstance: "INVALID_INSTANCE",
 
 	// Errores de Ventana
-	CloseWinError = "WINDOW_CLOSE_ERROR",
-	HideWinError = "WINDOW_HIDE_ERROR",
-	MaximizeWinError = "WINDOW_MAXIMIZE_ERROR",
+	CloseWinError: "WINDOW_CLOSE_ERROR",
+	HideWinError: "WINDOW_HIDE_ERROR",
+	MaximizeWinError: "WINDOW_MAXIMIZE_ERROR",
 
-	InvalidRequest = "INVALID_REQUEST",
-	GenericFilesystem = "GENERIC_FILESYSTEM_ERROR",
-}
+	InvalidRequest: "INVALID_REQUEST",
+	GenericFilesystem: "GENERIC_FILESYSTEM_ERROR",
+} as const
 
-export enum CubicRes {
-	AlreadyExists = "ALREADY_EXISTS",
-}
+export const CubicRes = {
+	AlreadyExists: "ALREADY_EXISTS",
+} as const
 
-export enum Loaders {
-	Fabric = "Fabric",
-	Forge = "Forge",
-	Quilt = "Quilt",
-	NeoForge = "NeoForge",
-	Vanilla = "Vanilla",
-}
+export const Loaders = {
+	Fabric: "Fabric",
+	Forge: "Forge",
+	Quilt: "Quilt",
+	NeoForge: "NeoForge",
+	Vanilla: "Vanilla",
+} as const;
 
 export const settingsSchema = z.object({
 	username: z
@@ -55,8 +55,8 @@ export const settingsSchema = z.object({
 export interface BackendRes {
 	success: boolean;
 	errorType?: CubicError;
-	data?: any;
-	error?: any;
+	data?: unknown;
+	error?: unknown;
 }
 
 export interface MinecraftVersion {
@@ -102,3 +102,6 @@ export interface LauncherData {
 
 export type Settings = z.infer<typeof settingsSchema>;
 export type Instance = z.infer<typeof InstanceSchema>;
+export type Loaders = keyof typeof Loaders;
+export type CubicRes = keyof typeof CubicRes;
+export type CubicError = (typeof CubicError)[keyof typeof CubicError];

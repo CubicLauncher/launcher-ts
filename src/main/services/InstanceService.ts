@@ -1,6 +1,6 @@
-import path from "path";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
+import path from "node:path";
 import { decode, encode } from "@msgpack/msgpack";
-import { mkdir, readFile, writeFile } from "fs/promises";
 import z from "zod/v4";
 import {
 	type BackendRes,
@@ -37,7 +37,7 @@ export async function WriteInstance(instance: Instance): Promise<BackendRes> {
 		const InstanceDir = path.join(appPaths.InstanceDir, instance.name);
 		await mkdir(InstanceDir, { recursive: true });
 		const encondedInstance = encode(parseResult.data);
-		await writeFile(path.join(InstanceDir, `instance.cin`), encondedInstance);
+		await writeFile(path.join(InstanceDir, "instance.cin"), encondedInstance);
 		return {
 			success: true,
 			data: instance,
@@ -79,13 +79,9 @@ export async function getInstances(): Promise<BackendRes> {
 			const result = await InstanceSchema.safeParseAsync(decoded);
 
 			if (!result.success) {
-				const fallbackName = (decoded as any)?.name ?? "unknown";
 				const parsedError = z.treeifyError(result.error).properties;
 
-				mainLogger.error(
-					`Invalid instance "${fallbackName}" in ${filePath}`,
-					parsedError,
-				);
+				mainLogger.error(`Invalid instance "${dir}"`, parsedError);
 
 				return {
 					success: false,
