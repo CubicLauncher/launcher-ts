@@ -76,10 +76,17 @@
 		},
 		"views": {
 			"InstanceView": {
-				"versionDetail": "Detalles de version",
+				"title": "Detalles de la Instancia",
+				"subtitle": "Configuración e Información del Sistema",
+				"versionDetail": "Detalles de versión",
 				"Loader": "Cargador de mods",
-				"LastPlayed": "Ultima vez jugado",
-				"PlayBtn": "Iniciar instancia"
+				"LastPlayed": "Última vez jugado",
+				"PlayBtn": "Iniciar instancia",
+				"details": {
+					"minecraftVersion": "VERSIÓN DE MINECRAFT",
+					"javaVersion": "VERSIÓN DE JAVA"
+				},
+				"deleteBtn": "Eliminar Instancia"
 			}
 		}
 	}
