@@ -76,10 +76,17 @@
 		},
 		"views": {
 			"InstanceView": {
+				"title": "Instance Details",
+				"subtitle": "Configuration & System Information",
 				"versionDetail": "Version details",
 				"Loader": "Loader",
 				"LastPlayed": "Last played",
-				"PlayBtn": "Start instance"
+				"PlayBtn": "Start instance",
+				"details": {
+					"minecraftVersion": "MINECRAFT VERSION",
+					"javaVersion": "JAVA VERSION"
+				},
+				"deleteBtn": "Delete Instance"
 			}
 		}
 	}

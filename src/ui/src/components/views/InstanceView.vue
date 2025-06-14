@@ -26,47 +26,61 @@
       </div>
 
       <!-- Instance details -->
-      <div class="grid grid-cols-2 gap-6">
-        <div class="bg-stone-800 p-4 rounded-lg">
-          <h3 class="text-lg font-semibold mb-2">Version Details</h3>
-          <div class="space-y-2 text-stone-400">
-            <div class="flex justify-between">
-              <span>Minecraft</span>
-              <span>{{ instance.game.version }}</span>
+      <div class="bg-stone-800 rounded-lg overflow-hidden border border-stone-700">
+        <div class="p-6 space-y-6">
+          <!-- Header section -->
+          <div class="flex items-center justify-between border-b border-stone-700 pb-4">
+            <div>
+              <h3 class="text-xl font-bold bg-gradient-to-r from-stone-200 to-stone-400 bg-clip-text text-transparent">
+                {{ languageStore.getTranslation("Launcher.views.InstanceView.title") }}
+              </h3>
+              <p class="text-stone-500 text-sm mt-1">{{ languageStore.getTranslation("Launcher.views.InstanceView.subtitle") }}</p>
             </div>
-            <div class="flex justify-between">
-              <span>{{ languageStore.getTranslation("Launcher.views.InstanceView.Loader") }}</span>
-              <span>{{ instance.loader.loader }}</span>
-            </div>
-            <div class="flex justify-between">
-              <span>{{ languageStore.getTranslation("Launcher.views.InstanceView.LastPlayed") }}</span>
-              <span>{{
-                instance.lastPlayed
-                  ? new Date(instance.lastPlayed).toLocaleString('en-US', {
-                    year: 'numeric',
-                    month: '2-digit',
-                    day: '2-digit',
-                    hour: '2-digit',
-                    minute: '2-digit'
-                  })
-                  : 'Never'
-              }}</span>
+            <div class="px-3 py-1 rounded-full bg-stone-700/50 text-stone-400 text-sm">
+              {{ instance.loader.loader }}
             </div>
           </div>
-        </div>
 
-        <div class="bg-stone-800 p-4 rounded-lg">
-          <h3 class="text-lg font-semibold mb-2">System Details</h3>
-          <div class="space-y-2 text-stone-400">
-            <div class="flex justify-between">
-              <span>Memory</span>
+          <!-- Details grid -->
+          <div class="grid grid-cols-2 gap-6">
+            <!-- Left column -->
+            <div class="space-y-4">
+              <!-- Minecraft Version -->
+              <div class="group">
+                <div class="text-sm text-stone-500 mb-1">{{ languageStore.getTranslation("Launcher.views.InstanceView.details.minecraftVersion") }}</div>
+                <div class="text-stone-300 font-medium group-hover:text-stone-200 transition-colors">
+                  {{ instance.game.version }}
+                </div>
+              </div>
+
+              <!-- Java Version -->
+              <div class="group">
+                <div class="text-sm text-stone-500 mb-1">{{ languageStore.getTranslation("Launcher.views.InstanceView.details.javaVersion") }}</div>
+                <div class="text-stone-300 font-medium group-hover:text-stone-200 transition-colors">
+                  Java 17
+                </div>
+              </div>
             </div>
-            <div class="flex justify-between">
-              <span>Java Version</span>
-            </div>
-            <div class="flex justify-between">
-              <span>Resolution</span>
-              <span>854x480</span>
+
+            <!-- Right column -->
+            <div class="space-y-4">
+              <!-- Last Played -->
+              <div class="group">
+                <div class="text-sm text-stone-500 mb-1">{{ languageStore.getTranslation("Launcher.views.InstanceView.LastPlayed") }}</div>
+                <div class="text-stone-300 font-medium group-hover:text-stone-200 transition-colors">
+                  {{
+                    instance.lastPlayed
+                      ? new Date(instance.lastPlayed).toLocaleString('en-US', {
+                        year: 'numeric',
+                        month: '2-digit',
+                        day: '2-digit',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                      })
+                      : 'Never'
+                  }}
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -76,7 +90,7 @@
       <div class="mt-6">
         <button @click="handleDelete"
           class="w-full py-3 px-6 text-red-400 font-medium rounded-lg border border-red-400 hover:bg-red-400/10 transition-colors">
-          Delete Instance
+          {{ languageStore.getTranslation("Launcher.views.InstanceView.deleteBtn") }}
         </button>
       </div>
     </div>
