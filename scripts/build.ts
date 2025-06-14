@@ -1,5 +1,5 @@
-import fs from "fs";
-import path from "path";
+import fs from "node:fs";
+import path from "node:path";
 import esbuild from "esbuild";
 import { esbuildPluginFilePathExtensions } from "esbuild-plugin-file-path-extensions";
 
@@ -64,7 +64,9 @@ async function build() {
 	if (esmEntries.length === 0) {
 		console.log("❌ No se encontraron archivos TypeScript");
 	} else {
-		esmEntries.forEach((entry) => console.log(` - ${entry}`));
+		for (const esmEntry of esmEntries) {
+			console.log(esmEntry);
+		}
 	}
 
 	console.log("Iniciando build ESM...");
