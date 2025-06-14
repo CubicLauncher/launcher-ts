@@ -14,84 +14,74 @@
     <!-- Main content -->
     <div class="flex-1 p-6">
       <!-- Play button section -->
-      <div class="mb-8">
-        <button @click="handlePlay"
-          class="w-full py-4 px-8 text-lg font-bold rounded-lg transform hover:scale-[1.02] active:scale-[0.98] cursor-pointer bg-stone-600 PlayBtn"
-          :style="{
+      <button @click="handlePlay"
+        class="w-full mb-6 flex items-center justify-center p-4 gap-2 bg-stone-800 rounded-lg 
+        border border-stone-600 cursor-pointer hover:bg-stone-700 transition-all"
+        :style="{
           color: colors.text
-          }"
-          >
-          {{ languageStore.getTranslation("Launcher.views.InstanceView.PlayBtn") }}
-        </button>
-      </div>
+        }"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+        </svg>
+        <span class="text-lg font-medium">{{ languageStore.getTranslation("Launcher.views.InstanceView.PlayBtn") }}</span>
+      </button>
 
       <!-- Instance details -->
-      <div class="bg-stone-800 rounded-lg overflow-hidden border border-stone-700">
-        <div class="p-6 space-y-6">
-          <!-- Header section -->
-          <div class="flex items-center justify-between border-b border-stone-700 pb-4">
-            <div>
-              <h3 class="text-xl font-bold bg-gradient-to-r from-stone-200 to-stone-400 bg-clip-text text-transparent">
-                {{ languageStore.getTranslation("Launcher.views.InstanceView.title") }}
-              </h3>
-              <p class="text-stone-500 text-sm mt-1">{{ languageStore.getTranslation("Launcher.views.InstanceView.subtitle") }}</p>
-            </div>
-            <div class="px-3 py-1 rounded-full bg-stone-700/50 text-stone-400 text-sm">
+      <div class="bg-stone-800 rounded-lg border border-stone-600">
+        <div class="border-b border-stone-600 p-4">
+          <div class="flex items-center justify-between">
+            <h3 class="text-lg font-medium">{{ languageStore.getTranslation("Launcher.views.InstanceView.title") }}</h3>
+            <div class="px-2 py-1 rounded bg-stone-700 text-stone-400 text-sm">
               {{ instance.loader.loader }}
             </div>
           </div>
+        </div>
 
-          <!-- Details grid -->
-          <div class="grid grid-cols-2 gap-6">
-            <!-- Left column -->
-            <div class="space-y-4">
-              <!-- Minecraft Version -->
-              <div class="group">
-                <div class="text-sm text-stone-500 mb-1">{{ languageStore.getTranslation("Launcher.views.InstanceView.details.minecraftVersion") }}</div>
-                <div class="text-stone-300 font-medium group-hover:text-stone-200 transition-colors">
-                  {{ instance.game.version }}
-                </div>
-              </div>
+        <div class="p-4 space-y-4">
+          <!-- Minecraft Version -->
+          <div class="flex justify-between items-center">
+            <div class="text-stone-400">{{ languageStore.getTranslation("Launcher.views.InstanceView.details.minecraftVersion") }}</div>
+            <div class="text-stone-200">{{ instance.game.version }}</div>
+          </div>
 
-              <!-- Java Version -->
-              <div class="group">
-                <div class="text-sm text-stone-500 mb-1">{{ languageStore.getTranslation("Launcher.views.InstanceView.details.javaVersion") }}</div>
-                <div class="text-stone-300 font-medium group-hover:text-stone-200 transition-colors">
-                  Java 17
-                </div>
-              </div>
-            </div>
+          <!-- Java Version -->
+          <div class="flex justify-between items-center">
+            <div class="text-stone-400">{{ languageStore.getTranslation("Launcher.views.InstanceView.details.javaVersion") }}</div>
+            <div class="text-stone-200">Java 17</div>
+          </div>
 
-            <!-- Right column -->
-            <div class="space-y-4">
-              <!-- Last Played -->
-              <div class="group">
-                <div class="text-sm text-stone-500 mb-1">{{ languageStore.getTranslation("Launcher.views.InstanceView.LastPlayed") }}</div>
-                <div class="text-stone-300 font-medium group-hover:text-stone-200 transition-colors">
-                  {{
-                    instance.lastPlayed
-                      ? new Date(instance.lastPlayed).toLocaleString('en-US', {
-                        year: 'numeric',
-                        month: '2-digit',
-                        day: '2-digit',
-                        hour: '2-digit',
-                        minute: '2-digit'
-                      })
-                      : 'Never'
-                  }}
-                </div>
-              </div>
+          <!-- Last Played -->
+          <div class="flex justify-between items-center">
+            <div class="text-stone-400">{{ languageStore.getTranslation("Launcher.views.InstanceView.LastPlayed") }}</div>
+            <div class="text-stone-200">
+              {{
+                instance.lastPlayed
+                  ? new Date(instance.lastPlayed).toLocaleString('en-US', {
+                    year: 'numeric',
+                    month: '2-digit',
+                    day: '2-digit',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                  })
+                  : 'Never'
+              }}
             </div>
           </div>
-        </div>
-      </div>
 
-      <!-- Delete button -->
-      <div class="mt-6">
-        <button @click="handleDelete"
-          class="w-full py-3 px-6 text-red-400 font-medium rounded-lg border border-red-400 hover:bg-red-400/10 transition-colors">
-          {{ languageStore.getTranslation("Launcher.views.InstanceView.deleteBtn") }}
-        </button>
+          <!-- Delete button -->
+          <div class="pt-4 border-t border-stone-600">
+            <button @click="handleDelete"
+              class="w-full flex items-center justify-center p-3 gap-2 bg-stone-700 rounded-lg 
+              hover:bg-stone-600 hover:text-red-400 transition-all"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+              </svg>
+              <span>{{ languageStore.getTranslation("Launcher.views.InstanceView.deleteBtn") }}</span>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -128,16 +118,8 @@ const handleDelete = async () => {
   background-image: radial-gradient(circle, rgba(255, 255, 255, 0) 0%, rgba(8, 8, 8, 0.651) 70%), url('../../assets/backgrounds/cubicPattern.svg');
   background-repeat: repeat;
   animation: pan 60s linear infinite;
-  /* Accelerated from 180s to 60s */
   position: relative;
 }
-
-.PlayBtn {
-  transition-property: all;
-  transition-duration: 200ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-}
-
 
 @keyframes pan {
   0% {

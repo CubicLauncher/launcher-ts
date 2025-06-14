@@ -53,7 +53,8 @@
 			"tabs": {
 				"general": "General",
 				"game": "Juego",
-				"launcher": "Lanzador"
+				"launcher": "Lanzador",
+				"accounts": "Cuentas"
 			},
 			"general": {
 				"language": "Idioma",
@@ -72,6 +73,20 @@
 			"launcher": {
 				"keepOpen": "Mantener el launcher abierto mientras se juega",
 				"autoUpdate": "Buscar actualizaciones automáticamente"
+			},
+			"accounts": {
+				"offlineAccount": "Cuenta No Premium",
+				"addAccount": "Añadir Cuenta",
+				"usernamePlaceholder": "Nombre de usuario",
+				"add": "Añadir",
+				"logout": "Cerrar Sesión",
+				"select": "Seleccionar",
+				"remove": "Eliminar",
+				"otherAccounts": "Otras Cuentas",
+				"noAccounts": "No hay cuentas añadidas",
+				"addAccountPrompt": "Añade una cuenta para empezar a jugar",
+				"clear": "Limpiar",
+				"noUsername": "Sin nombre de usuario"
 			}
 		},
 		"views": {

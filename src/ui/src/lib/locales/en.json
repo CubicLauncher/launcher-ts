@@ -53,7 +53,8 @@
 			"tabs": {
 				"general": "General",
 				"game": "Game",
-				"launcher": "Launcher"
+				"launcher": "Launcher",
+				"accounts": "Accounts"
 			},
 			"general": {
 				"language": "Language",
@@ -72,6 +73,18 @@
 			"launcher": {
 				"keepOpen": "Keep launcher open while playing",
 				"autoUpdate": "Check for updates automatically"
+			},
+			"accounts": {
+				"offlineAccount": "Offline Account",
+				"addAccount": "Add Account",
+				"usernamePlaceholder": "Username",
+				"add": "Add",
+				"logout": "Logout",
+				"select": "Select",
+				"remove": "Remove",
+				"addAccountPrompt": "Add an account to start playing",
+				"clear": "Clear",
+				"noUsername": "No username"
 			}
 		},
 		"views": {
