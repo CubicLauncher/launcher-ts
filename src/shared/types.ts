@@ -1,4 +1,4 @@
-import { boolean, z } from "zod/v4";
+import { z } from "zod/v4";
 
 export enum CubicError {
   // Errores de configuracion
@@ -20,13 +20,36 @@ export enum CubicError {
   GenericFilesystem = "GENERIC_FILESYSTEM_ERROR",
 }
 
+export enum CubicRes {
+  AlreadyExists = "ALREADY_EXISTS"
+}
+
+export enum Loaders {
+  Fabric = "Fabric",
+  Forge = "Forge",
+  Quilt = "Quilt",
+  NeoForge = "NeoForge",
+  Vanilla = "Vanilla"
+}
+
 export const settingsSchema = z.object({
   username: z
     .string()
     .max(16, CubicError.UsernameLimitExceeded)
     .default("Steve"),
-  minMem: z.number().positive().default(512),
-  maxMem: z.number().positive().default(2048),
+  resolution: z.object({
+    height: z.number(),
+    width: z.number()
+  }),
+  memory: z.object({
+    min: z.number(),
+    max: z.number()
+  }),
+  java: z.object({
+    java8: z.string(),
+    java17: z.string(),
+    java21: z.string(),
+  }),
 });
 
 export interface BackendRes {
@@ -64,31 +87,20 @@ export const InstanceSchema = z.object({
     .string()
     .max(16, CubicError.InstanceNameLimitExceeded),
   loader: z.object({
-    loader: z.string(),
-    modded: z.boolean(),
-  }),
-  icon: z.object({
-    icon: z.string(),
-    hasCustomIcon: z.boolean()
+    loader: z.enum(Loaders),
+    version: z.string()
   }),
   game: z.object({
     version: z.string(),
-    java: z.object({
-      java8: z.string(),
-      java17: z.string(),
-      java21: z.string(),
-    }),
   }),
   lastPlayed: z.string().optional(),
-  memory: z.object({
-    min: z.number(),
-    max: z.number()
-  }),
-  resolution: z.object({
-    height: z.number(),
-    width: z.number()
-  })
 });
+
+export interface LauncherData {
+  version: string,
+  OS: string,
+  OS_version: string
+}
 
 export type Settings = z.infer<typeof settingsSchema>;
 export type Instance = z.infer<typeof InstanceSchema>;

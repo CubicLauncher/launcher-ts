@@ -1,18 +1,18 @@
-import { type BackendRes, type Instance } from "../../shared/types";
+import { type BackendRes, type Instance, type MinecraftVersion } from "../../shared/types";
 
 interface IAPI {
-  launcher: {
-    downloadVersion(version: string): BackendRes;
-	launchVersion(version: string): BackendRes;
-	getVersions(): BackendRes;
-    getInstances(): Promise<BackendRes>;
-    saveInstances(instances: Instance[]): Promise<BackendRes>;
-  };
-  window: {
-	closeLauncher(): BackendRes;
-	hideLauncher(): BackendRes;
-	maximizeLauncher(): BackendRes
-  }
+	launcher: {
+		downloadVersion(version: string): BackendRes;
+		launchVersion(version: string): BackendRes;
+		getVersions(): BackendRes;
+		getInstances(): Promise<BackendRes>;
+		createInstance(instance: Instance): Promise<BackendRes>;
+	};
+	window: {
+		closeLauncher(): BackendRes;
+		hideLauncher(): BackendRes;
+		maximizeLauncher(): BackendRes
+	}
 }
 declare global {
 	interface Window {
@@ -32,10 +32,14 @@ export function maximizeLauncher() {
 }
 
 export async function GetVersions() {
-	let versions = window.cubic.launcher.getVersions();
+	let versions = await window.cubic.launcher.getVersions();
 	if (!versions.success) {
 		return []
 	} else {
-		return versions.data
+		let instances = versions.data;
+		return instances.versions as MinecraftVersion[]
 	}
+}
+export async function SaveInstance(instance: Instance) {
+	return await window.cubic.launcher.createInstance(instance)
 }

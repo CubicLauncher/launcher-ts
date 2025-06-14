@@ -73,6 +73,14 @@
                 "keepOpen": "Mantener el launcher abierto mientras se juega",
                 "autoUpdate": "Buscar actualizaciones automáticamente"
             }
+        },
+        "views": {
+            "InstanceView": {
+                "versionDetail": "Detalles de version",
+                "Loader": "Cargador de mods",
+                "LastPlayed": "Ultima vez jugado",
+                "PlayBtn": "Iniciar instancia"
+            }
         }
     }
 } 

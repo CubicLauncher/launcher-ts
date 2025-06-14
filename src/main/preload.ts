@@ -1,4 +1,4 @@
-import { Settings, DownloadEvent } from "../shared/types";
+import { Settings, DownloadEvent, BackendRes } from "../shared/types";
 import { contextBridge, ipcRenderer } from "electron";
 
 const cubic = {
@@ -87,12 +87,23 @@ const cubic = {
 				throw error;
 			}
 		},
-		saveInstances: async (instances: object[]): Promise<object> => {
+		createInstance: async (instances: object[]): Promise<object> => {
 			try {
 				return await ipcRenderer.invoke("save-instances", instances);
 			} catch (error) {
 				console.error("Error al guardar las instancias:", error);
 				throw error;
+			}
+		},
+		getLauncherData: async (): Promise<BackendRes> => {
+			try {
+				return await ipcRenderer.invoke('get-launcher-data');
+			} catch(error) {
+				console.error(error);
+				return {
+					success: false,
+					error: error
+				}
 			}
 		}
 	},

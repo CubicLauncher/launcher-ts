@@ -3,6 +3,10 @@
   "version": "0.0.1+2992c5a5",
   "type": "module",
   "main": "dist/main/main.js",
+  "maintainers": [
+    "Santiagolxx",
+    "NotStaff"
+  ],
   "scripts": {
     "dev": "cross-env NODE_ENV=development electron .",
     "build:ts": "swc src -d dist --ignore 'src/ui/**','src/main/preload.ts' && swc src/main/preload.ts -d dist --ignore 'src/ui/**','src/main/**' --config-file ./preload.swcrc",

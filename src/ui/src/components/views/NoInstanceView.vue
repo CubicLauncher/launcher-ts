@@ -1,45 +1,48 @@
-<script setup lang="ts">
-import { computed } from 'vue';
-import { getNoInstanceMessages } from '../../lib/data/noinstance';
-import { useLanguageStore } from '../../stores/LanguageStore';
-import { useLauncherStore } from '../../stores/LauncherStore';
-import { colors } from '../../lib/themes/colors';
-
-const languageStore = useLanguageStore();
-const store = useLauncherStore();
-const buttonText = computed(() => languageStore.getTranslation('Launcher.noInstance.createButton'));
-const noInstanceMessages = computed(() => getNoInstanceMessages());
-const valores = computed(() => Object.values(noInstanceMessages.value));
-const Mensaje = computed(() => valores.value[Math.floor(Math.random() * valores.value.length)]);
-
-const handleClick = () => {
-  store.toggleAddInstanceModal();
-};
-
-</script>
-
 <template>
   <div class="flex items-center justify-center h-full">
-    <div class="text-center">
-      <div class="w-20 h-20 mx-auto mb-4 text-stone-400">
-        <component :is="Mensaje.icon" />
+    <div class="text-center max-w-2xl">
+      <div class="w-24 h-24 mx-auto mb-6">
+        <logo :src="logo" alt="Logo" class="w-full h-full"/>
       </div>
-      <h1 class="text-2xl text-stone-400 font-semibold">
-        {{ Mensaje.message }}
+      <h1 class="text-3xl text-stone-200 font-bold mb-4">
+        {{ languageStore.getTranslation('Launcher.welcome.title') }}
       </h1>
-      <p class="text-base text-stone-400 mb-4">
-        {{ Mensaje.description }}
+      <p class="text-lg text-stone-400 mb-8">
+        {{ languageStore.getTranslation('Launcher.welcome.description') }}
       </p>
-      <button 
-        @click="handleClick"
-        class="px-6 py-2 rounded-md font-medium transition-all duration-200 transform hover:scale-105 active:scale-95 hover:shadow-lg active:shadow-inner"
-        :style="{
-          backgroundColor: colors.button,
-          color: colors.text
-        }"
-      >
-        {{ buttonText }}
-      </button>
+      <div class="grid grid-cols-2 gap-6">
+        <button 
+          @click="store.toggleAddInstanceModal"
+          class="flex items-center justify-center p-2 gap-2 bg-stone-800 rounded-xl border border-stone-600 cursor-pointer hover:bg-stone-700 transition-all"
+        >
+          <PlusSquare />
+          <span>{{ languageStore.getTranslation('Launcher.welcome.createNew') }}</span>
+        </button>
+        <button 
+          class="flex items-center justify-center p-2 gap-2 bg-stone-800 rounded-xl border border-stone-600 cursor-pointer hover:bg-stone-700 transition-all"
+          @click="selectFirstInstance"
+        >
+          <controller />
+          <span>{{ languageStore.getTranslation('Launcher.welcome.playRecent') }}</span>
+        </button>
+      </div>
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+import { useLauncherStore } from '../../stores/LauncherStore';
+import { useLanguageStore } from '../../stores/LanguageStore';
+import controller from "../../assets/icons/UI/controller.vue";
+import logo from '../../assets/logo.vue';
+import PlusSquare from '../../assets/icons/UI/plus-square.vue';
+
+const store = useLauncherStore();
+const languageStore = useLanguageStore();
+
+const selectFirstInstance = () => {
+  if (store.Instances.length > 0) {
+    store.setCurrentInstance(store.Instances[0]);
+  }
+};
+</script> 

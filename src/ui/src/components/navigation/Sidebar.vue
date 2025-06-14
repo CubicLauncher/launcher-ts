@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import logo from '../../assets/logo.svg'
+import logo from '../../assets/logo.vue'
 import { useLauncherStore } from '../../stores/LauncherStore'
 import { useLanguageStore } from '../../stores/LanguageStore'
 import Settings from '../../assets/icons/UI/settings.vue'
 import PlusSquare from '../../assets/icons/UI/plus-square.vue'
 import SidebarItem from './SidebarItem.vue'
-
+import { getIcon } from '../../lib/utils'
 const store = useLauncherStore()
 const languageStore = useLanguageStore()
 
@@ -27,16 +27,16 @@ const showTooltip = (event: MouseEvent, translationKey: string, customText?: str
 const hideTooltip = () => {
   tooltipVisible.value = false
 }
+
 </script>
 
 <template>
   <div class="flex flex-col items-center h-full p-2 border-r border-stone-700">
     <!-- Logo -->
-    <div 
+    <div
       class="flex-shrink-0 flex items-center gap-2 bg-stone-800 rounded-xl p-2 border border-stone-700 mb-4 cursor-pointer"
-      @click="store.CurrentInstance = null"
-    >
-      <img :src="logo" alt="Logo" class="w-8 h-8">
+      @click="store.CurrentInstance = null">
+      <logo class="w-8 h-8"/>
     </div>
 
     <!-- Main Navigation -->
@@ -46,37 +46,28 @@ const hideTooltip = () => {
         <div class="w-8 h-px bg-stone-700 my-1"></div>
 
         <!-- Instances -->
-        <SidebarItem 
-          v-for="instance in store.Instances" 
-          :key="instance.name"
-          :name="instance.name"
-          :icon="instance.icon.icon"
-          @click="store.CurrentInstance = instance"
-        />
+        <SidebarItem v-for="instance in store.Instances" :key="instance.name" :name="instance.name"
+          :icon="getIcon(instance.loader.loader)" @click="store.CurrentInstance = instance" />
       </div>
     </div>
 
     <!-- Footer -->
     <div class="flex-shrink-0 w-full flex flex-col items-center gap-2">
       <div class="w-8 h-px bg-stone-700 mb-1"></div>
-      
+
       <!-- Add Instance Button -->
-      <div 
+      <div
         class="w-10 h-10 flex items-center justify-center bg-stone-800 rounded-xl border border-stone-700 cursor-pointer hover:bg-stone-700 transition-colors relative"
-        @click="store.toggleAddInstanceModal"
-        @mouseenter="showTooltip($event, 'Launcher.sidebar.addInstance')"
-        @mouseleave="hideTooltip"
-      >
-        <PlusSquare/>
+        @click="store.toggleAddInstanceModal" @mouseenter="showTooltip($event, 'Launcher.sidebar.addInstance')"
+        @mouseleave="hideTooltip">
+        <PlusSquare />
       </div>
 
       <!-- Settings Button -->
-      <div 
+      <div
         class="w-10 h-10 flex items-center justify-center bg-stone-800 rounded-xl border border-stone-700 cursor-pointer hover:bg-stone-700 transition-colors relative"
-        @click="store.toggleSettingsModel"
-        @mouseenter="showTooltip($event, 'Launcher.sidebar.settings')"
-        @mouseleave="hideTooltip"
-      >
+        @click="store.toggleSettingsModel" @mouseenter="showTooltip($event, 'Launcher.sidebar.settings')"
+        @mouseleave="hideTooltip">
         <Settings />
       </div>
     </div>

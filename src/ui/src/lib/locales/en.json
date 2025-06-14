@@ -73,6 +73,14 @@
                 "keepOpen": "Keep launcher open while playing",
                 "autoUpdate": "Check for updates automatically"
             }
+        },
+        "views": {
+            "InstanceView": {
+                "versionDetail": "Version details",
+                "Loader": "Loader",
+                "LastPlayed": "Last played",
+                "PlayBtn": "Start instance"
+            }
         }
     }
-} 
+}

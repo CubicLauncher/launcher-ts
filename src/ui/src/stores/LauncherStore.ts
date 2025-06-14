@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import {type Instance} from '../../../shared/types'
+import { SaveInstance } from '../api'
 
 export const useLauncherStore = defineStore('launcher', {
     state: () => ({
@@ -11,7 +12,7 @@ export const useLauncherStore = defineStore('launcher', {
     actions: {
       addInstance(instance: Instance) {
         this.Instances.push(instance)
-        this.saveInstances()
+        this.saveInstances(instance)
       },
       setCurrentInstance(instance: Instance) {
         this.CurrentInstance = instance
@@ -32,19 +33,19 @@ export const useLauncherStore = defineStore('launcher', {
           console.error('Error loading instances:', error)
         }
       },
-      async saveInstances() {
+      async saveInstances(instance: Instance) {
         try {
-          await window.cubic.launcher.saveInstances(this.Instances)
+          await SaveInstance(instance)
         } catch (error) {
           console.error('Error saving instances:', error)
         }
       },
-      async deleteInstance(instanceName: string) {
-        this.Instances = this.Instances.filter(instance => instance.name !== instanceName)
-        if (this.CurrentInstance?.name === instanceName) {
-          this.CurrentInstance = null
-        }
-        await this.saveInstances()
-      }
+      // async deleteInstance(instanceName: string) {
+      //   this.Instances = this.Instances.filter(instance => instance.name !== instanceName)
+      //   if (this.CurrentInstance?.name === instanceName) {
+      //     this.CurrentInstance = null
+      //   }
+      //   await this.saveInstances()
+      // }
     }
 })

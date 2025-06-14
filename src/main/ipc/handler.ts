@@ -7,6 +7,8 @@ import { Settings, DownloadEvent, BackendRes, CubicError, Instance } from "../..
 import { getVersions } from "../utilities/versions.js";
 import { Launcher } from "../services/Launcher.js";
 import { getInstances, WriteInstance } from "../services/InstanceService.js";
+import { GetLauncherData } from "../utilities/launcher.js";
+import { mainLogger } from "../services/logger.js";
 
 export async function registerHandlers() {
 	// Settings handlers
@@ -59,14 +61,24 @@ export async function registerHandlers() {
 		return await getInstances()
 	});
 
-	ipcMain.handle("save-instances", async (_, instances: Instance[]) => {
+	ipcMain.handle("save-instances", async (_, instance: Instance) => {
 		try {
-			for (const instance of instances) {
-				await WriteInstance(instance);
-			}
+			await WriteInstance(instance);
 			return { success: true };
 		} catch (error: unknown) {
-			console.error("Error saving instances:", error);
+			mainLogger.error("Error saving instance:", error);
+			return {
+				success: false,
+				error: error instanceof Error ? error.message : String(error),
+			};
+		}
+	});
+
+	ipcMain.handle("get-launcher-data", async (): Promise<BackendRes> => {
+		try {
+			let launcherData = await GetLauncherData();
+			return { success: true, data: launcherData  };
+		} catch (error: unknown) {
 			return {
 				success: false,
 				error: error instanceof Error ? error.message : String(error),
