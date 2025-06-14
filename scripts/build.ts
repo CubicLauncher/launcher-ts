@@ -4,29 +4,41 @@ import fs from 'fs';
 import { esbuildPluginFilePathExtensions } from 'esbuild-plugin-file-path-extensions';
 
 // Función para obtener todos los archivos TS dentro de src, excluyendo preload y ui
-function getAllEntries(dir: string, excludePaths: string[]): string[] {
+function getAllEntries(dir: string, excludePaths: string[], srcDir: string): string[] {
   const entries: string[] = [];
+  
+  // Verificar si el directorio existe
+  if (!fs.existsSync(dir)) {
+    console.error(`❌ El directorio ${dir} no existe`);
+    return entries;
+  }
+
   const files = fs.readdirSync(dir, { withFileTypes: true });
 
-  console.log(`Leyendo directorio: ${dir}`);
+  console.log(`📂 Leyendo directorio: ${dir}`);
+  console.log(`📊 Encontrados ${files.length} archivos/directorios`);
 
   for (const file of files) {
     const fullPath = path.join(dir, file.name);
+    const relativePath = path.relative(srcDir, fullPath);
 
     // Excluir rutas que contengan cualquiera de las rutas de exclusión
-    if (excludePaths.some(exclude => fullPath.includes(exclude))) {
-      console.log(`Excluyendo: ${fullPath}`);
+    if (excludePaths.some(exclude => relativePath.includes(exclude))) {
+      console.log(`⏭️ Excluyendo: ${relativePath}`);
       continue;
     }
 
     if (file.isDirectory()) {
-      console.log(`Entrando a subdirectorio: ${fullPath}`);
-      entries.push(...getAllEntries(fullPath, excludePaths));
+      console.log(`📁 Entrando a subdirectorio: ${relativePath}`);
+      entries.push(...getAllEntries(fullPath, excludePaths, srcDir));
     } else if (file.isFile() && file.name.endsWith('.ts')) {
-      console.log(`Agregando archivo de entrada: ${fullPath}`);
+      console.log(`📄 Agregando archivo de entrada: ${relativePath}`);
       entries.push(fullPath);
+    } else {
+      console.log(`❓ Ignorando archivo no TypeScript: ${relativePath}`);
     }
   }
+
   return entries;
 }
 
@@ -42,9 +54,14 @@ async function build() {
   console.log(`Rutas excluidas: ${JSON.stringify(excludePaths, null, 2)}`);
 
   // 1. Build ESM para todos menos preload y ui
-  const esmEntries = getAllEntries(srcDir, excludePaths);
-  console.log('Entradas ESM detectadas:');
-  esmEntries.forEach(entry => console.log(` - ${entry}`));
+  console.log('🔍 Buscando archivos TypeScript...');
+  const esmEntries = getAllEntries(srcDir, excludePaths, srcDir);
+  console.log(`\n📋 Entradas ESM detectadas (${esmEntries.length} archivos):`);
+  if (esmEntries.length === 0) {
+    console.log('❌ No se encontraron archivos TypeScript');
+  } else {
+    esmEntries.forEach(entry => console.log(` - ${entry}`));
+  }
 
   console.log('Iniciando build ESM...');
   await esbuild.build({
