@@ -6,7 +6,6 @@
 	"maintainers": ["Santiagolxx", "NotStaff"],
 	"scripts": {
 		"dev": "cross-env NODE_ENV=development electron .",
-		"build:ts": "swc src -d dist --ignore 'src/ui/**','src/main/preload.ts' && swc src/main/preload.ts -d dist --ignore 'src/ui/**','src/main/**' --config-file ./preload.swcrc",
 		"build:app": "electron-builder",
 		"format": "biome format --write",
 		"lint": "oxlint"
@@ -28,9 +27,9 @@
 		"@types/semver": "^7.7.0",
 		"cross-env": "^7.0.3",
 		"electron": "^36.2.1",
-		"esbuild-plugin-file-path-extensions": "^2.1.4",
 		"electron-builder": "^26.0.12",
 		"esbuild": "^0.25.5",
+		"esbuild-plugin-file-path-extensions": "^2.1.4",
 		"oxlint": "^0.16.11",
 		"typescript": "^5.8.3"
 	},
