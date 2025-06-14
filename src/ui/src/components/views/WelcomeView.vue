@@ -31,12 +31,12 @@
 </template>
 
 <script setup lang="ts">
-import { useLauncherStore } from "../../stores/LauncherStore";
-import { useLanguageStore } from "../../stores/LanguageStore";
-import plusSquare from "../../assets/icons/UI/plus-square.vue";
 import controller from "../../assets/icons/UI/controller.vue";
-import logo from "../../assets/logo.svg";
+import plusSquare from "../../assets/icons/UI/plus-square.vue";
 import PlusSquare from "../../assets/icons/UI/plus-square.vue";
+import logo from "../../assets/logo.svg";
+import { useLanguageStore } from "../../stores/LanguageStore";
+import { useLauncherStore } from "../../stores/LauncherStore";
 
 const store = useLauncherStore();
 const languageStore = useLanguageStore();

@@ -1,6 +1,6 @@
 import { Downloader, NeutronLauncher } from "cubic-neutron";
+import type { DownloadEvent } from "../../shared/types.js";
 import appPaths from "../utilities/paths.js";
-import { DownloadEvent } from "../../shared/types.js";
 
 export class Launcher {
 	static downloader = new Downloader(appPaths.gameDir);

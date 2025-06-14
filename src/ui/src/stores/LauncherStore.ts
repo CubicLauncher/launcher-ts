@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { type Instance } from "../../../shared/types";
+import type { Instance } from "../../../shared/types";
 import { SaveInstance } from "../api";
 
 export const useLauncherStore = defineStore("launcher", {

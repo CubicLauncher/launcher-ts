@@ -1,11 +1,11 @@
-import { app } from "electron";
 import os from "node:os";
-import { BackendRes, LauncherData } from "../../shared/types.js";
+import { app } from "electron";
+import type { BackendRes, LauncherData } from "../../shared/types.js";
 import { mainLogger } from "../services/logger.js";
 
 export async function GetLauncherData(): Promise<BackendRes> {
 	try {
-		let launcherData = {
+		const launcherData = {
 			version: app.getVersion(),
 			OS: os.platform(),
 			OS_version: os.release(),

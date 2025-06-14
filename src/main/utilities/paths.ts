@@ -1,7 +1,7 @@
+import { readdir } from "node:fs/promises";
+import path from "node:path";
 // AppPaths.ts - Gestión de rutas de la aplicación
 import envPaths from "env-paths";
-import path from "node:path";
-import { readdir } from "node:fs/promises";
 /**
  * Interface para las rutas de la aplicación
  */

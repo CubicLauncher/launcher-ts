@@ -84,12 +84,12 @@
 </template>
 
 <script setup lang="ts">
-import { colors } from "../../lib/themes/colors";
 import type { Instance } from "../../../../shared/types";
+import { colors } from "../../lib/themes/colors";
 import { useLanguageStore } from "../../stores/LanguageStore";
 const languageStore = useLanguageStore();
-import { getIcon } from "../../lib/utils";
 import { computed } from "vue";
+import { getIcon } from "../../lib/utils";
 
 const props = defineProps<{
 	instance: Instance;

@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import logo from "../../assets/logo.vue";
-import { useLauncherStore } from "../../stores/LauncherStore";
-import { useLanguageStore } from "../../stores/LanguageStore";
-import Settings from "../../assets/icons/UI/settings.vue";
 import PlusSquare from "../../assets/icons/UI/plus-square.vue";
-import SidebarItem from "./SidebarItem.vue";
+import Settings from "../../assets/icons/UI/settings.vue";
+import logo from "../../assets/logo.vue";
 import { getIcon } from "../../lib/utils";
+import { useLanguageStore } from "../../stores/LanguageStore";
+import { useLauncherStore } from "../../stores/LauncherStore";
+import SidebarItem from "./SidebarItem.vue";
 const store = useLauncherStore();
 const languageStore = useLanguageStore();
 

@@ -59,7 +59,7 @@ export function setupAutoUpdater(options: {
 	});
 
 	autoUpdater.on("download-progress", (progressObj) => {
-		let logMessage = `Velocidad: ${progressObj.bytesPerSecond} - Descargado ${progressObj.percent}% (${progressObj.transferred}/${progressObj.total})`;
+		const logMessage = `Velocidad: ${progressObj.bytesPerSecond} - Descargado ${progressObj.percent}% (${progressObj.transferred}/${progressObj.total})`;
 		mainLogger.info(logMessage);
 	});
 

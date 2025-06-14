@@ -1,11 +1,11 @@
-import { app, BrowserWindow } from "electron";
-import path from "node:path";
-import { cleanOldLogs, mainLogger } from "./services/logger.js";
 import os from "node:os";
-import { fileURLToPath } from "node:url";
+import path from "node:path";
 import { dirname } from "node:path";
-import { setupAutoUpdater } from "./services/Updater.js";
+import { fileURLToPath } from "node:url";
+import { BrowserWindow, app } from "electron";
 import { registerHandlers, registerWindowControls } from "./ipc/handler.js";
+import { setupAutoUpdater } from "./services/Updater.js";
+import { cleanOldLogs, mainLogger } from "./services/logger.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -68,7 +68,7 @@ app.whenReady().then(async () => {
 			`Starting CubicMC at ${os.platform()} version ${os.release()} || Release ${app.getVersion()}`,
 		);
 		registerHandlers();
-		let window = createMainWindow();
+		const window = createMainWindow();
 		registerWindowControls(window);
 		cleanOldLogs().catch((err) =>
 			mainLogger.error(`Error cleaning logs: ${err.message}`),

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, type Component } from "vue";
+import { type Component, ref } from "vue";
 import SidebarTooltip from "./SidebarTooltip.vue";
 
 const TooltipShow = ref(false);

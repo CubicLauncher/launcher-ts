@@ -1,7 +1,7 @@
-import log4js from "log4js";
-import { AppPaths } from "../utilities/paths.js";
 import fs from "node:fs";
 import path from "node:path";
+import log4js from "log4js";
+import { AppPaths } from "../utilities/paths.js";
 const paths = new AppPaths();
 
 // Asegurar que existe el directorio de logs

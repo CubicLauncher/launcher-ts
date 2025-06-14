@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { useLauncherStore } from "../../stores/LauncherStore";
 const store = useLauncherStore();
-import { getIcon } from "../../lib/utils";
-import logo from "../../assets/logo.vue";
 import { closeLauncher, hideLauncher, maximizeLauncher } from "../../api";
+import logo from "../../assets/logo.vue";
+import { getIcon } from "../../lib/utils";
 </script>
 
 <template>

@@ -1,6 +1,6 @@
-import esbuild from "esbuild";
-import path from "path";
 import fs from "fs";
+import path from "path";
+import esbuild from "esbuild";
 import { esbuildPluginFilePathExtensions } from "esbuild-plugin-file-path-extensions";
 
 // Función para obtener todos los archivos TS dentro de src, excluyendo preload y ui

@@ -1,15 +1,15 @@
-import {
-	Instance,
-	BackendRes,
-	InstanceSchema,
-	CubicError,
-} from "../../shared/types.js";
-import { decode, encode } from "@msgpack/msgpack";
-import { mainLogger } from "./logger.js";
-import z from "zod/v4";
-import { writeFile, mkdir, readFile } from "fs/promises";
 import path from "path";
-import { getAllDirectories, appPaths } from "../utilities/paths.js";
+import { decode, encode } from "@msgpack/msgpack";
+import { mkdir, readFile, writeFile } from "fs/promises";
+import z from "zod/v4";
+import {
+	type BackendRes,
+	CubicError,
+	type Instance,
+	InstanceSchema,
+} from "../../shared/types.js";
+import { appPaths, getAllDirectories } from "../utilities/paths.js";
+import { mainLogger } from "./logger.js";
 
 /**
  * Validates and writes settings to the configuration file
@@ -34,7 +34,7 @@ export async function WriteInstance(instance: Instance): Promise<BackendRes> {
 	}
 
 	try {
-		let InstanceDir = path.join(appPaths.InstanceDir, instance.name);
+		const InstanceDir = path.join(appPaths.InstanceDir, instance.name);
 		await mkdir(InstanceDir, { recursive: true });
 		const encondedInstance = encode(parseResult.data);
 		await writeFile(path.join(InstanceDir, `instance.cin`), encondedInstance);

@@ -1,6 +1,6 @@
 import type { Component } from "vue";
-import FabricIcon from "../../assets/icons/minecraft/fabric.vue";
 import Quilt from "../../assets/icons/minecraft/Quilt.vue";
+import FabricIcon from "../../assets/icons/minecraft/fabric.vue";
 import { useLanguageStore } from "../../stores/LanguageStore";
 
 export interface INoInstance {

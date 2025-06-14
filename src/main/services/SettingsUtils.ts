@@ -1,16 +1,16 @@
-import {
-	settingsSchema,
-	type Settings,
-	type BackendRes,
-	CubicError,
-} from "../../shared/types.js";
-import { decode, encode } from "@msgpack/msgpack";
-import appPaths from "../utilities/paths.js";
+import { constants } from "node:fs";
 import { access, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
-import { mainLogger } from "./logger.js";
+import { decode, encode } from "@msgpack/msgpack";
 import { z } from "zod/v4";
-import { constants } from "node:fs";
+import {
+	type BackendRes,
+	CubicError,
+	type Settings,
+	settingsSchema,
+} from "../../shared/types.js";
+import appPaths from "../utilities/paths.js";
+import { mainLogger } from "./logger.js";
 
 const SETTINGS_FILE_LOCATION = path.resolve(appPaths.configDir, "settings.bin");
 

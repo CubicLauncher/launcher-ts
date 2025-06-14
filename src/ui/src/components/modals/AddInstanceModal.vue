@@ -56,16 +56,16 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from "vue";
-import BaseModal from "./BaseModal.vue";
-import { useLauncherStore } from "../../stores/LauncherStore";
-import { useLanguageStore } from "../../stores/LanguageStore";
-import FabricIcon from "../../assets/icons/minecraft/fabric.vue";
-import QuiltIcon from "../../assets/icons/minecraft/Quilt.vue";
-import Vanilla from "../../assets/icons/minecraft/vanilla.vue";
+import { computed, ref } from "vue";
 import { Loaders } from "../../../../shared/types";
+import type { MinecraftVersion } from "../../../../shared/types";
 import { GetVersions } from "../../api";
-import { type MinecraftVersion } from "../../../../shared/types";
+import QuiltIcon from "../../assets/icons/minecraft/Quilt.vue";
+import FabricIcon from "../../assets/icons/minecraft/fabric.vue";
+import Vanilla from "../../assets/icons/minecraft/vanilla.vue";
+import { useLanguageStore } from "../../stores/LanguageStore";
+import { useLauncherStore } from "../../stores/LauncherStore";
+import BaseModal from "./BaseModal.vue";
 
 const store = useLauncherStore();
 const languageStore = useLanguageStore();

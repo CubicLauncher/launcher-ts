@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import { onMounted } from "vue";
 import Main from "./components/layout/Main.vue";
 import { useLauncherStore } from "./stores/LauncherStore";
-import { onMounted } from "vue";
 
 const store = useLauncherStore();
 

@@ -1,5 +1,5 @@
-import { Settings, DownloadEvent, BackendRes } from "../shared/types";
 import { contextBridge, ipcRenderer } from "electron";
+import type { BackendRes, DownloadEvent, Settings } from "../shared/types";
 
 const cubic = {
 	settings: {

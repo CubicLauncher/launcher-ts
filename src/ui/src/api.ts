@@ -1,7 +1,7 @@
-import {
-	type BackendRes,
-	type Instance,
-	type MinecraftVersion,
+import type {
+	BackendRes,
+	Instance,
+	MinecraftVersion,
 } from "../../shared/types";
 
 interface IAPI {
@@ -36,11 +36,11 @@ export function maximizeLauncher() {
 }
 
 export async function GetVersions() {
-	let versions = await window.cubic.launcher.getVersions();
+	const versions = await window.cubic.launcher.getVersions();
 	if (!versions.success) {
 		return [];
 	} else {
-		let instances = versions.data;
+		const instances = versions.data;
 		return instances.versions as MinecraftVersion[];
 	}
 }

@@ -1,20 +1,20 @@
-import { ipcMain, BrowserWindow } from "electron/main";
+import { BrowserWindow, ipcMain } from "electron/main";
+import {
+	type BackendRes,
+	CubicError,
+	type DownloadEvent,
+	type Instance,
+	type Settings,
+} from "../../shared/types.js";
+import { WriteInstance, getInstances } from "../services/InstanceService.js";
+import { Launcher } from "../services/Launcher.js";
 import {
 	readSettingsFile,
 	writeSettingsFile,
 } from "../services/SettingsUtils.js"; // Asegúrate de que esté exportada writeSettingsFile
-import {
-	Settings,
-	DownloadEvent,
-	BackendRes,
-	CubicError,
-	Instance,
-} from "../../shared/types.js";
-import { getVersions } from "../utilities/versions.js";
-import { Launcher } from "../services/Launcher.js";
-import { getInstances, WriteInstance } from "../services/InstanceService.js";
-import { GetLauncherData } from "../utilities/launcher.js";
 import { mainLogger } from "../services/logger.js";
+import { GetLauncherData } from "../utilities/launcher.js";
+import { getVersions } from "../utilities/versions.js";
 
 export async function registerHandlers() {
 	// Settings handlers
@@ -82,7 +82,7 @@ export async function registerHandlers() {
 
 	ipcMain.handle("get-launcher-data", async (): Promise<BackendRes> => {
 		try {
-			let launcherData = await GetLauncherData();
+			const launcherData = await GetLauncherData();
 			return { success: true, data: launcherData };
 		} catch (error: unknown) {
 			return {
