@@ -12,7 +12,7 @@
         <SettingsModal />
         <AddInstanceModal />
         <InstanceView v-if="store.CurrentInstance" :instance="store.CurrentInstance" />
-        <NoInstanceView v-else />
+        <WelcomeView v-else />
       </div>
     </div>
   </div>
@@ -21,10 +21,10 @@
 <script setup>
 import { useLauncherStore } from "../../stores/LauncherStore";
 import AddInstanceModal from "../modals/AddInstanceModal.vue";
-import SettingsModal from "../modals/SettingsModal.vue";
+import SettingsModal from "../modals/Settings/SettingsModal.vue";
 import Sidebar from "../navigation/Sidebar.vue";
 import InstanceView from "../views/InstanceView.vue";
-import NoInstanceView from "../views/NoInstanceView.vue";
+import WelcomeView from "../views/WelcomeView.vue";
 import Titlebar from "./Titlebar.vue";
 const store = useLauncherStore();
 </script>

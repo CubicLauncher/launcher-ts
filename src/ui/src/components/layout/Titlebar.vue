@@ -11,7 +11,7 @@ import { getIcon } from "../../lib/utils";
     <!-- Left spacer for balance -->
     <div class="w-24"></div>
 
-    <div class="flex items-center gap-2.5 px-3 py-1 bg-stone-750/30 rounded-md border border-stone-600/30">
+    <div class="flex items-center gap-2.5 px-3  bg-stone-750/30 rounded-md border border-stone-600/30">
       <component v-if="store.CurrentInstance" :is="getIcon(store.CurrentInstance.loader.loader)" class="w-6 h-6" />
       <logo v-else class="w-6 h-6" />
 

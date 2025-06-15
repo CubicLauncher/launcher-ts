@@ -10,7 +10,7 @@ import SidebarItem from "./SidebarItem.vue";
 const store = useLauncherStore();
 const languageStore = useLanguageStore();
 
-// Tooltip logic
+// Logica del tooltip
 const tooltipVisible = ref(false);
 const tooltipX = ref(0);
 const tooltipY = ref(0);

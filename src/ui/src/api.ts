@@ -11,6 +11,7 @@ interface IAPI {
 		getVersions(): BackendRes;
 		getInstances(): Promise<BackendRes>;
 		createInstance(instance: Instance): Promise<BackendRes>;
+		getLauncherData(): Promise<BackendRes>
 	};
 	window: {
 		closeLauncher(): BackendRes;
@@ -36,7 +37,7 @@ export function maximizeLauncher() {
 }
 
 export async function GetVersions() {
-	const versions = await window.cubic.launcher.getVersions();
+	const versions = window.cubic.launcher.getVersions();
 	if (!versions.success || versions.data === undefined) {
 		return [];
 	}
@@ -45,4 +46,23 @@ export async function GetVersions() {
 }
 export async function SaveInstance(instance: Instance) {
 	return await window.cubic.launcher.createInstance(instance);
+}
+
+export async function getLauncherData(): Promise<BackendRes> {
+	const launcherData = await window.cubic.launcher.getLauncherData();
+	if (!launcherData.success || launcherData.data === undefined) {
+		return {
+			success:false
+		};
+	}
+	return {
+		success: true,
+		data: launcherData.data as IsettingsLauncherData
+	}
+}
+
+export interface IsettingsLauncherData {
+	version: string,
+	build: string,
+	platform: string
 }
