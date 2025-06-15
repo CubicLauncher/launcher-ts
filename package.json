@@ -24,7 +24,7 @@
     "@biomejs/biome": "1.9.4",
     "@swc/cli": "^0.7.7",
     "@swc/core": "^1.11.24",
-    "@types/node": "^22.15.21",
+    "@types/node": "^24.0.0",
     "@types/semver": "^7.7.0",
     "cross-env": "^7.0.3",
     "electron": "^36.2.1",
