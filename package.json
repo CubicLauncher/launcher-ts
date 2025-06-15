@@ -29,7 +29,7 @@
     "cross-env": "^7.0.3",
     "electron": "^36.2.1",
     "electron-builder": "^26.0.12",
-    "oxlint": "^0.18.0",
+    "oxlint": "^1.0.0",
     "sass-embedded": "^1.89.1",
     "typescript": "^5.8.3"
   },
