@@ -1,4 +1,7 @@
 name: Build/release
+permissions:
+  contents: read
+  packages: write
 
 on:
   workflow_dispatch:
