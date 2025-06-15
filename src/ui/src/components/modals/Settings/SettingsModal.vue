@@ -52,6 +52,7 @@ import { getLauncherData, type IsettingsLauncherData } from "../../../api";
 // Import tab content components
 import LauncherSettings from "./Tabs/LauncherSettings.vue";
 import AccountSettings from "./Tabs/AccountSettings.vue";
+import GeneralSettings from "./Tabs/GeneralSettings.vue";
 
 // Import icons (SVG components)
 import controller from "../../../assets/icons/UI/controller.vue";
@@ -73,13 +74,7 @@ const tabs = [
     id: "general", 
     name: "General", 
     icon: controller,
-    content: LauncherSettings 
-  },
-  { 
-    id: "game", 
-    name: "Game", 
-    icon: controller,
-    content: LauncherSettings 
+    content: GeneralSettings 
   },
   { 
     id: "launcher", 
