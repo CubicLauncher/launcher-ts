@@ -7,11 +7,9 @@
                     <div class="relative">
                         <select 
                             v-model="selectedLanguage"
-                            @change="changeLanguage"
                             class="appearance-none w-48 px-4 py-2 bg-stone-800 text-stone-400 rounded-lg border border-stone-600 focus:outline-none focus:border-stone-400 pr-10 cursor-pointer"
                         >
-                            <option value="en">English</option>
-                            <option value="es">Español</option>
+                            <option v-for="language in availableLanguages" :value="language.code">{{ language.name }}</option>
                         </select>
                         <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-stone-400">
                             <i class="i-heroicons-chevron-down-20-solid w-5 h-5"></i>
@@ -43,13 +41,42 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, onMounted, watch } from 'vue';
 import { useLanguageStore } from '../../../../stores/LanguageStore';
 
 const languageStore = useLanguageStore();
-const selectedLanguage = ref((localStorage.getItem('selectedLanguage') || 'en') as 'en' | 'es');
+const availableLanguages = ref<{ code: string; name: string }[]>([]);
+const selectedLanguage = ref(languageStore.CurrentLanguage);
 
-const changeLanguage = () => {
-    languageStore.setCurrentLanguage(selectedLanguage.value);
+const fetchLanguages = async () => {
+    // @ts-ignore: Vite import.meta.globEager
+    const modules = import.meta.glob('../../../../lib/locales/*.json', { eager: true });
+    availableLanguages.value = Object.entries(modules).map(([path, mod]: any) => {
+        const code = path.match(/([a-zA-Z0-9_-]+)\.json$/)?.[1] || '';
+        const name = mod.default?.language?.name || code;
+        return {
+            code,
+            name,
+        };
+    });
 };
+
+onMounted(fetchLanguages);
+
+// Sincroniza el selector con el store automáticamente
+watch(
+    () => languageStore.CurrentLanguage,
+    (newLang) => {
+        if (selectedLanguage.value !== newLang) {
+            selectedLanguage.value = newLang;
+        }
+    }
+);
+
+// Cambia el idioma automáticamente al cambiar el selector
+watch(selectedLanguage, (newLang) => {
+    if (languageStore.CurrentLanguage !== newLang) {
+        languageStore.setCurrentLanguage(newLang);
+    }
+});
 </script>

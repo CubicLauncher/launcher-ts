@@ -1,23 +1,18 @@
 import { defineStore } from "pinia";
 import { computed } from "vue";
-import enTranslations from "../lib/locales/en.json";
-import esTranslations from "../lib/locales/es.json";
 
-const Languages = {
-	EN: "en",
-	ES: "es",
-} as const;
+// Carga dinámica de todos los archivos de idioma
+// @ts-ignore: Vite import.meta.globEager
+const modules = import.meta.glob("../lib/locales/*.json", { eager: true });
 
-type Language = (typeof Languages)[keyof typeof Languages];
+const translations: Record<string, any> = {};
+Object.entries(modules).forEach(([path, mod]: any) => {
+	const code = path.match(/([a-zA-Z0-9_-]+)\.json$/)?.[1] || '';
+	translations[code] = mod.default;
+});
 
-const translations = {
-	[Languages.EN]: enTranslations,
-	[Languages.ES]: esTranslations,
-};
-
-// Get saved language from localStorage or default to EN
-const savedLanguage =
-	(localStorage.getItem("selectedLanguage") as Language) || Languages.EN;
+// Obtener el idioma guardado o por defecto 'en'
+const savedLanguage = localStorage.getItem("selectedLanguage") || "en";
 
 export const useLanguageStore = defineStore("language", {
 	state: () => ({
@@ -28,7 +23,6 @@ export const useLanguageStore = defineStore("language", {
 			return computed(() => {
 				return (key: string) => {
 					const keys = key.split(".");
-					// Aquí indicamos que translation es un objeto con propiedades string
 					let translation: Record<string, any> | undefined =
 						translations[state.CurrentLanguage];
 
@@ -48,12 +42,19 @@ export const useLanguageStore = defineStore("language", {
 				};
 			}).value;
 		},
+		availableLanguages: () => {
+			return Object.entries(translations)
+				.map(([code, data]) => ({
+					code,
+					name: data?.language?.name || code,
+				}))
+				.sort((a, b) => a.name.localeCompare(b.name));
+		},
 	},
 
 	actions: {
-		setCurrentLanguage(language: Language) {
+		setCurrentLanguage(language: string) {
 			this.CurrentLanguage = language;
-			// Save the selected language to localStorage
 			localStorage.setItem("selectedLanguage", language);
 		},
 	},

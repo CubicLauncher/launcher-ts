@@ -1,9 +1,9 @@
 <template>
   <BaseModal v-model="rosquilla.isSettingsModalOpen" :title="languageStore.getTranslation('Launcher.settings.title')">
-    <div class="flex">
+    <div class="flex h-full">
       <!-- Vertical Tabs -->
-      <div class="w-56 border-r border-[#272727ff]">
-        <nav class="flex flex-col space-y-0.5" aria-label="Tabs">
+      <div class="w-56 border-r border-[#272727ff] h-full">
+        <nav class="flex flex-col space-y-0.5 h-full" aria-label="Tabs">
           <button 
             v-for="tab in tabs" 
             :key="tab.id" 
@@ -27,14 +27,14 @@
       </div>
 
       <!-- Tab Content -->
-      <div class="p-2">
-        <!-- Dynamic Tab Content -->
+      <div class="flex-1 h-full p-2 flex flex-col">
         <component 
           :is="getCurrentTabContent()" 
           v-if="getCurrentTabContent()"
           :key="activeTab"
+          class="flex-1 h-full"
         />
-        <div v-else class="flex items-center justify-center h-64 text-stone-400">
+        <div v-else class="flex items-center justify-center h-full text-stone-400">
           No content available for this tab
         </div>
       </div>
